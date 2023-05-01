@@ -11,12 +11,20 @@ type Picture = {
   vertices: Coordinate[];
 };
 type Bubble = {
-  bubbleType: BubbleType;
+  style: BubbleStyle;
   position: Coordinate;
   mouthPosition: Coordinate;
   size: Size;
   content: string;
+  onomatopoeia: Onomatopoeia;
 };
+type BubbleStyle =
+  | "rectangle"
+  | "thought"
+  | "speech"
+  | "scream"
+  | "whisper"
+  | "shout"; //And more
 type Coordinate = {
   x: string;
   y: string;
@@ -25,22 +33,24 @@ type Size = {
   width: string;
   height: string;
 };
-type BubbleType =
-  | "rectangle"
-  | "thought"
-  | "speech"
-  | "scream"
-  | "whisper"
-  | "shout"; //And more
+type Onomatopoeia = {
+  content: string;
+  position: Coordinate;
+  size: Size;
+  style: OnomatopoeiaStyle;
+};
+type OnomatopoeiaStyle = "normal" | "bold" | "italic" | "bold-italic"; // Make it more various
 
 export type {
   Manga,
   Episode,
   Page,
   Panel,
+  Picture,
   Bubble,
+  Onomatopoeia,
+  BubbleStyle,
   Coordinate,
   Size,
-  Picture,
-  BubbleType,
+  OnomatopoeiaStyle,
 };
