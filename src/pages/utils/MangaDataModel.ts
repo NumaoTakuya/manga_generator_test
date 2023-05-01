@@ -10,6 +10,7 @@ type Bubble = {
   position: Coordinate;
   mouthPosition: Coordinate;
   size: Size;
+  content: string;
 };
 type Coordinate = {
   x: string;
@@ -23,7 +24,13 @@ type Picture = {
   src: string;
   alt: string;
 };
-type BubbleType = "thought" | "speech" | "scream" | "whisper" | "shout";
+type BubbleType =
+  | "rectangle"
+  | "thought"
+  | "speech"
+  | "scream"
+  | "whisper"
+  | "shout"; //And more
 
 export type {
   Manga,
