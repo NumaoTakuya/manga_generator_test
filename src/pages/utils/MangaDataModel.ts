@@ -5,6 +5,11 @@ type Panel = {
   picture: Picture;
   bubbles: Bubble[];
 };
+type Picture = {
+  src: string;
+  alt: string;
+  vertices: Coordinate[];
+};
 type Bubble = {
   bubbleType: BubbleType;
   position: Coordinate;
@@ -19,10 +24,6 @@ type Coordinate = {
 type Size = {
   width: string;
   height: string;
-};
-type Picture = {
-  src: string;
-  alt: string;
 };
 type BubbleType =
   | "rectangle"
