@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
 import * as faceapi from "face-api.js";
 import Image from "next/image";
-import { Button, Container, Grid, Typography } from "@mui/material";
+import {
+  Button,
+  Container,
+  Grid,
+  Typography,
+  Backdrop,
+  CircularProgress,
+} from "@mui/material";
 import NavigationBar from "../components/NavigationBar";
 
 const sources = [
@@ -11,10 +18,11 @@ const sources = [
   "https://media.discordapp.net/attachments/1061113259979178044/1102984309448646667/Screenshot_2023-05-02_at_12-19-44_Down_To_Earth_-_Episode_1.png?width=730&height=780",
 ];
 
-const Playground = () => {
+const Detection = () => {
   const [detections, setDetections] = useState(null);
   const [sourceIndex, setSourceIndex] = useState(0);
 
+  const [modelsLoaded, setModelsLoaded] = useState(false);
   useEffect(() => {
     loadModels();
   }, []);
@@ -22,8 +30,10 @@ const Playground = () => {
   const loadModels = async () => {
     await faceapi.nets.ssdMobilenetv1.loadFromUri("/models");
     await faceapi.nets.faceLandmark68Net.loadFromUri("/models");
+    setModelsLoaded(true);
   };
 
+  const [loading, setLoading] = useState(false);
   const handleDetect = async () => {
     const imageElement = document.getElementById("face-image");
 
@@ -34,9 +44,11 @@ const Playground = () => {
         ? new faceapi.SsdMobilenetv1Options()
         : new faceapi.TinyFaceDetectorOptions();
 
+    // setLoading(true);
     const detectionsWithLandmarks = await faceapi
       .detectAllFaces(imageElement, options)
       .withFaceLandmarks();
+    // setLoading(false);
 
     setDetections(detectionsWithLandmarks);
   };
@@ -79,8 +91,7 @@ const Playground = () => {
   };
 
   const renderDetections = () => {
-    if (!detections) return null;
-
+    if (!modelsLoaded || !detections) return null;
     return detections.map((detection, i) => {
       const { x, y, width, height } = detection.detection.box;
       const mouth = detection.landmarks.getMouth();
@@ -147,8 +158,11 @@ const Playground = () => {
       >
         Next Image
       </Button>
+      <Backdrop open={loading}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </Container>
   );
 };
 
-export default Playground;
+export default Detection;

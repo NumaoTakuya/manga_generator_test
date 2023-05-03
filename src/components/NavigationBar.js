@@ -1,12 +1,12 @@
 // components/NavigationBar.js
 import React from "react";
 import { useRouter } from "next/router";
-import { AppBar, Toolbar, Button } from "@mui/material";
+import { AppBar, Stack, Button } from "@mui/material";
 
 const NavigationBar = () => {
   const router = useRouter();
 
-  const handleMainButtonClick = () => {
+  const handleDetectionButtonClick = () => {
     router.push("/");
   };
 
@@ -14,16 +14,37 @@ const NavigationBar = () => {
     router.push("/bubbles");
   };
 
+  const handleFrameButtonClick = () => {
+    router.push("/frame");
+  };
+
+  const handleOnomatopoeiaButtonClick = () => {
+    router.push("/onomatopoeia");
+  };
+
+  const handlePanelButtonClick = () => {
+    router.push("/panel");
+  };
+
   return (
     <AppBar position="fixed">
-      <Toolbar>
-        <Button color="inherit" onClick={handleMainButtonClick}>
-          Main
+      <Stack direction="row" spacing={5} sx={{ p: 2 }}>
+        <Button color="inherit" onClick={handleDetectionButtonClick}>
+          Detection
         </Button>
         <Button color="inherit" onClick={handleBubblesButtonClick}>
           Bubbles
         </Button>
-      </Toolbar>
+        <Button color="inherit" onClick={handleFrameButtonClick}>
+          Frame
+        </Button>
+        <Button color="inherit" onClick={handleOnomatopoeiaButtonClick}>
+          Onomatopoeia
+        </Button>
+        <Button color="inherit" onClick={handlePanelButtonClick}>
+          Panel
+        </Button>
+      </Stack>
     </AppBar>
   );
 };

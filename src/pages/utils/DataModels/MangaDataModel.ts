@@ -18,6 +18,7 @@ type Bubble = {
   mouthPosition: Coordinate;
   size: Size;
   content: string;
+  tailIsVisible: boolean;
 };
 type BubbleStyle =
   | "rectangle"

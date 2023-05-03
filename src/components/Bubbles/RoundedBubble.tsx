@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import BubbleProps from "@/utils/Bubble/BubbleProps";
 
 export const roundedBubbleTailPos = (
@@ -22,30 +22,47 @@ const RoundedBubble: React.FC<BubbleProps> = ({
   viewBoxWidth,
   viewBoxHeight,
   tail,
+  containerRef,
 }) => {
   return (
-    <svg viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}>
-      <rect
-        x={offsetX}
-        y={offsetY}
-        width={bubbleWidth}
-        height={bubbleHeight}
-        rx={15}
-        ry={15}
-        stroke="black"
-        strokeWidth={strokeWidth * 2}
-      />
-      {tail}
-      <rect
-        x={offsetX}
-        y={offsetY}
-        width={bubbleWidth}
-        height={bubbleHeight}
-        rx={15}
-        ry={15}
-        fill="white"
-      />
-    </svg>
+    <div
+      ref={containerRef}
+      style={{
+        position: "relative",
+        width: viewBoxWidth*10,
+        height: viewBoxHeight*10,
+      }}
+    >
+      <svg
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+        }}
+        viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
+      >
+        <rect
+          x={offsetX}
+          y={offsetY}
+          width={bubbleWidth}
+          height={bubbleHeight}
+          rx={15}
+          ry={15}
+          stroke="black"
+          strokeWidth={strokeWidth * 2}
+        />
+        {tail}
+        <rect
+          x={offsetX}
+          y={offsetY}
+          width={bubbleWidth}
+          height={bubbleHeight}
+          rx={15}
+          ry={15}
+          fill="white"
+        />
+      </svg>
+    </div>
   );
 };
 

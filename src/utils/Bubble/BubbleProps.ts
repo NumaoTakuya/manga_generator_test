@@ -7,6 +7,7 @@ type BubbleProps = {
   viewBoxWidth: number;
   viewBoxHeight: number;
   tail: JSX.Element;
+  containerRef: React.MutableRefObject<HTMLDivElement | null>;
 };
 
 export default BubbleProps;

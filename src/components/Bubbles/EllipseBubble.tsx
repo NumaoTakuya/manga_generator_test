@@ -22,27 +22,44 @@ const EllipseBubble: React.FC<BubbleProps> = ({
   viewBoxWidth,
   viewBoxHeight,
   tail,
+  containerRef,
 }) => {
   return (
-    <svg viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}>
-      <ellipse
-        cx={bubbleWidth / 2 + offsetX}
-        cy={bubbleHeight / 2 + offsetY}
-        rx={bubbleWidth / 2}
-        ry={bubbleHeight / 2}
-        fill="white"
-        stroke="black"
-        strokeWidth={strokeWidth * 2}
-      />
-      {tail}
-      <ellipse
-        cx={bubbleWidth / 2 + offsetX}
-        cy={bubbleHeight / 2 + offsetY}
-        rx={bubbleWidth / 2}
-        ry={bubbleHeight / 2}
-        fill="white"
-      />
-    </svg>
+    <div
+      ref={containerRef}
+      style={{
+        position: "relative",
+        width: viewBoxWidth * 10,
+        height: viewBoxHeight * 10,
+      }}
+    >
+      <svg
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+        }}
+        viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
+      >
+        <ellipse
+          cx={bubbleWidth / 2 + offsetX}
+          cy={bubbleHeight / 2 + offsetY}
+          rx={bubbleWidth / 2}
+          ry={bubbleHeight / 2}
+          fill="white"
+          stroke="black"
+          strokeWidth={strokeWidth * 2}
+        />
+        {tail}
+        <ellipse
+          cx={bubbleWidth / 2 + offsetX}
+          cy={bubbleHeight / 2 + offsetY}
+          rx={bubbleWidth / 2}
+          ry={bubbleHeight / 2}
+          fill="white"
+        />
+      </svg>
+    </div>
   );
 };
 

@@ -1,12 +1,41 @@
 import React from "react";
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState, useRef } from "react";
 import RoundedBubble, { roundedBubbleTailPos } from "./Bubbles/RoundedBubble";
 import SquareBubble, { squareBubbleTailPos } from "./Bubbles/SquareBubble";
 import EllipseBubble, { ellipseBubbleTailPos } from "./Bubbles/EllipseBubble";
 import Tail from "./Tail";
 import BubbleType from "@/utils/Bubble/BubbleType";
 
+function calculateAngle(x: number, y: number) {
+  return Math.atan2(y, x);
+}
+
 const Bubble: React.FC<BubbleType> = ({ type }) => {
+  // Mouse position
+  const useMousePosition = () => {
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+
+    useEffect(() => {
+      const handleMouseMove = (event: MouseEvent) => {
+        setPosition({ x: event.clientX, y: event.clientY });
+      };
+
+      window.addEventListener("mousemove", handleMouseMove);
+
+      return () => {
+        window.removeEventListener("mousemove", handleMouseMove);
+      };
+    }, []);
+
+    return position;
+  };
+
+  const mousePosition = useMousePosition();
+
+  // Absolute Position of this component
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  // Bubble
   const viewBoxWidth = 110;
   const viewBoxHeight = 60;
   const bubbleWidth = viewBoxWidth / 2;
@@ -28,7 +57,28 @@ const Bubble: React.FC<BubbleType> = ({ type }) => {
   const reducer = (state: any, action: { type: string }) => {
     switch (action.type) {
       case "UPDATE_POSITION":
-        const angle = ((state.rotation + 1) * Math.PI) / 180;
+        const rect =
+          containerRef && containerRef.current
+            ? containerRef.current.getBoundingClientRect()
+            : {
+                left: 0,
+                top: 0,
+                width: 0,
+                height: 0,
+              };
+        const absCenterX = rect.left + rect.width / 2;
+        const absCenterY = rect.top + rect.height / 2;
+        const angle = calculateAngle(
+          mousePosition.x - absCenterX,
+          mousePosition.y - absCenterY
+        );
+        if (type === "square") {
+          if (containerRef.current) {
+            console.log("Absolute position:", absCenterX, absCenterY);
+          }
+          console.log(`Mouse position: ${mousePosition.x}, ${mousePosition.y}`);
+          console.log(`Angle: ${angle}`);
+        }
         let newTailX, newTailY;
 
         switch (type) {
@@ -62,9 +112,8 @@ const Bubble: React.FC<BubbleType> = ({ type }) => {
           default:
             return state;
         }
-
         return {
-          rotation: (state.rotation + 1) % 360,
+          rotation: (angle * 180) / Math.PI,
           tailX: newTailX,
           tailY: newTailY,
         };
@@ -76,12 +125,8 @@ const Bubble: React.FC<BubbleType> = ({ type }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      dispatch({ type: "UPDATE_POSITION" });
-    }, 20); // 連続的に回転させる
-    return () => clearInterval(interval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    dispatch({ type: "UPDATE_POSITION" });
+  }, [mousePosition]);
 
   const points = {
     x1: state.tailX - tailWidth / 2,
@@ -103,6 +148,7 @@ const Bubble: React.FC<BubbleType> = ({ type }) => {
     viewBoxWidth,
     viewBoxHeight,
     tail,
+    containerRef,
   };
 
   switch (type) {
@@ -113,7 +159,7 @@ const Bubble: React.FC<BubbleType> = ({ type }) => {
     case "ellipse":
       return EllipseBubble(props);
     default:
-      return null;
+      return RoundedBubble(props);
   }
 };
 
