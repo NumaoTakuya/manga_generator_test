@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import * as faceapi from "face-api.js";
 import Image from "next/image";
 import { Button, Container, Grid, Typography } from "@mui/material";
-import ml5 from "ml5";
+import NavigationBar from "../components/NavigationBar";
 
 const sources = [
   "https://media.discordapp.net/ephemeral-attachments/1092492867185950852/1102974784884711514/3f07ed359ce9d67463dbf0a01c56071d.jpg?width=900&height=1060",
@@ -19,7 +19,8 @@ const Playground = () => {
     loadModels();
   }, []);
 
-  const loadModels = async () => { 
+  const loadModels = async () => {
+    await faceapi.nets.ssdMobilenetv1.loadFromUri("/models");
     await faceapi.nets.faceLandmark68Net.loadFromUri("/models");
   };
 
@@ -106,7 +107,8 @@ const Playground = () => {
 
   return (
     <Container>
-      <Typography variant="h4" gutterBottom>
+      <NavigationBar />
+      <Typography variant="h4" gutterBottom sx={{ mt: 10 }}>
         Face Detection Test
       </Typography>
       <Grid container spacing={3}>
