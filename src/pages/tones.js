@@ -20,7 +20,7 @@ const TonesPage = () => {
 
   const changeColors = () => {
     const primaryIndex = Math.floor(Math.random() * colors.length);
-    const diff = Math.floor(Math.random() * (colors.length - 2));
+    const diff = Math.floor(1 + Math.random() * (colors.length - 2));
     const secondaryIndex = (primaryIndex + diff) % colors.length;
     const randomPrimaryColor = colors[primaryIndex];
     const randomSecondaryColor = colors[secondaryIndex];
