@@ -6,6 +6,7 @@ type BubbleProps = {
   type: BubbleType;
   size: Size;
   position: Point;
+  targetPosition: Point;
 };
 
 export default BubbleProps;

@@ -34,7 +34,7 @@ const CropImage = ({ id, randomness, src, width, height }) => {
       }}
     >
       <Image
-        id={id}
+        id={id} 
         src={src}
         alt="face"
         layout="responsive"

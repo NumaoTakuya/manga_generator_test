@@ -1,4 +1,5 @@
 const Tail = ({ points, state, strokeWidth }) => {
+  if (!points.x1) return null;
   return (
     <g transform={`rotate(${state.rotation}, ${state.tailPos.x}, ${state.tailPos.y})`}>
       <polygon

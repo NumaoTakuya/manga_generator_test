@@ -10,8 +10,14 @@ import Size from "@/utils/classes/Size";
 import useMousePosition from "@/utils/hooks/useMousePosition";
 import tailReducer from "./Bubbles/tailReducer";
 
-const Bubble: React.FC<BubbleProps> = ({ type, size, position }) => {
-  const mousePosition = useMousePosition();
+const Bubble: React.FC<BubbleProps> = ({
+  type,
+  size,
+  position,
+  targetPosition,
+}) => {
+  let mousePosition = useMousePosition(); // TODO: 口（対象）の座標に変更する
+  mousePosition = targetPosition ? targetPosition : mousePosition; 
 
   // Bubble
   const viewBoxSize: Size = size;
@@ -57,6 +63,7 @@ const Bubble: React.FC<BubbleProps> = ({ type, size, position }) => {
     x3: state.tailPos.x - tailSize.width / 2,
     y3: state.tailPos.y + tailSize.height / 2,
   };
+
   const strokeWidth = 1; //TODO: typeによって分類
   const tail = <Tail points={points} state={state} strokeWidth={strokeWidth} />;
 
