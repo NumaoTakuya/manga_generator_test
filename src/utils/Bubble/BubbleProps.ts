@@ -1,13 +1,11 @@
+import BubbleType from "./BubbleType";
+import Size from "@/utils/classes/Size";
+import Point from "@/utils/classes/Point";
+
 type BubbleProps = {
-  offsetX: number;
-  offsetY: number;
-  bubbleWidth: number;
-  bubbleHeight: number;
-  strokeWidth: number;
-  viewBoxWidth: number;
-  viewBoxHeight: number;
-  tail: JSX.Element;
-  containerRef: React.MutableRefObject<HTMLDivElement | null>;
+  type: BubbleType;
+  size: Size;
+  position: Point;
 };
 
 export default BubbleProps;

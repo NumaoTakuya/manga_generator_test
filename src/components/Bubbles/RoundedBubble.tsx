@@ -1,26 +1,18 @@
-import React, { useRef, useEffect } from "react";
-import BubbleProps from "@/utils/Bubble/BubbleProps";
+import React from "react";
+import EachBubbleProps from "@/utils/Bubble/EachBubbleProps";
+import CenteredRect from "@/utils/classes/CenteredRect";
 
-export const roundedBubbleTailPos = (
-  centerX: number,
-  centerY: number,
-  bubbleWidth: number,
-  bubbleHeight: number,
-  angle: number
-) => {
-  const newTailX = centerX + (bubbleWidth / 2) * Math.cos(angle);
-  const newTailY = centerY + (bubbleHeight / 2) * Math.sin(angle);
+export const roundedBubbleTailPos = (cRect: CenteredRect, angle: number) => {
+  const newTailX = cRect.centerX + (cRect.width / 2) * Math.cos(angle);
+  const newTailY = cRect.centerY + (cRect.height / 2) * Math.sin(angle);
   return { newTailX, newTailY };
 };
 
-const RoundedBubble: React.FC<BubbleProps> = ({
-  offsetX,
-  offsetY,
-  bubbleWidth,
-  bubbleHeight,
+const RoundedBubble: React.FC<EachBubbleProps> = ({
+  offset,
+  bubbleSize,
   strokeWidth,
-  viewBoxWidth,
-  viewBoxHeight,
+  viewBoxSize,
   tail,
   containerRef,
 }) => {
@@ -29,8 +21,8 @@ const RoundedBubble: React.FC<BubbleProps> = ({
       ref={containerRef}
       style={{
         position: "relative",
-        width: viewBoxWidth*10,
-        height: viewBoxHeight*10,
+        width: viewBoxSize.width * 10,
+        height: viewBoxSize.height * 10,
       }}
     >
       <svg
@@ -39,13 +31,13 @@ const RoundedBubble: React.FC<BubbleProps> = ({
           width: "100%",
           height: "100%",
         }}
-        viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
+        viewBox={`0 0 ${viewBoxSize.width} ${viewBoxSize.height}`}
       >
         <rect
-          x={offsetX}
-          y={offsetY}
-          width={bubbleWidth}
-          height={bubbleHeight}
+          x={offset.x}
+          y={offset.y}
+          width={bubbleSize.width}
+          height={bubbleSize.height}
           rx={15}
           ry={15}
           stroke="black"
@@ -53,10 +45,10 @@ const RoundedBubble: React.FC<BubbleProps> = ({
         />
         {tail}
         <rect
-          x={offsetX}
-          y={offsetY}
-          width={bubbleWidth}
-          height={bubbleHeight}
+          x={offset.x}
+          y={offset.y}
+          width={bubbleSize.width}
+          height={bubbleSize.height}
           rx={15}
           ry={15}
           fill="white"

@@ -1,26 +1,18 @@
 import React from "react";
-import BubbleProps from "@/utils/Bubble/BubbleProps";
+import EachBubbleProps from "@/utils/Bubble/EachBubbleProps";
+import CenteredRect from "@/utils/classes/CenteredRect";
 
-export const ellipseBubbleTailPos = (
-  centerX: number,
-  centerY: number,
-  bubbleWidth: number,
-  bubbleHeight: number,
-  angle: number
-) => {
-  const newTailX = centerX + (bubbleWidth / 2) * Math.cos(angle);
-  const newTailY = centerY + (bubbleHeight / 2) * Math.sin(angle);
+export const ellipseBubbleTailPos = (cRect: CenteredRect, angle: number) => {
+  const newTailX = cRect.centerX + (cRect.width / 2) * Math.cos(angle);
+  const newTailY = cRect.centerY + (cRect.height / 2) * Math.sin(angle);
   return { newTailX, newTailY };
 };
 
-const EllipseBubble: React.FC<BubbleProps> = ({
-  offsetX,
-  offsetY,
-  bubbleWidth,
-  bubbleHeight,
+const EllipseBubble: React.FC<EachBubbleProps> = ({
+  offset,
+  bubbleSize,
   strokeWidth,
-  viewBoxWidth,
-  viewBoxHeight,
+  viewBoxSize,
   tail,
   containerRef,
 }) => {
@@ -29,8 +21,8 @@ const EllipseBubble: React.FC<BubbleProps> = ({
       ref={containerRef}
       style={{
         position: "relative",
-        width: viewBoxWidth * 10,
-        height: viewBoxHeight * 10,
+        width: viewBoxSize.width * 10,
+        height: viewBoxSize.height * 10,
       }}
     >
       <svg
@@ -39,23 +31,23 @@ const EllipseBubble: React.FC<BubbleProps> = ({
           width: "100%",
           height: "100%",
         }}
-        viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
+        viewBox={`0 0 ${viewBoxSize.width} ${viewBoxSize.height}`}
       >
         <ellipse
-          cx={bubbleWidth / 2 + offsetX}
-          cy={bubbleHeight / 2 + offsetY}
-          rx={bubbleWidth / 2}
-          ry={bubbleHeight / 2}
+          cx={bubbleSize.width / 2 + offset.x}
+          cy={bubbleSize.height / 2 + offset.y}
+          rx={bubbleSize.width / 2}
+          ry={bubbleSize.height / 2}
           fill="white"
           stroke="black"
           strokeWidth={strokeWidth * 2}
         />
         {tail}
         <ellipse
-          cx={bubbleWidth / 2 + offsetX}
-          cy={bubbleHeight / 2 + offsetY}
-          rx={bubbleWidth / 2}
-          ry={bubbleHeight / 2}
+          cx={bubbleSize.width / 2 + offset.x}
+          cy={bubbleSize.height / 2 + offset.y}
+          rx={bubbleSize.width / 2}
+          ry={bubbleSize.height / 2}
           fill="white"
         />
       </svg>

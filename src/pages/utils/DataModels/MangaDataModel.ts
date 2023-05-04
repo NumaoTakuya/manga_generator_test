@@ -5,7 +5,7 @@ type Page = Panel[];
 type Panel = {
   picture: Picture;
   bubbles: Bubble[];
-  onomatopoeia: Onomatopoeia;
+  onomatopoeias: Onomatopoeia[];
 };
 type Picture = {
   src: string;
@@ -37,7 +37,8 @@ type Size = {
 };
 type Onomatopoeia = {
   content: string;
-  position: Coordinate;
+  position: Coordinate; // degree
+  rotation: number;
   size: Size;
   style: OnomatopoeiaStyle;
 };

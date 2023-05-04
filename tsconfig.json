@@ -18,6 +18,17 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/index.js", "src/components/Bubble.tsx", "src/components/Tail.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/pages/index.js",
+    "src/components/Bubble.tsx",
+    "src/components/Tail.js",
+    "src/pages/panel.js",
+    "src/utils/hooks/useDetectFace.js",
+    "src/utils/classes/CenteredRect.js",
+    "src/utils/useMousePosition.js"
+  ],
   "exclude": ["node_modules"]
 }

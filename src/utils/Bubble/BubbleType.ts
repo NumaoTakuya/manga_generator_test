@@ -1,3 +1,3 @@
-type BubbleType = { type: "rounded" | "square" | "ellipse" };
+type BubbleType = "rounded" | "square" | "ellipse";
 
 export default BubbleType;

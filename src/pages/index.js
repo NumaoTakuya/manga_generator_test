@@ -1,15 +1,8 @@
-import React, { useState, useEffect } from "react";
-import * as faceapi from "face-api.js";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import {
-  Button,
-  Container,
-  Grid,
-  Typography,
-  Backdrop,
-  CircularProgress,
-} from "@mui/material";
+import { Button, Container, Grid, Typography } from "@mui/material";
 import NavigationBar from "../components/NavigationBar";
+import useDetectFace from "../utils/hooks/useDetectFace";
 
 const sources = [
   "https://media.discordapp.net/ephemeral-attachments/1092492867185950852/1102974784884711514/3f07ed359ce9d67463dbf0a01c56071d.jpg?width=900&height=1060",
@@ -19,43 +12,39 @@ const sources = [
 ];
 
 const Detection = () => {
-  const [detections, setDetections] = useState(null);
-  const [sourceIndex, setSourceIndex] = useState(0);
+  // useDetectFace
+  const [imageElement, setImageElement] = useState(null);
+  const [loadCounter, setLoadCounter] = useState(0);
 
-  const [modelsLoaded, setModelsLoaded] = useState(false);
   useEffect(() => {
-    loadModels();
+    setImageElement(document.getElementById("face-image"));
   }, []);
 
-  const loadModels = async () => {
-    await faceapi.nets.ssdMobilenetv1.loadFromUri("/models");
-    await faceapi.nets.faceLandmark68Net.loadFromUri("/models");
-    setModelsLoaded(true);
-  };
+  useEffect(() => {
+    if (imageElement) {
+      setLoadCounter((prevLoadCounter) => prevLoadCounter + 1);
+    }
+  }, [imageElement]);
 
-  const [loading, setLoading] = useState(false);
-  const handleDetect = async () => {
-    const imageElement = document.getElementById("face-image");
+  const detectFace = useDetectFace(imageElement, loadCounter);
+  const [modelsLoaded, detections, handleDetect] = [
+    detectFace.modelsLoaded,
+    detectFace.detections,
+    detectFace.handleDetect,
+  ];
 
-    if (!imageElement) return;
-
-    const options =
-      detections === null
-        ? new faceapi.SsdMobilenetv1Options()
-        : new faceapi.TinyFaceDetectorOptions();
-
-    // setLoading(true);
-    const detectionsWithLandmarks = await faceapi
-      .detectAllFaces(imageElement, options)
-      .withFaceLandmarks();
-    // setLoading(false);
-
-    setDetections(detectionsWithLandmarks);
-  };
-
+  // Next
+  const [showDetections, setShowDetections] = useState(false);
+  const [sourceIndex, setSourceIndex] = useState(0);
   const handleNext = () => {
+    setShowDetections(false);
     setSourceIndex((sourceIndex + 1) % sources.length);
-    setDetections(null);
+  };
+
+  const handleShowDetections = () => {
+    handleDetect(() => {
+      setShowDetections(true);
+    });
   };
 
   const drawDetections = () => {
@@ -94,6 +83,12 @@ const Detection = () => {
     if (!modelsLoaded || !detections) return null;
     return detections.map((detection, i) => {
       const { x, y, width, height } = detection.detection.box;
+      const fixedCoords = {
+        x: x.toFixed(2),
+        y: y.toFixed(2),
+        width: width.toFixed(2),
+        height: height.toFixed(2),
+      };
       const mouth = detection.landmarks.getMouth();
       const mouthCoords = `(${mouth[14].x.toFixed(2)}, ${mouth[14].y.toFixed(
         2
@@ -105,8 +100,8 @@ const Detection = () => {
             Detection {i + 1}
           </Typography>
           <Typography variant="body1">
-            Rectangle: x={x.toFixed(2)}, y={y.toFixed(2)}, width=
-            {width.toFixed(2)}, height={height.toFixed(2)}
+            Rectangle: x={fixedCoords.x}, y={fixedCoords.y}, width=
+            {fixedCoords.width}, height={fixedCoords.height}
           </Typography>
           <Typography variant="body1">
             Mouth Coordinates: {mouthCoords}
@@ -135,7 +130,7 @@ const Detection = () => {
                 height={480}
               />
             </div>
-            {drawDetections()}
+            {showDetections && drawDetections()}
           </div>
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -145,7 +140,7 @@ const Detection = () => {
       <Button
         variant="contained"
         color="primary"
-        onClick={handleDetect}
+        onClick={handleShowDetections}
         sx={{ marginTop: 2 }}
       >
         Detect Faces
@@ -158,9 +153,6 @@ const Detection = () => {
       >
         Next Image
       </Button>
-      <Backdrop open={loading}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
     </Container>
   );
 };
