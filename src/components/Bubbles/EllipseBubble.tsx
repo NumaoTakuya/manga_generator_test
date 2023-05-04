@@ -13,16 +13,14 @@ const EllipseBubble: React.FC<EachBubbleProps> = ({
   bubbleSize,
   strokeWidth,
   viewBoxSize,
-  tail,
-  containerRef,
+  tail, 
 }) => {
   return (
-    <div
-      ref={containerRef}
+    <div 
       style={{
         position: "relative",
-        width: viewBoxSize.width * 10,
-        height: viewBoxSize.height * 10,
+        width: viewBoxSize.width,
+        height: viewBoxSize.height,
       }}
     >
       <svg

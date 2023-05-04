@@ -38,6 +38,7 @@ const calculateIntersection = (cRect: CenteredRect, angle: number) => {
   return { newTailX, newTailY };
 };
 
+
 export const squareBubbleTailPos = (cRect: CenteredRect, angle: number) => {
   const { newTailX, newTailY } = calculateIntersection(cRect, angle);
   return { newTailX, newTailY };
@@ -48,16 +49,14 @@ const SquareBubble: React.FC<EachBubbleProps> = ({
   bubbleSize,
   strokeWidth,
   viewBoxSize,
-  tail,
-  containerRef,
+  tail, 
 }) => {
   return (
-    <div
-      ref={containerRef}
+    <div 
       style={{
         position: "relative",
-        width: viewBoxSize.width * 10,
-        height: viewBoxSize.height * 10,
+        width: viewBoxSize.width,
+        height: viewBoxSize.height,
       }}
     >
       <svg

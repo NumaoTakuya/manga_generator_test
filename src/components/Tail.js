@@ -1,6 +1,6 @@
 const Tail = ({ points, state, strokeWidth }) => {
   return (
-    <g transform={`rotate(${state.rotation}, ${state.tailX}, ${state.tailY})`}>
+    <g transform={`rotate(${state.rotation}, ${state.tailPos.x}, ${state.tailPos.y})`}>
       <polygon
         points={`${points.x1},${points.y1} ${points.x2},${points.y2} ${points.x3},${points.y3}`}
         fill="white"

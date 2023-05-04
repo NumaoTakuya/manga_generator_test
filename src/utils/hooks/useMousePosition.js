@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Point from "./classes/Point";
+import Point from "../classes/Point";
 
 // Mouse position
 const useMousePosition = () => {

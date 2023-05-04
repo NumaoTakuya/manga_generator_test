@@ -7,7 +7,6 @@ type EachBubbleProps = {
   strokeWidth: number;
   viewBoxSize: Size;
   tail: JSX.Element;
-  containerRef: React.MutableRefObject<HTMLDivElement | null>;
 };
 
 export default EachBubbleProps;
