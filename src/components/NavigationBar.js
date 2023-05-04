@@ -22,6 +22,10 @@ const NavigationBar = () => {
     router.push("/onomatopoeia");
   };
 
+  const handleTonesButtonClick = () => {
+    router.push("/tones");
+  };
+
   const handlePanelButtonClick = () => {
     router.push("/panel");
   };
@@ -40,6 +44,9 @@ const NavigationBar = () => {
         </Button>
         <Button color="inherit" onClick={handleOnomatopoeiaButtonClick}>
           Onomatopoeia
+        </Button>
+        <Button color="inherit" onClick={handleTonesButtonClick}>
+          Tones
         </Button>
         <Button color="inherit" onClick={handlePanelButtonClick}>
           Panel

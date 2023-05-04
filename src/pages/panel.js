@@ -70,7 +70,7 @@ const PanelPage = () => {
   const r3 = getRandomPointOnUnitCircle(r + 4);
   const bubbleRelativePositions = [
     r1.multiply(230),
-    r2.multiply(300),
+    r2.multiply(240),
     r3.multiply(250),
   ];
   const bubbleSizes = [
