@@ -22,6 +22,15 @@ import {
   Stars,
 } from "../components/Tones";
 import OnomatopoeiaText from "../components/OnomatopoeiaText";
+import {
+  getRandomFromArray,
+  getRandomColor,
+  getRandomInt,
+} from "../utils/getRandom";
+import {
+  onomatopoeias,
+  fonts,
+} from "../utils/Onomatopoeia/OnomatopoeiaAttributes";
 
 // TODO: よりリーダブル
 
@@ -143,6 +152,19 @@ const PanelPage = () => {
     //  eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Onomatopoeia
+  const onomatopoeiaProps = {
+    content: getRandomFromArray(onomatopoeias),
+    font: getRandomFromArray(fonts),
+    color: getRandomColor(),
+    position: {
+      x: mouthPosition.x + getRandomInt(100, 200),
+      y: mouthPosition.y + getRandomInt(-200, 200),
+    },
+    size: getRandomInt(30, 100),
+    rotation: getRandomInt(-30, 30),
+  };
+
   return (
     <Container
       sx={{
@@ -155,9 +177,7 @@ const PanelPage = () => {
       }}
     >
       <NavigationBar />
-      <Layer zIndex={0}>
-        {selectedTone}
-      </Layer>
+      <Layer zIndex={0}>{selectedTone}</Layer>
       <Layer zIndex={1}>
         <CropImage
           id="image-0"
@@ -167,7 +187,9 @@ const PanelPage = () => {
           height={height}
         />
       </Layer>
-      <Layer zIndex={2}></Layer>
+      <Layer zIndex={2}>
+        <OnomatopoeiaText {...onomatopoeiaProps} />
+      </Layer>
       <Layer zIndex={3}>
         {Array(3)
           .fill(null)

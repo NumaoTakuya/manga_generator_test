@@ -4,71 +4,7 @@ import { Box } from "@mui/system";
 import NavigationBar from "../components/NavigationBar";
 import OnomatopoeiaText from "../components/OnomatopoeiaText";
 import { getRandomFromArray, getRandomColor, getRandomInt } from "../utils/getRandom";
- 
-const onomatopoeias = [
-  "Bam!",
-  "Pow!",
-  "Wham!",
-  "Crash!",
-  "Boom!",
-  "Snap!",
-  "Zap!",
-  "Zing!",
-  "Sizzle!",
-  "Pop!",
-  "Blam!",
-  "Thwack!",
-  "Bang!",
-  "Crunch!",
-  "Smash!",
-  "Kapow!",
-  "Kaboom!",
-  "Biff!",
-  "Bop!",
-  "Clang!",
-  "Ping!",
-  "Plop!",
-  "Splat!",
-  "Swoosh!",
-  "Thunk!",
-  "Tick-tock!",
-  "Whack!",
-  "Zoom!",
-  "Hiss!",
-];
-
-const fonts = [
-  "Arial",
-  "Comic Sans MS",
-  "Verdana",
-  "Georgia",
-  "Tahoma",
-  "Helvetica",
-  "Times New Roman",
-  "Courier New",
-  "Impact",
-  "Lucida Console",
-  "Century Gothic",
-  "Garamond",
-  "Palatino",
-  "Bookman",
-  "Avant Garde",
-  "Candara",
-  "Calibri",
-  "Consolas",
-  "Segoe UI",
-  "Trebuchet MS",
-  "Franklin Gothic Medium",
-  "Rockwell",
-  "Cambria",
-  "Constantia",
-  "Corbel",
-  "Perpetua",
-  "Ebrima",
-  "Gabriola",
-  "Segoe Print",
-  "Brush Script MT",
-]; 
+import { onomatopoeias, fonts } from "../utils/Onomatopoeia/OnomatopoeiaAttributes";
 
 const OnomatopoeiaPage = () => {
   const [onomatopoeiaProps, setOnomatopoeiaProps] = useState({});
