@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { Button } from "@mui/material";
 import { Box } from "@mui/system";
 import NavigationBar from "../components/NavigationBar";
-
-const getRandomInt = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
+import OnomatopoeiaText from "../components/OnomatopoeiaText";
+import { getRandomFromArray, getRandomColor, getRandomInt } from "../utils/getRandom";
+ 
 const onomatopoeias = [
   "Bam!",
   "Pow!",
@@ -69,30 +68,21 @@ const fonts = [
   "Gabriola",
   "Segoe Print",
   "Brush Script MT",
-];
-
-const getRandomFromArray = (arr) => {
-  return arr[Math.floor(Math.random() * arr.length)];
-};
-
-const getRandomColor = () => {
-  return `rgb(${getRandomInt(0, 255)}, ${getRandomInt(0, 255)}, ${getRandomInt(
-    0,
-    255
-  )})`;
-};
+]; 
 
 const OnomatopoeiaPage = () => {
-  const [onomatopoeiaStyle, setOnomatopoeiaStyle] = useState({});
+  const [onomatopoeiaProps, setOnomatopoeiaProps] = useState({});
 
   const handleButtonClick = () => {
-    const newOnomatopoeiaStyle = {
-      fontFamily: getRandomFromArray(fonts),
-      fontSize: `${getRandomInt(72, 200)}px`,
+    const newOnomatopoeiaProps = {
+      content: getRandomFromArray(onomatopoeias),
+      font: getRandomFromArray(fonts),
       color: getRandomColor(),
-      transform: `rotate(${getRandomInt(-30, 30)}deg)`,
+      position: { x: getRandomInt(400, 600), y: getRandomInt(300, 400) },
+      size: getRandomInt(72, 200),
+      rotation: getRandomInt(-30, 30),
     };
-    setOnomatopoeiaStyle(newOnomatopoeiaStyle);
+    setOnomatopoeiaProps(newOnomatopoeiaProps);
   };
 
   return (
@@ -110,17 +100,7 @@ const OnomatopoeiaPage = () => {
       <Button onClick={handleButtonClick} sx={{ mt: 10 }}>
         Generate Onomatopoeia
       </Button>
-      <Box
-        component="span"
-        sx={{
-          ...onomatopoeiaStyle,
-          userSelect: "none",
-          textAlign: "center",
-          mt: 20,
-        }}
-      >
-        {getRandomFromArray(onomatopoeias)}
-      </Box>
+      <OnomatopoeiaText {...onomatopoeiaProps} />
       <Box sx={{ flex: 1 }}></Box>
     </Box>
   );

@@ -1,18 +1,46 @@
-const Gradient = (colors) => (
-  <svg width="200" height="200">
-    {/* Gradient */}
+import React from "react"; 
+
+const HorizontalGradient = (colors, size) => (
+  <svg width={size.width} height={size.height}>
+    {/* HorizontalGradient */}
     <defs>
       <linearGradient id="Gradient1" x1="0" x2="1" y1="0" y2="0">
         <stop offset="0%" stopColor={colors[0]} />
         <stop offset="100%" stopColor={colors[1]} />
       </linearGradient>
     </defs>
-    <rect x="0" y="0" width="200" height="200" fill="url(#Gradient1)" />
+    <rect
+      x="0"
+      y="0"
+      width={size.width}
+      height={size.height}
+      fill="url(#Gradient1)"
+    />
   </svg>
 );
 
-const RadialGradient = (colors) => (
-  <svg width="200" height="200">
+const VerticalGradient = (colors, size) => (
+  <svg width={size.width} height={size.height}>
+    {/* VerticalGradient */}
+    <defs>
+      <linearGradient id="Gradient1" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0%" stopColor={colors[0]} />
+        <stop offset="100%" stopColor={colors[1]} />
+      </linearGradient>
+    </defs>
+    <rect
+      x="0"
+      y="0"
+      width={size.width}
+      height={size.height}
+      fill="url(#Gradient1)"
+      transform="rotate(90, 100, 100)"
+    />
+  </svg>
+);
+
+const RadialGradient = (colors, size) => (
+  <svg width={size.width} height={size.height}>
     {/* Radial Gradient */}
     <defs>
       <radialGradient id="RadialGradient1" cx="0.5" cy="0.5" r="0.5">
@@ -20,12 +48,18 @@ const RadialGradient = (colors) => (
         <stop offset="100%" stopColor={colors[1]} />
       </radialGradient>
     </defs>
-    <rect x="0" y="0" width="100%" height="100%" fill="url(#RadialGradient1)" />
+    <rect
+      x="0"
+      y="0"
+      width={size.width}
+      height={size.height}
+      fill="url(#RadialGradient1)"
+    />
   </svg>
 );
 
-const PolkaDots = (color) => (
-  <svg width="200" height="200">
+const PolkaDots = (color, size) => (
+  <svg width={size.width} height={size.height}>
     {/* Polka Dots */}
     <defs>
       <pattern
@@ -39,12 +73,18 @@ const PolkaDots = (color) => (
         <circle cx="25" cy="25" r="10" fill={color} />
       </pattern>
     </defs>
-    <rect x="0" y="0" width="200" height="200" fill="url(#PolkaDots)" />
+    <rect
+      x="0"
+      y="0"
+      width={size.width}
+      height={size.height}
+      fill="url(#PolkaDots)"
+    />
   </svg>
 );
 
-const Checkerboard = (color) => (
-  <svg width="200" height="200">
+const Checkerboard = (color, size) => (
+  <svg width={size.width} height={size.height}>
     {/* Checkerboard */}
     <defs>
       <pattern
@@ -59,12 +99,18 @@ const Checkerboard = (color) => (
         <rect x="20" y="20" width="20" height="20" fill={color} />
       </pattern>
     </defs>
-    <rect x="0" y="0" width="200" height="200" fill="url(#Checkerboard)" />
+    <rect
+      x="0"
+      y="0"
+      width={size.width}
+      height={size.height}
+      fill="url(#Checkerboard)"
+    />
   </svg>
 );
 
-const DiagonalLines = (color) => (
-  <svg width="200" height="200">
+const DiagonalLines = (color, size) => (
+  <svg width={size.width} height={size.height}>
     {/* Diagonal Lines */}
     <defs>
       <pattern
@@ -78,12 +124,18 @@ const DiagonalLines = (color) => (
         <line x1="0" y1="0" x2="0" y2="10" stroke={color} strokeWidth="1" />
       </pattern>
     </defs>
-    <rect x="0" y="0" width="200" height="200" fill="url(#DiagonalLines)" />
+    <rect
+      x="0"
+      y="0"
+      width={size.width}
+      height={size.height}
+      fill="url(#DiagonalLines)"
+    />
   </svg>
 );
 
-const Crosshatch = (color) => (
-  <svg width="200" height="200">
+const Crosshatch = (color, size) => (
+  <svg width={size.width} height={size.height}>
     {/* Crosshatch */}
     <defs>
       <pattern
@@ -98,31 +150,43 @@ const Crosshatch = (color) => (
         <line x1="20" y1="0" x2="0" y2="20" stroke={color} strokeWidth="2" />
       </pattern>
     </defs>
-    <rect x="0" y="0" width="200" height="200" fill="url(#Crosshatch)" />
+    <rect
+      x="0"
+      y="0"
+      width={size.width}
+      height={size.height}
+      fill="url(#Crosshatch)"
+    />
   </svg>
 );
 
-const HorizontalStripes = (color) => (
-  <svg width="200" height="200">
+const HorizontalStripes = (color, size) => (
+  <svg width={size.width} height={size.height}>
     {/* Horizontal Stripes */}
     <defs>
       <pattern
         id="HorizontalStripes"
         x="0"
         y="0"
-        width="200"
+        width={size.width}
         height="20"
         patternUnits="userSpaceOnUse"
       >
-        <rect x="0" y="0" width="200" height="10" fill={color} />
+        <rect x="0" y="0" width={size.width} height="10" fill={color} />
       </pattern>
     </defs>
-    <rect x="0" y="0" width="200" height="200" fill="url(#HorizontalStripes)" />
+    <rect
+      x="0"
+      y="0"
+      width={size.width}
+      height={size.height}
+      fill="url(#HorizontalStripes)"
+    />
   </svg>
 );
 
-const VerticalStripes = (color) => (
-  <svg width="200" height="200">
+const VerticalStripes = (color, size) => (
+  <svg width={size.width} height={size.height}>
     {/* Vertical Stripes */}
     <defs>
       <pattern
@@ -130,18 +194,24 @@ const VerticalStripes = (color) => (
         x="0"
         y="0"
         width="20"
-        height="200"
+        height={size.height}
         patternUnits="userSpaceOnUse"
       >
-        <rect x="0" y="0" width="10" height="200" fill={color} />
+        <rect x="0" y="0" width="10" height={size.height} fill={color} />
       </pattern>
     </defs>
-    <rect x="0" y="0" width="200" height="200" fill="url(#VerticalStripes)" />
+    <rect
+      x="0"
+      y="0"
+      width={size.width}
+      height={size.height}
+      fill="url(#VerticalStripes)"
+    />
   </svg>
 );
 
-const Stars = (color) => (
-  <svg width="200" height="200">
+const Stars = (color, size) => (
+  <svg width={size.width} height={size.height}>
     {/* Stars */}
     <defs>
       <pattern
@@ -158,12 +228,19 @@ const Stars = (color) => (
         />
       </pattern>
     </defs>
-    <rect x="0" y="0" width="200" height="200" fill="url(#Stars)" />
+    <rect
+      x="0"
+      y="0"
+      width={size.width}
+      height={size.height}
+      fill="url(#Stars)"
+    />
   </svg>
 );
 
 export {
-  Gradient,
+  HorizontalGradient,
+  VerticalGradient,
   RadialGradient,
   PolkaDots,
   Checkerboard,

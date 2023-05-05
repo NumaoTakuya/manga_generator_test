@@ -16,7 +16,7 @@ const RoundedBubble: React.FC<EachBubbleProps> = ({
   viewBoxSize,
   tail, 
 }) => {
-  const borderRadius = 50;
+  const borderRadius = 60;
   return (
     <div 
       style={{

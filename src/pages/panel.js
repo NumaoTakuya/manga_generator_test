@@ -1,13 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "@mui/material";
 import NavigationBar from "../components/NavigationBar";
+import Layer from "../components/Layer";
 import CropImage from "../components/CropImage";
 import CalculateImageAR from "../utils/CalculateImageAR";
 import useDetectFace from "../utils/hooks/useDetectFace";
 import Bubble from "../components/Bubble";
 import Point from "../utils/classes/Point";
 import Size from "../utils/classes/Size";
-import getRandomPointOnUnitCircle from "../utils/getRandomPointOnUnitCircle";
+import { getRandomPointOnUnitCircle } from "../utils/getRandom";
+import {
+  HorizontalGradient,
+  VerticalGradient,
+  RadialGradient,
+  PolkaDots,
+  Checkerboard,
+  DiagonalLines,
+  Crosshatch,
+  HorizontalStripes,
+  VerticalStripes,
+  Stars,
+} from "../components/Tones";
+import OnomatopoeiaText from "../components/OnomatopoeiaText";
+
+// TODO: よりリーダブル
 
 const PanelPage = () => {
   //Image
@@ -69,8 +85,8 @@ const PanelPage = () => {
   const r2 = getRandomPointOnUnitCircle(r + 2);
   const r3 = getRandomPointOnUnitCircle(r + 4);
   const bubbleRelativePositions = [
-    r1.multiply(230),
-    r2.multiply(240),
+    r1.multiply(250),
+    r2.multiply(250),
     r3.multiply(250),
   ];
   const bubbleSizes = [
@@ -82,16 +98,50 @@ const PanelPage = () => {
   const bubble = (index) => {
     return (
       <>
-        <Bubble
-          key={index}
-          type={bubbleTypes[index]}
-          size={bubbleSizes[index]}
-          position={mouthPosition.add(bubbleRelativePositions[index])}
-          targetPosition={mouthPosition}
-        />
+        {modelsLoaded && (
+          <Bubble
+            key={index}
+            type={bubbleTypes[index]}
+            size={bubbleSizes[index]}
+            position={mouthPosition.add(bubbleRelativePositions[index])}
+            targetPosition={mouthPosition}
+          />
+        )}
       </>
     );
   };
+
+  // Tones
+  const colors = ["red", "blue", "green", "orange", "purple", "pink", "black"];
+  const primaryIndex = Math.floor(Math.random() * colors.length);
+  const secondaryIndex =
+    (primaryIndex + Math.floor(1 + Math.random() * colors.length - 2)) %
+    colors.length;
+  const primaryColor = colors[primaryIndex];
+  const secondaryColor = colors[secondaryIndex];
+  const size = new Size(
+    0.8 + Math.random() / 5,
+    0.9 + Math.random() / 10
+  ).multiply(600);
+  const tones = [
+    HorizontalGradient([primaryColor, secondaryColor], size),
+    VerticalGradient([primaryColor, secondaryColor], size),
+    RadialGradient([primaryColor, secondaryColor], size),
+    PolkaDots(primaryColor, size),
+    Checkerboard(primaryColor, size),
+    DiagonalLines(primaryColor, size),
+    Crosshatch(primaryColor, size),
+    HorizontalStripes(primaryColor, size),
+    VerticalStripes(primaryColor, size),
+    Stars(primaryColor, size),
+  ];
+
+  const [selectedTone, setSelectedTone] = useState(null);
+
+  useEffect(() => {
+    setSelectedTone(tones[Math.floor(Math.random() * tones.length)]);
+    //  eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Container
@@ -105,16 +155,24 @@ const PanelPage = () => {
       }}
     >
       <NavigationBar />
-      <CropImage
-        id="image-0"
-        randomness={randomness}
-        src={src}
-        width={width}
-        height={height}
-      />
-      {Array(3)
-        .fill(null)
-        .map((_, index) => bubble(index))}
+      <Layer zIndex={0}>
+        {selectedTone}
+      </Layer>
+      <Layer zIndex={1}>
+        <CropImage
+          id="image-0"
+          randomness={randomness}
+          src={src}
+          width={width}
+          height={height}
+        />
+      </Layer>
+      <Layer zIndex={2}></Layer>
+      <Layer zIndex={3}>
+        {Array(3)
+          .fill(null)
+          .map((_, index) => bubble(index))}
+      </Layer>
     </Container>
   );
 };

@@ -24,7 +24,7 @@ const CropImage = ({ id, randomness, src, width, height }) => {
 
   return (
     <Box
-      sx={{
+      sx={{ 
         position: "relative",
         width: width,
         height: height,
@@ -40,6 +40,7 @@ const CropImage = ({ id, randomness, src, width, height }) => {
         layout="responsive"
         width={width}
         height={height}
+        
       />
       <svg
         xmlns="http://www.w3.org/2000/svg"
