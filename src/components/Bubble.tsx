@@ -1,8 +1,11 @@
 import React from "react";
 import { useEffect, useReducer } from "react";
-import RoundedBubble, { roundedBubbleTailPos } from "./Bubbles/RoundedBubble";
-import SquareBubble, { squareBubbleTailPos } from "./Bubbles/SquareBubble";
-import EllipseBubble, { ellipseBubbleTailPos } from "./Bubbles/EllipseBubble";
+import RoundedBubble from "./Bubbles/RoundedBubble";
+import roundedBubbleTailPos from "../utils/Bubble/tailPosition/roundedBubbleTailPos";
+import SquareBubble from "./Bubbles/SquareBubble";
+import squareBubbleTailPos from "../utils/Bubble/tailPosition/squareBubbleTailPos";
+import EllipseBubble from "./Bubbles/EllipseBubble";
+import ellipseBubbleTailPos from "../utils/Bubble/tailPosition/ellipseBubbleTailPos";
 import Tail from "./Tail";
 import BubbleProps from "@/utils/Bubble/BubbleProps";
 import Point from "@/utils/classes/Point";
@@ -11,13 +14,14 @@ import useMousePosition from "@/utils/hooks/useMousePosition";
 import tailReducer from "./Bubbles/tailReducer";
 
 const Bubble: React.FC<BubbleProps> = ({
+  text,
   type,
   size,
   position,
   targetPosition,
 }) => {
   let mousePosition = useMousePosition(); // TODO: 口（対象）の座標に変更する
-  mousePosition = targetPosition ? targetPosition : mousePosition; 
+  mousePosition = targetPosition ? targetPosition : mousePosition;
 
   // Bubble
   const viewBoxSize: Size = size;
@@ -65,7 +69,7 @@ const Bubble: React.FC<BubbleProps> = ({
   };
 
   const strokeWidth = 3; //TODO: typeによって分類
-  const tail = <Tail points={points} state={state} strokeWidth={strokeWidth} />;
+  const tail = <Tail points={points} state={state} strokeWidth={strokeWidth} />; 
 
   const props = {
     offset,
@@ -73,6 +77,7 @@ const Bubble: React.FC<BubbleProps> = ({
     strokeWidth,
     viewBoxSize,
     tail,
+    text,
   };
 
   const bubble = (type: string) => {

@@ -1,6 +1,7 @@
 import Bubble from "../../components/Bubble";
 import Size from "../classes/Size";
 import { getRandomPointOnUnitCircle } from "../getRandom";
+import calculateBubbleSize from "../Bubble/calculateBubbleSize";
 
 const useBubble = (modelsLoaded, mouthPosition) => {
   const bubbleTypes = ["rounded", "square", "ellipse"];
@@ -18,6 +19,7 @@ const useBubble = (modelsLoaded, mouthPosition) => {
     new Size(400, 300),
     new Size(450, 300),
   ];
+  const texts = ["最近、本を読む時間がなくて少し寂しい。", "旅行に行きたい気分です。", "今日はいい天気ですね。"];
 
   const RenderBubbles = Array(3)
     .fill(null)
@@ -26,6 +28,7 @@ const useBubble = (modelsLoaded, mouthPosition) => {
         {modelsLoaded && (
           <Bubble
             key={index}
+            text={texts[index]}
             type={bubbleTypes[index]}
             size={bubbleSizes[index]}
             position={mouthPosition.add(bubbleRelativePositions[index])}

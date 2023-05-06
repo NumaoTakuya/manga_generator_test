@@ -1,12 +1,5 @@
 import React from "react";
 import EachBubbleProps from "@/utils/Bubble/EachBubbleProps";
-import CenteredRect from "@/utils/classes/CenteredRect";
-
-export const ellipseBubbleTailPos = (cRect: CenteredRect, angle: number) => {
-  const newTailX = cRect.centerX + (cRect.width / 2) * Math.cos(angle);
-  const newTailY = cRect.centerY + (cRect.height / 2) * Math.sin(angle);
-  return { newTailX, newTailY };
-};
 
 const EllipseBubble: React.FC<EachBubbleProps> = ({
   offset,
@@ -14,6 +7,7 @@ const EllipseBubble: React.FC<EachBubbleProps> = ({
   strokeWidth,
   viewBoxSize,
   tail, 
+  text,
 }) => {
   return (
     <div 

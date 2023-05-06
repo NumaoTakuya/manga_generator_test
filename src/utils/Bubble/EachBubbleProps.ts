@@ -7,6 +7,7 @@ type EachBubbleProps = {
   strokeWidth: number;
   viewBoxSize: Size;
   tail: JSX.Element;
+  text: string;
 };
 
 export default EachBubbleProps;

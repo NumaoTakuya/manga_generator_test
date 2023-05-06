@@ -1,24 +1,17 @@
 import React from "react";
 import EachBubbleProps from "@/utils/Bubble/EachBubbleProps";
-import CenteredRect from "@/utils/classes/CenteredRect";
-
-// 原点を中心とする横幅width, 縦幅をheightとする楕円の、角度angleの位置にある点の座標を返す
-export const roundedBubbleTailPos = (cRect: CenteredRect, angle: number) => {
-  const newTailX = cRect.centerX + (cRect.width / 2) * Math.cos(angle);
-  const newTailY = cRect.centerY + (cRect.height / 2) * Math.sin(angle);
-  return { newTailX, newTailY };
-};
 
 const RoundedBubble: React.FC<EachBubbleProps> = ({
   offset,
   bubbleSize,
   strokeWidth,
   viewBoxSize,
-  tail, 
+  tail,
+  text,
 }) => {
   const borderRadius = 60;
   return (
-    <div 
+    <div
       style={{
         position: "relative",
         width: viewBoxSize.width,
@@ -53,6 +46,16 @@ const RoundedBubble: React.FC<EachBubbleProps> = ({
           ry={borderRadius}
           fill="white"
         />
+        <text
+          x={offset.x + bubbleSize.width / 2}
+          y={offset.y + bubbleSize.height / 2}
+          textAnchor="middle"
+          dominantBaseline="central"
+          fontSize="16"
+          fontFamily="Arial, sans-serif"
+        >
+          {text}
+        </text>
       </svg>
     </div>
   );
