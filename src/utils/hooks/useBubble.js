@@ -19,22 +19,21 @@ const useBubble = (modelsLoaded, mouthPosition) => {
     new Size(450, 300),
   ];
 
-  const RenderBubbles = () =>
-    Array(3)
-      .fill(null)
-      .map((_, index) => (
-        <div key={index}>
-          {modelsLoaded && (
-            <Bubble
-              key={index}
-              type={bubbleTypes[index]}
-              size={bubbleSizes[index]}
-              position={mouthPosition.add(bubbleRelativePositions[index])}
-              targetPosition={mouthPosition}
-            />
-          )}
-        </div>
-      ));
+  const RenderBubbles = Array(3)
+    .fill(null)
+    .map((_, index) => (
+      <div key={index}>
+        {modelsLoaded && (
+          <Bubble
+            key={index}
+            type={bubbleTypes[index]}
+            size={bubbleSizes[index]}
+            position={mouthPosition.add(bubbleRelativePositions[index])}
+            targetPosition={mouthPosition}
+          />
+        )}
+      </div>
+    ));
 
   return { RenderBubbles };
 };

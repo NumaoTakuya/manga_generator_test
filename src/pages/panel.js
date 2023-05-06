@@ -1,8 +1,7 @@
 import React from "react";
 import { Container, TextField, Button } from "@mui/material";
 import NavigationBar from "../components/NavigationBar";
-import Layer from "../components/Layer";
-import { getRandomInt } from "../utils/getRandom";
+import Layer from "../components/Layer"; 
 import useCropImage from "../utils/hooks/useCropImage";
 import useMouthPosition from "../utils/hooks/useMouthPosition";
 import useBubble from "../utils/hooks/useBubble";
@@ -19,8 +18,7 @@ const PanelPage = () => {
   const { RenderCropImage } = useCropImage(src, imageId, width, cropRandomness);
 
   // Detection
-  const { modelsLoaded, mouthPosition } = useMouthPosition(imageId);
-  console.log(mouthPosition);
+  const { modelsLoaded, mouthPosition } = useMouthPosition(imageId); 
 
   // Bubble
   const { RenderBubbles } = useBubble(modelsLoaded, mouthPosition);
@@ -28,14 +26,8 @@ const PanelPage = () => {
   // Tones
   const { selectedTone } = useTone();
 
-  // Onomatopoeia
-  const position = {
-    x: mouthPosition.x + getRandomInt(100, 200),
-    y: mouthPosition.y + getRandomInt(-200, 200),
-  };
-  const size = getRandomInt(30, 100);
-  const rotation = getRandomInt(-30, 30);
-  const { RenderOnomatopoeia } = useOnomatopoeia(position, size, rotation);
+  // Onomatopoeia 
+  const { RenderOnomatopoeia } = useOnomatopoeia(mouthPosition);
 
   return (
     <Container
