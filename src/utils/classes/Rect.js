@@ -1,3 +1,6 @@
+import Point from "./Point";
+import Size from "./Size";
+
 export default class Rect {
   constructor(left, top, width, height) {
     this.left = left;
@@ -8,6 +11,14 @@ export default class Rect {
 
   static get ZERO() {
     return new Rect(0, 0, 0, 0);
+  }
+
+  get size() {
+    return new Size(this.width, this.height);
+  }
+
+  get point() {
+    return new Point(this.left, this.top);
   }
 
   // 右端の座標を取得する

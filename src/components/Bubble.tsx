@@ -64,7 +64,7 @@ const Bubble: React.FC<BubbleProps> = ({
     y3: state.tailPos.y + tailSize.height / 2,
   };
 
-  const strokeWidth = 1; //TODO: typeによって分類
+  const strokeWidth = 3; //TODO: typeによって分類
   const tail = <Tail points={points} state={state} strokeWidth={strokeWidth} />;
 
   const props = {

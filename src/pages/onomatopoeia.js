@@ -24,7 +24,7 @@ const OnomatopoeiaPage = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "white",
+        backgroundColor: "#fff",
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",

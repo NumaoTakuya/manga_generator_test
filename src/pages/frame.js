@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Button } from "@mui/material";
 import { Box } from "@mui/system";
 import Image from "next/image";
-import NavigationBar from "../components/NavigationBar"; 
+import NavigationBar from "../components/NavigationBar";  
 
 function getRandom(from, to) {
   return from + Math.random() * (to - from);
@@ -12,7 +12,7 @@ const FramePage = () => {
   const src =
     "https://media.discordapp.net/ephemeral-attachments/1092492867185950852/1102974784884711514/3f07ed359ce9d67463dbf0a01c56071d.jpg?width=900&height=1060";
   const width = 340;
-  const height = 400;
+  const height = 400; 
   const randomness = { x: 0.1, y: 0.3 };
   const [isCropped, setIsCropped] = useState(false);
   const [cropValues, setCropValues] = useState({

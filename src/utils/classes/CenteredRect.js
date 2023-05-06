@@ -1,4 +1,6 @@
 import Rect from "./Rect";
+import Point from "./Point";
+import Size from "./Size";
 
 export default class CenteredRect extends Rect {
   constructor(centerX, centerY, width, height) {
@@ -12,6 +14,14 @@ export default class CenteredRect extends Rect {
   // 中心座標を取得する
   get center() {
     return new Point(this.centerX, this.centerY);
+  }
+
+  get point() {
+    return new Point(this.left, this.top);
+  }
+
+  get size() {
+    return new Size(this.width, this.height);
   }
 
   // 中心座標を設定する

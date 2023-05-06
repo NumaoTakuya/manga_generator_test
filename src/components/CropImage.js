@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box } from "@mui/system";
 import Image from "next/image";
 
@@ -6,7 +6,9 @@ function getRandom(from, to) {
   return from + Math.random() * (to - from);
 }
 
-const CropImage = ({ id, randomness, src, width, height }) => {
+const CropImage = ({ id, randomness, src, size }) => { 
+  const width = size.width;
+  const height = size.height;
   const cropValues = {
     x1: Math.floor(getRandom(0, randomness.x) * width),
     y1: Math.floor(getRandom(0, randomness.y) * height),
@@ -24,7 +26,7 @@ const CropImage = ({ id, randomness, src, width, height }) => {
 
   return (
     <Box
-      sx={{ 
+      sx={{
         position: "relative",
         width: width,
         height: height,
@@ -34,13 +36,12 @@ const CropImage = ({ id, randomness, src, width, height }) => {
       }}
     >
       <Image
-        id={id} 
+        id={id}
         src={src}
         alt="face"
         layout="responsive"
         width={width}
-        height={height}
-        
+        height={height} 
       />
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +59,7 @@ const CropImage = ({ id, randomness, src, width, height }) => {
           points={`${cropValues.x1},${cropValues.y1} ${cropValues.x2},${cropValues.y2} ${cropValues.x3},${cropValues.y3} ${cropValues.x4},${cropValues.y4} ${cropValues.x1},${cropValues.y1}`}
           fill="none"
           stroke="black"
-          strokeWidth="2"
+          strokeWidth={6}
         />
       </svg>
     </Box>
