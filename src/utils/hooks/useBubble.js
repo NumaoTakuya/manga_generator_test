@@ -19,7 +19,7 @@ const useBubble = (modelsLoaded, mouthPosition) => {
     new Size(400, 300),
     new Size(450, 300),
   ];
-  const texts = ["最近、本を読む時間がなくて少し寂しい。", "旅行に行きたい気分です。", "今日はいい天気ですね。"];
+  const texts = ["Lately, I don't have time to read.", "I feel like going on a trip.", "It's nice weather today."];
 
   const RenderBubbles = Array(3)
     .fill(null)

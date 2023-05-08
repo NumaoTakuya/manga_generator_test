@@ -12,11 +12,11 @@ import Point from "@/utils/classes/Point";
 import Size from "@/utils/classes/Size";
 import useMousePosition from "@/utils/hooks/useMousePosition";
 import tailReducer from "./Bubbles/tailReducer";
+import calculateBubbleSize from "@/utils/Bubble/calculateBubbleSize";
 
 const Bubble: React.FC<BubbleProps> = ({
   text,
-  type,
-  size,
+  type, 
   position,
   targetPosition,
 }) => {
@@ -24,9 +24,9 @@ const Bubble: React.FC<BubbleProps> = ({
   mousePosition = targetPosition ? targetPosition : mousePosition;
 
   // Bubble
-  const viewBoxSize: Size = size;
-  const bubbleSize: Size = viewBoxSize.divide(2);
-  const offset: Point = viewBoxSize.subtract(bubbleSize).divide(2).toPoint();
+  const bubbleSize = calculateBubbleSize(type, text.length, 2, 20);
+  const viewBoxSize = bubbleSize.multiply(2);
+  const offset = viewBoxSize.subtract(bubbleSize).divide(2).toPoint();
   const tailSize: Size = bubbleSize.divide(4);
   const tailRelativeCenter: Point = bubbleSize.toPoint().divide(2).add(offset); // 吹き出しにおける尻尾の中心の相対座標
 
@@ -71,10 +71,10 @@ const Bubble: React.FC<BubbleProps> = ({
   const strokeWidth = 3; //TODO: typeによって分類
   const tail = <Tail points={points} state={state} strokeWidth={strokeWidth} />; 
 
-  const props = {
+  const props = { 
     offset,
     bubbleSize,
-    strokeWidth,
+    strokeWidth, 
     viewBoxSize,
     tail,
     text,
@@ -97,8 +97,8 @@ const Bubble: React.FC<BubbleProps> = ({
     <div
       style={{
         position: "absolute",
-        left: position.x - size.width / 2,
-        top: position.y - size.height / 2,
+        left: position.x - viewBoxSize.width / 2,
+        top: position.y - viewBoxSize.height / 2,
       }}
     >
       {bubble(type)}

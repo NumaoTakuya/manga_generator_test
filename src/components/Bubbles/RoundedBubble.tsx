@@ -1,5 +1,6 @@
 import React from "react";
 import EachBubbleProps from "@/utils/Bubble/EachBubbleProps";
+import { Typography, Box } from "@mui/material";
 
 const RoundedBubble: React.FC<EachBubbleProps> = ({
   offset,
@@ -46,16 +47,34 @@ const RoundedBubble: React.FC<EachBubbleProps> = ({
           ry={borderRadius}
           fill="white"
         />
-        <text
-          x={offset.x + bubbleSize.width / 2}
-          y={offset.y + bubbleSize.height / 2}
-          textAnchor="middle"
-          dominantBaseline="central"
-          fontSize="16"
-          fontFamily="Arial, sans-serif"
-        >
-          {text}
-        </text>
+        <foreignObject width={viewBoxSize.width} height={viewBoxSize.height}>
+          <Box
+            sx={{
+              height: viewBoxSize.height,
+              width: viewBoxSize.width,
+              textAlign: "center",
+              margin: "auto",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              boxSizing: "initial",
+            }}
+          >
+            <Typography
+              component="p"
+              color="black"
+              fontSize={20}
+              sx={{
+                width: bubbleSize.width / 1.414,
+                lineHeight: 1,
+                fontFamily: ["Comic Neue", "cursive"].join(","),
+              }}
+              writing-mode={"horizontal-tb"}
+            >
+              {text}
+            </Typography>
+          </Box>
+        </foreignObject>
       </svg>
     </div>
   );
