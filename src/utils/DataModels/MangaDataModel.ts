@@ -28,7 +28,7 @@ type Bubble = {
   style: BubbleStyle;
   position: Point;
   mouthPosition?: Point;
-  size: Size;
+  aspectRatio: number; // width / height
   fontSize?: number;
   content: string;
 };
