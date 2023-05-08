@@ -66,8 +66,7 @@ const RoundedBubble: React.FC<EachBubbleProps> = ({
               fontSize={20}
               sx={{
                 width: bubbleSize.width / 1.414,
-                lineHeight: 1,
-                fontFamily: ["Comic Neue", "cursive"].join(","),
+                lineHeight: 1, 
               }}
               writing-mode={"horizontal-tb"}
             >
