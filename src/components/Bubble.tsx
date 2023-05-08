@@ -20,8 +20,8 @@ const Bubble: React.FC<BubbleProps> = ({
   position,
   targetPosition,
 }) => {
-  let mousePosition = useMousePosition(); // TODO: 口（対象）の座標に変更する
-  mousePosition = targetPosition ? targetPosition : mousePosition;
+  let mousePosition = useMousePosition(); // TODO: 口（対象）の座標に変更する 
+  targetPosition = targetPosition ? targetPosition : mousePosition;   
 
   // Bubble
   const bubbleSize = calculateBubbleSize(type, text.length, 2, 20);
@@ -47,7 +47,7 @@ const Bubble: React.FC<BubbleProps> = ({
     tailRelativeCenter,
     bubbleSize,
     position,
-    mousePosition,
+    targetPosition,
   };
   const [state, dispatch] = useReducer(
     (state: any, action: any) => tailReducer(state, action, tailReducerProps),

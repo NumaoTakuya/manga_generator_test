@@ -6,9 +6,9 @@ function getRandom(from, to) {
   return from + Math.random() * (to - from);
 }
 
-const CropImage = ({ id, randomness, src, size }) => { 
-  const width = size.width;
-  const height = size.height;
+const CropImage = ({ id, randomness, src, centeredRect }) => {  
+  const width = centeredRect.width;
+  const height = centeredRect.height;
   const cropValues = {
     x1: Math.floor(getRandom(0, randomness.x) * width),
     y1: Math.floor(getRandom(0, randomness.y) * height),
@@ -27,7 +27,9 @@ const CropImage = ({ id, randomness, src, size }) => {
   return (
     <Box
       sx={{
-        position: "relative",
+        position: "absolute",
+        left: centeredRect.centerX - width / 2,
+        top: centeredRect.centerY - height / 2,
         width: width,
         height: height,
         marginBottom: "1rem",
@@ -41,7 +43,7 @@ const CropImage = ({ id, randomness, src, size }) => {
         alt="face"
         layout="responsive"
         width={width}
-        height={height} 
+        height={height}
       />
       <svg
         xmlns="http://www.w3.org/2000/svg"

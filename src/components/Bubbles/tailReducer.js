@@ -16,12 +16,12 @@ const tailReducer = (
     tailRelativeCenter,
     bubbleSize,
     position,
-    mousePosition,
+    targetPosition,
   }
 ) => {
   switch (action.type) {
     case "UPDATE_POSITION":
-      const angle = calculateAngle(mousePosition.subtract(position));
+      const angle = calculateAngle(targetPosition.subtract(position));
       const tailCenterRect = new CenteredRect(
         tailRelativeCenter.x,
         tailRelativeCenter.y,

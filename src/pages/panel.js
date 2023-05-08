@@ -1,24 +1,36 @@
 import React from "react";
-import { Container, TextField, Button } from "@mui/material";
+import { Container } from "@mui/material";
 import NavigationBar from "../components/NavigationBar";
 import Layer from "../components/Layer"; 
 import useCropImage from "../utils/hooks/useCropImage";
 import useMouthPosition from "../utils/hooks/useMouthPosition";
 import useBubble from "../utils/hooks/useBubble";
 import useTone from "../utils/hooks/useTone";
-import useOnomatopoeia from "../utils/hooks/useOnomatopoeia";
+import useOnomatopoeia from "../utils/hooks/useOnomatopoeia"; 
+import CenteredRect from "@/utils/classes/CenteredRect";
+import CalculateImageAR from "@/utils/CalculateImageAR";
+import "@/utils/Extensions/randomElem"
+
+const sources = [
+  "https://media.discordapp.net/ephemeral-attachments/1092492867185950852/1102974784884711514/3f07ed359ce9d67463dbf0a01c56071d.jpg?width=900&height=1060",
+  "https://media.discordapp.net/ephemeral-attachments/1092492867185950852/1102982059930161152/7f9e577686ec2e1e0700ff61232e208d.jpg?width=776&height=1060",
+  "https://media.discordapp.net/attachments/1058796281146908762/1102982726287626270/00004-659911599.png?width=1024&height=1024",
+  "https://media.discordapp.net/attachments/1061113259979178044/1102984309448646667/Screenshot_2023-05-02_at_12-19-44_Down_To_Earth_-_Episode_1.png?width=730&height=780",
+];
 
 const PanelPage = () => {
   //Image
-  const src =
-    "https://media.discordapp.net/ephemeral-attachments/1092492867185950852/1102974784884711514/3f07ed359ce9d67463dbf0a01c56071d.jpg?width=900&height=1060";
-  const imageId = "image-0";
+  const src = sources[1];
+  const imageId = `image-${0}`;
   const width = 300;
-  const cropRandomness = { x: 0.1, y: 0.3 };
-  const { RenderCropImage } = useCropImage(src, imageId, width, cropRandomness);
+  const cropRandomness = { x: 0.1, y: 0.3 }; 
+  const ar = CalculateImageAR(src);
+  const height = width * ar;
+  const panelCenteredRect = new CenteredRect(600, 300, width, height);
+  const { RenderCropImage } = useCropImage(src, imageId, cropRandomness, panelCenteredRect);
 
   // Detection
-  const { modelsLoaded, mouthPosition } = useMouthPosition(imageId); 
+  const { modelsLoaded, mouthPosition } = useMouthPosition(imageId);   
 
   // Bubble
   const { RenderBubbles } = useBubble(modelsLoaded, mouthPosition);

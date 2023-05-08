@@ -6,19 +6,18 @@ type Arc = Episode[];
 type Episode = Page[];
 type Page = Panel[];
 type Panel = {
-  characterImages: CharacterImage[];
-  background: Background;
+  images: Image[];
+  tone?: Tone;
   bubbles: Bubble[];
   onomatopoeias: Onomatopoeia[];
-  vertices: Point[];
+  square: Square;
 };
-type CharacterImage = {
-  src?: string; 
-  position: Point;
-};
-type Background = {
+type Square = Vertices | Size;
+type Vertices = Point[];
+type Image = {
   src?: string;
-  tone?: Tone;
+  position: Point;
+  width: number;
 };
 type Tone = {
   primaryColor: string;
@@ -28,26 +27,27 @@ type Tone = {
 type Bubble = {
   style: BubbleStyle;
   position: Point;
-  mouthPosition: Point;
+  mouthPosition?: Point;
   size: Size;
+  fontSize?: number;
   content: string;
-  tailIsVisible: boolean;
 };
 type BubbleStyle =
+  | "none"
   | "rectangle"
   | "thought"
   | "speech"
   | "scream"
   | "whisper"
-  | "shout"; //And more 
+  | "shout"; //And more
 type Onomatopoeia = {
   content: string;
-  position: Point; // degree
-  rotation: number;
-  size: Size;
-  style: OnomatopoeiaStyle;
+  position: Point;
+  rotation: number; // degree
+  color: string;
+  fontSize: number;
+  fontFamily?: string;
 };
-type OnomatopoeiaStyle = "normal" | "bold" | "italic" | "bold-italic"; // Make it more various
 
 export default Manga;
 export type {
@@ -55,11 +55,10 @@ export type {
   Episode,
   Page,
   Panel,
-  CharacterImage,
+  Image,
   Bubble,
   Onomatopoeia,
   BubbleStyle,
   Point,
   Size,
-  OnomatopoeiaStyle,
 };

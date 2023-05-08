@@ -28,7 +28,7 @@
     "src/pages/panel.js",
     "src/utils/hooks/useDetectFace.js",
     "src/utils/classes/CenteredRect.js",
-    "src/utils/useMousePosition.js"
+    "src/utils/useMouseCenteredRect.js"
   ],
   "exclude": ["node_modules"]
 }

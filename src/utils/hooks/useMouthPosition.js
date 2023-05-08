@@ -41,8 +41,8 @@ const useMouthPosition = (imageId) => {
   // 口の位置を更新する
   useEffect(() => {
     if (detections) {
-      const imageRect = imageElement.getBoundingClientRect(); 
-      const mouth = detections[0].landmarks.getMouth();
+      const imageRect = imageElement.getBoundingClientRect();  
+      const mouth = detections[0].landmarks.getMouth(); 
       const newMouthPosition = new Point(
         imageRect.left + mouth[14].x,
         imageRect.top + mouth[14].y

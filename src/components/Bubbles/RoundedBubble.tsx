@@ -67,8 +67,7 @@ const RoundedBubble: React.FC<EachBubbleProps> = ({
               sx={{
                 width: bubbleSize.width / 1.414,
                 lineHeight: 1, 
-              }}
-              writing-mode={"horizontal-tb"}
+              }} 
             >
               {text}
             </Typography>

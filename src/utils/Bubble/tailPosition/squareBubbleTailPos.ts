@@ -5,21 +5,21 @@ import CenteredRect from "@/utils/classes/CenteredRect";
 const isClamped = (num: number, min: number, max: number) => {
   return min <= num && num < max;
 };
-const calculateIntersection = (cRect: CenteredRect, angle: number) => {
+const calculateIntersection = (centeredRect: CenteredRect, angle: number) => {
   const Angle = (angle + Math.PI * 2) % (Math.PI * 2);
   const tanAngle = Math.tan(Angle);
   const moveVertical: boolean =
-    Math.abs(tanAngle) <= cRect.height / cRect.width;
+    Math.abs(tanAngle) <= centeredRect.height / centeredRect.width;
   const conditionC1: boolean =
     isClamped(Angle, 0, Math.PI / 2) ||
     isClamped(Angle, (Math.PI * 3) / 2, 2 * Math.PI);
   const conditionC2: boolean = isClamped(Angle, 0, Math.PI);
   const conditionC3: boolean = isClamped(Angle, Math.PI / 2, (Math.PI * 3) / 2);
   const conditionC4: boolean = isClamped(Angle, Math.PI, 2 * Math.PI);
-  const w = cRect.width;
-  const h = cRect.height;
-  let newTailX: number = cRect.centerX;
-  let newTailY: number = cRect.centerY;
+  const w = centeredRect.width;
+  const h = centeredRect.height;
+  let newTailX: number = centeredRect.centerX;
+  let newTailY: number = centeredRect.centerY;
   if (moveVertical && conditionC1) {
     newTailX += w / 2;
     newTailY += (w / 2) * tanAngle;
@@ -36,8 +36,8 @@ const calculateIntersection = (cRect: CenteredRect, angle: number) => {
   return { newTailX, newTailY };
 };
 
-const squareBubbleTailPos = (cRect: CenteredRect, angle: number) => {
-  const { newTailX, newTailY } = calculateIntersection(cRect, angle);
+const squareBubbleTailPos = (centeredRect: CenteredRect, angle: number) => {
+  const { newTailX, newTailY } = calculateIntersection(centeredRect, angle);
   return { newTailX, newTailY };
 };
 
