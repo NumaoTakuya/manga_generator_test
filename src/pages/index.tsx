@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button, Container, Grid, Typography } from "@mui/material";
 import NavigationBar from "../components/NavigationBar";
-import useDetectFace from "../utils/hooks/useDetectFace";
-import useMousePosition from "@/utils/hooks/useMousePosition";
+import useDetectFace from "../utils/hooks/useDetectFace"; 
 
 const sources = [
   "https://media.discordapp.net/ephemeral-attachments/1092492867185950852/1102974784884711514/3f07ed359ce9d67463dbf0a01c56071d.jpg?width=900&height=1060",

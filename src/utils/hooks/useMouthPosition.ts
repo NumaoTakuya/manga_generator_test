@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-// eslint-disable-next-line react-hooks/exhaustive-deps
 import { useState, useEffect } from "react";
 import useDetectFace from "./useDetectFace";
 import Point from "../classes/Point";
@@ -9,8 +8,10 @@ interface UseMouthPositionHook {
   mouthPosition: Point;
 }
 
-const useMouthPosition = (imageId: string): UseMouthPositionHook => {
-  const [imageElement, setImageElement] = useState<HTMLImageElement | null>(null);
+const useMouthPosition = (imageId: string, imageWidth: number): UseMouthPositionHook => {
+  const [imageElement, setImageElement] = useState<HTMLImageElement | null>(
+    null
+  );
   const [loadCounter, setLoadCounter] = useState(0);
 
   useEffect(() => {
@@ -39,12 +40,13 @@ const useMouthPosition = (imageId: string): UseMouthPositionHook => {
   }, [modelsLoaded]);
 
   useEffect(() => {
-    if (detections && imageElement) {
+    if (detections && imageElement) {  
       const imageRect = imageElement.getBoundingClientRect();
       const mouth = detections[0].landmarks.getMouth();
+      const imageWidthScale = imageWidth / imageElement.naturalWidth;
       const newMouthPosition = new Point(
-        imageRect.left + mouth[14].x,
-        imageRect.top + mouth[14].y
+        imageRect.left + mouth[14].x * imageWidthScale,
+        imageRect.top + mouth[14].y * imageWidthScale
       );
 
       setMouthPosition(newMouthPosition);

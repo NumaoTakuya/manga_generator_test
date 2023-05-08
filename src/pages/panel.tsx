@@ -12,7 +12,7 @@ import useOnomatopoeia from "../utils/hooks/useOnomatopoeia";
 import CenteredRect from "@/utils/classes/CenteredRect";
 import CalculateImageAR from "@/utils/CalculateImageAR"; 
 import Point from "@/utils/classes/Point";
-import "@/utils/Extensions/randomElem"
+import "@/utils/Extensions/randomElem" 
 
 const sources = [
   "https://media.discordapp.net/ephemeral-attachments/1092492867185950852/1102974784884711514/3f07ed359ce9d67463dbf0a01c56071d.jpg?width=900&height=1060",
@@ -26,15 +26,15 @@ const PanelPage = () => {
   //Image
   const src = sources[1];
   const imageId = `image-${0}`;
-  const width = 640;
+  const imageWidth = 300;
   const cropRandomness = new Point(0.1, 0.3); 
   const ar = CalculateImageAR(src) ?? 2;
-  const height = width * ar;
-  const panelCenteredRect = new CenteredRect(600, 300, width, height);
+  const imageHeight = imageWidth * ar;
+  const panelCenteredRect = new CenteredRect(600, 300, imageWidth, imageHeight);
   const { RenderCropImage } = useCropImage(src, imageId, cropRandomness, panelCenteredRect);
 
   // Detection
-  const { modelsLoaded, mouthPosition } = useMouthPosition(imageId);   
+  const { modelsLoaded, mouthPosition } = useMouthPosition(imageId, imageWidth);   
 
   // Bubble
   const { RenderBubbles } = useBubble(modelsLoaded, mouthPosition);

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import Point from "../classes/Point";
 
-// Mouse position
-const useMousePosition = (): Point => {
+// Cursor position
+const useCursorPosition = (): Point => {
   const [pos, setPos] = useState<Point>(Point.ZERO);
 
   useEffect(() => {
@@ -20,4 +20,4 @@ const useMousePosition = (): Point => {
   return pos;
 };
 
-export default useMousePosition;
+export default useCursorPosition;

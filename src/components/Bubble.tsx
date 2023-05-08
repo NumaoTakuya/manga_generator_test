@@ -9,7 +9,7 @@ import Tail from "./Tail";
 import BubbleProps from "@/utils/Bubble/BubbleProps";
 import Point from "@/utils/classes/Point";
 import Size from "@/utils/classes/Size";
-import useMousePosition from "@/utils/hooks/useMousePosition";
+import useCursorPosition from "@/utils/hooks/useCursorPosition";
 import tailReducer from "./Bubbles/tailReducer";
 import calculateBubbleSize from "@/utils/Bubble/calculateBubbleSize";
 import {
@@ -23,9 +23,8 @@ const Bubble: React.FC<BubbleProps> = ({
   position,
   targetPosition,
 }) => {
-  let mousePosition = useMousePosition(); // TODO: 口（対象）の座標に変更する
-  targetPosition = targetPosition ? targetPosition : mousePosition;
-  console.log("imageRect vs mouse", mousePosition);
+  let mousePosition = useCursorPosition(); // TODO: 口（対象）の座標に変更する
+  targetPosition = targetPosition ? targetPosition : mousePosition; 
 
   // Bubble
   const bubbleSize = calculateBubbleSize(type, text.length, 2, 20);
