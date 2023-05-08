@@ -13,7 +13,11 @@ import {
 } from "../../components/Tones";
 import Size from "../classes/Size";
 
-const useTone = () => {
+interface UseToneHook {
+  selectedTone: JSX.Element | null;
+}
+
+const useTone = (): UseToneHook => {
   // 色のリスト
   const colors = ["red", "blue", "green", "orange", "purple", "pink", "black"];
   const primaryIndex = Math.floor(Math.random() * colors.length);
@@ -39,7 +43,7 @@ const useTone = () => {
     // Stars(primaryColor, toneSize),
   ];
 
-  const [selectedTone, setSelectedTone] = useState(null);
+  const [selectedTone, setSelectedTone] = useState<JSX.Element | null>(null);
 
   useEffect(() => {
     setSelectedTone(tones[Math.floor(Math.random() * tones.length)]);

@@ -3,7 +3,10 @@ import Point from "./Point";
 import Size from "./Size";
 
 export default class CenteredRect extends Rect {
-  constructor(centerX, centerY, width, height) {
+  centerX: number;
+  centerY: number;
+
+  constructor(centerX: number, centerY: number, width: number, height: number) {
     const left = centerX - width / 2;
     const top = centerY - height / 2;
     super(left, top, width, height);
@@ -12,20 +15,20 @@ export default class CenteredRect extends Rect {
   }
 
   // 中心座標を取得する
-  get center() {
+  get center(): Point {
     return new Point(this.centerX, this.centerY);
   }
 
-  get point() {
+  get point(): Point {
     return new Point(this.left, this.top);
   }
 
-  get size() {
+  get size(): Size {
     return new Size(this.width, this.height);
   }
 
   // 中心座標を設定する
-  set center(value) {
+  set center(value: Point) {
     this.centerX = value.x;
     this.centerY = value.y;
     this.left = this.centerX - this.width / 2;
@@ -33,7 +36,7 @@ export default class CenteredRect extends Rect {
   }
 
   // 矩形を移動する
-  move(x, y) {
+  move(x: number, y: number): CenteredRect {
     const centerX = this.centerX + x;
     const centerY = this.centerY + y;
     return new CenteredRect(centerX, centerY, this.width, this.height);

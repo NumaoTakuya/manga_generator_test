@@ -1,3 +1,5 @@
+// MangaDataModel.Panel -> PanelPage
+
 import React from "react";
 import { Container } from "@mui/material";
 import NavigationBar from "../components/NavigationBar";
@@ -8,7 +10,8 @@ import useBubble from "../utils/hooks/useBubble";
 import useTone from "../utils/hooks/useTone";
 import useOnomatopoeia from "../utils/hooks/useOnomatopoeia"; 
 import CenteredRect from "@/utils/classes/CenteredRect";
-import CalculateImageAR from "@/utils/CalculateImageAR";
+import CalculateImageAR from "@/utils/CalculateImageAR"; 
+import Point from "@/utils/classes/Point";
 import "@/utils/Extensions/randomElem"
 
 const sources = [
@@ -18,13 +21,14 @@ const sources = [
   "https://media.discordapp.net/attachments/1061113259979178044/1102984309448646667/Screenshot_2023-05-02_at_12-19-44_Down_To_Earth_-_Episode_1.png?width=730&height=780",
 ];
 
-const PanelPage = () => {
+const PanelPage = () => { 
+
   //Image
   const src = sources[1];
   const imageId = `image-${0}`;
-  const width = 300;
-  const cropRandomness = { x: 0.1, y: 0.3 }; 
-  const ar = CalculateImageAR(src);
+  const width = 640;
+  const cropRandomness = new Point(0.1, 0.3); 
+  const ar = CalculateImageAR(src) ?? 2;
   const height = width * ar;
   const panelCenteredRect = new CenteredRect(600, 300, width, height);
   const { RenderCropImage } = useCropImage(src, imageId, cropRandomness, panelCenteredRect);

@@ -1,9 +1,8 @@
-// components/NavigationBar.js
 import React from "react";
 import { useRouter } from "next/router";
 import { AppBar, Stack, Button } from "@mui/material";
 
-const NavigationBar = () => {
+const NavigationBar = (): JSX.Element => {
   const router = useRouter();
 
   const handleDetectionButtonClick = () => {

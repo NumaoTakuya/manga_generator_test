@@ -1,4 +1,26 @@
-const Tail = ({ points, state, strokeWidth }) => {
+import React from "react";
+
+interface Point {
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  x3: number;
+  y3: number;
+}
+
+interface State {
+  rotation: number;
+  tailPos: { x: number; y: number };
+}
+
+interface TailProps {
+  points: Point;
+  state: State;
+  strokeWidth: number;
+}
+
+const Tail = ({ points, state, strokeWidth }: TailProps): JSX.Element | null => {
   if (!points.x1) return null;
   return (
     <g transform={`rotate(${state.rotation}, ${state.tailPos.x}, ${state.tailPos.y})`}>

@@ -2,8 +2,13 @@ import { useState, useEffect } from "react";
 import OnomatopoeiaText from "../../components/OnomatopoeiaText";
 import { onomatopoeias, fonts } from "../Onomatopoeia/OnomatopoeiaAttributes";
 import { getRandomFromArray, getRandomColor, getRandomInt } from "../getRandom";
+import Point from "../classes/Point";
 
-const useOnomatopoeia = (mouthPosition) => {
+interface UseOnomatopoeiaHook {
+  RenderOnomatopoeia: JSX.Element | null;
+}
+
+const useOnomatopoeia = (mouthPosition: Point): UseOnomatopoeiaHook => {
   const position = {
     x: mouthPosition.x + getRandomInt(100, 200),
     y: mouthPosition.y + getRandomInt(-200, 200),
@@ -18,7 +23,9 @@ const useOnomatopoeia = (mouthPosition) => {
     size: size,
     rotation: rotation,
   };
-  const [RenderOnomatopoeia, setRenderOnomatopoeia] = useState(null);
+  const [RenderOnomatopoeia, setRenderOnomatopoeia] = useState<JSX.Element | null>(
+    null
+  );
   useEffect(() => {
     setRenderOnomatopoeia(<OnomatopoeiaText {...onomatopoeiaProps} />);
     // eslint-disable-next-line react-hooks/exhaustive-deps

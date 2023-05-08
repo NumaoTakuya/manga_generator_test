@@ -1,5 +1,6 @@
 import React from "react";
-import { Box } from "@mui/system";
+import { Box } from "@mui/system"; 
+import OnomatopoeiaTextProps from "@/utils/Onomatopoeia/OnomatopoeiaTextProps";
 
 const OnomatopoeiaText = ({
   content,
@@ -8,7 +9,7 @@ const OnomatopoeiaText = ({
   position,
   size,
   rotation,
-}) => {
+}: OnomatopoeiaTextProps): JSX.Element | null => {
   if (!content) return null;
   const fontSize = `${size}px`;
 

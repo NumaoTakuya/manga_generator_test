@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import Point from "../classes/Point";
 
 // Mouse position
-const useMousePosition = () => {
-  const [pos, setPos] = useState(Point.ZERO);
+const useMousePosition = (): Point => {
+  const [pos, setPos] = useState<Point>(Point.ZERO);
 
   useEffect(() => {
-    const handleMouseMove = (event) => {
+    const handleMouseMove = (event: MouseEvent) => {
       setPos(new Point(event.clientX, event.clientY));
     };
 

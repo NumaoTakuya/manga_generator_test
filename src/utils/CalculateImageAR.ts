@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
-const CalculateImageAR = (src) => {
-  const [aspectRatio, setAspectRatio] = useState(null);
+const CalculateImageAR = (src: string): number | null => {
+  const [aspectRatio, setAspectRatio] = useState<number | null>(null);
 
   useEffect(() => {
     const img = new Image();

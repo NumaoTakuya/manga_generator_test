@@ -1,32 +1,35 @@
 import Point from './Point';
 
 export default class Size {
-  constructor(width, height) {
+  width: number;
+  height: number;
+
+  constructor(width: number, height: number) {
     this.width = width;
     this.height = height;
   }
 
-  toPoint() {
+  toPoint(): Point {
     return new Point(this.width, this.height);
   }
 
-  add(other) {
+  add(other: Size): Size {
     return new Size(this.width + other.width, this.height + other.height);
   }
 
-  subtract(other) {
+  subtract(other: Size): Size {
     return new Size(this.width - other.width, this.height - other.height);
   }
 
-  multiply(scalar) {
+  multiply(scalar: number): Size {
     return new Size(this.width * scalar, this.height * scalar);
   }
 
-  divide(scalar) {
+  divide(scalar: number): Size {
     return new Size(this.width / scalar, this.height / scalar);
   }
 
-  aspectRatio() {
+  aspectRatio(): number {
     return this.height / this.width;
   }
 }

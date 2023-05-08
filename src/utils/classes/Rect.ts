@@ -2,62 +2,55 @@ import Point from "./Point";
 import Size from "./Size";
 
 export default class Rect {
-  constructor(left, top, width, height) {
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+
+  constructor(left: number, top: number, width: number, height: number) {
     this.left = left;
     this.top = top;
     this.width = width;
     this.height = height;
   }
 
-  static get ZERO() {
+  static get ZERO(): Rect {
     return new Rect(0, 0, 0, 0);
   }
 
-  get size() {
+  get size(): Size {
     return new Size(this.width, this.height);
   }
 
-  get point() {
+  get point(): Point {
     return new Point(this.left, this.top);
   }
 
-  // 右端の座標を取得する
-  get right() {
+  get right(): number {
     return this.left + this.width;
   }
 
-  // 底辺の座標を取得する
-  get bottom() {
+  get bottom(): number {
     return this.top + this.height;
   }
 
-  // サイズを取得する
-  get size() {
-    return new Size(this.width, this.height);
-  }
-
-  // 面積を取得する
-  get area() {
+  get area(): number {
     return this.width * this.height;
   }
 
-  // 中心座標を取得する
-  get center() {
+  get center(): Point {
     return new Point(this.left + this.width / 2, this.top + this.height / 2);
   }
 
-  // 矩形を移動する
-  move(x, y) {
+  move(x: number, y: number): Rect {
     return new Rect(this.left + x, this.top + y, this.width, this.height);
   }
 
-  // 矩形をリサイズする
-  resize(width, height) {
+  resize(width: number, height: number): Rect {
     return new Rect(this.left, this.top, width, height);
   }
 
-  // 矩形をスケーリングする
-  scale(scaleX, scaleY) {
+  scale(scaleX: number, scaleY: number): Rect {
     return new Rect(
       this.left * scaleX,
       this.top * scaleY,
@@ -66,8 +59,7 @@ export default class Rect {
     );
   }
 
-  // 矩形を縦横比を維持したまま指定したサイズに収まるようにリサイズする
-  fitInto(size) {
+  fitInto(size: Size): Rect {
     const aspectRatio = this.width / this.height;
     const targetAspectRatio = size.width / size.height;
     if (aspectRatio > targetAspectRatio) {
@@ -91,8 +83,7 @@ export default class Rect {
     }
   }
 
-  // 矩形が他の矩形と重なっているかを判定する
-  intersects(other) {
+  intersects(other: Rect): boolean {
     return (
       this.left < other.right &&
       this.right > other.left &&
@@ -101,8 +92,7 @@ export default class Rect {
     );
   }
 
-  // 矩形を結合する
-  union(other) {
+  union(other: Rect): Rect {
     const left = Math.min(this.left, other.left);
     const top = Math.min(this.top, other.top);
     const right = Math.max(this.right, other.right);
@@ -110,8 +100,7 @@ export default class Rect {
     return new Rect(left, top, right - left, bottom - top);
   }
 
-  // 矩形を切り取る
-  intersect(other) {
+  intersect(other: Rect): Rect {
     const left = Math.max(this.left, other.left);
     const top = Math.max(this.top, other.top);
     const right = Math.min(this.right, other.right);
@@ -122,40 +111,5 @@ export default class Rect {
       Math.max(0, right - left),
       Math.max(0, bottom - top)
     );
-  }
-
-  // 矩形を平行移動する
-  static translate(rect, x, y) {
-    return rect.move(x, y);
-  }
-
-  // 矩形をリサイズする
-  static resize(rect, width, height) {
-    return rect.resize(width, height);
-  }
-
-  // 矩形をスケーリングする
-  static scale(rect, scaleX, scaleY) {
-    return rect.scale(scaleX, scaleY);
-  }
-
-  // 矩形を縦横比を維持したまま指定したサイズに収まるようにリサイズする
-  static fitInto(rect, size) {
-    return rect.fitInto(size);
-  }
-
-  // 矩形が他の矩形と重なっているかを判定する
-  static intersects(rect1, rect2) {
-    return rect1.intersects(rect2);
-  }
-
-  // 矩形を結合する
-  static union(rect1, rect2) {
-    return rect1.union(rect2);
-  }
-
-  // 矩形を切り取る
-  static intersect(rect1, rect2) {
-    return rect1.intersect(rect2);
   }
 }

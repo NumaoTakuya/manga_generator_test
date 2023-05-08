@@ -1,12 +1,26 @@
 import React from "react";
 import { Box } from "@mui/system";
 import Image from "next/image";
+import Point from "@/utils/classes/Point";
+import CenteredRect from "@/utils/classes/CenteredRect";
 
-function getRandom(from, to) {
+interface CropImageProps {
+  id: string;
+  randomness: Point;
+  src: string;
+  centeredRect: CenteredRect;
+}
+
+function getRandom(from: number, to: number): number {
   return from + Math.random() * (to - from);
 }
 
-const CropImage = ({ id, randomness, src, centeredRect }) => {  
+const CropImage = ({
+  id,
+  randomness,
+  src,
+  centeredRect,
+}: CropImageProps): JSX.Element => {
   const width = centeredRect.width;
   const height = centeredRect.height;
   const cropValues = {

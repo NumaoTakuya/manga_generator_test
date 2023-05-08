@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import RoundedBubble from "./Bubbles/RoundedBubble";
 import roundedBubbleTailPos from "../utils/Bubble/tailPosition/roundedBubbleTailPos";
 import SquareBubble from "./Bubbles/SquareBubble";
@@ -13,15 +12,20 @@ import Size from "@/utils/classes/Size";
 import useMousePosition from "@/utils/hooks/useMousePosition";
 import tailReducer from "./Bubbles/tailReducer";
 import calculateBubbleSize from "@/utils/Bubble/calculateBubbleSize";
+import {
+  TailReducerState,
+  TailReducerAction,
+} from "@/utils/Bubble/tailReducerTypes";
 
 const Bubble: React.FC<BubbleProps> = ({
   text,
-  type, 
+  type,
   position,
   targetPosition,
 }) => {
-  let mousePosition = useMousePosition(); // TODO: 口（対象）の座標に変更する 
-  targetPosition = targetPosition ? targetPosition : mousePosition;   
+  let mousePosition = useMousePosition(); // TODO: 口（対象）の座標に変更する
+  targetPosition = targetPosition ? targetPosition : mousePosition;
+  console.log("imageRect vs mouse", mousePosition);
 
   // Bubble
   const bubbleSize = calculateBubbleSize(type, text.length, 2, 20);
@@ -32,9 +36,9 @@ const Bubble: React.FC<BubbleProps> = ({
 
   // Tail
   // Tailの状態を管理するためuseReducerを使用
-  const initialState = {
+  const initialState: TailReducerState = {
     rotation: 0,
-    tailPos: bubbleSize.add(offset.divide(2)),
+    tailPos: new Point(bubbleSize.width / 2, bubbleSize.height / 2).add(offset), // 修正
   };
   const tailPositionFunctions = {
     rounded: roundedBubbleTailPos,
@@ -50,7 +54,8 @@ const Bubble: React.FC<BubbleProps> = ({
     targetPosition,
   };
   const [state, dispatch] = useReducer(
-    (state: any, action: any) => tailReducer(state, action, tailReducerProps),
+    (state: TailReducerState, action: TailReducerAction) =>
+      tailReducer(state, action, tailReducerProps),
     initialState
   );
 
@@ -69,12 +74,12 @@ const Bubble: React.FC<BubbleProps> = ({
   };
 
   const strokeWidth = 3; //TODO: typeによって分類
-  const tail = <Tail points={points} state={state} strokeWidth={strokeWidth} />; 
+  const tail = <Tail points={points} state={state} strokeWidth={strokeWidth} />;
 
-  const props = { 
+  const props = {
     offset,
     bubbleSize,
-    strokeWidth, 
+    strokeWidth,
     viewBoxSize,
     tail,
     text,

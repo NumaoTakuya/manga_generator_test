@@ -3,11 +3,21 @@ import { Button } from "@mui/material";
 import { Box } from "@mui/system";
 import NavigationBar from "../components/NavigationBar";
 import OnomatopoeiaText from "../components/OnomatopoeiaText";
-import { getRandomFromArray, getRandomColor, getRandomInt } from "../utils/getRandom";
-import { onomatopoeias, fonts } from "../utils/Onomatopoeia/OnomatopoeiaAttributes";
+import {
+  getRandomFromArray,
+  getRandomColor,
+  getRandomInt,
+} from "../utils/getRandom";
+import {
+  onomatopoeias,
+  fonts,
+} from "../utils/Onomatopoeia/OnomatopoeiaAttributes";
+import OnomatopoeiaTextProps from "@/utils/Onomatopoeia/OnomatopoeiaTextProps";
 
 const OnomatopoeiaPage = () => {
-  const [onomatopoeiaProps, setOnomatopoeiaProps] = useState({});
+  const [onomatopoeiaProps, setOnomatopoeiaProps] = useState<OnomatopoeiaTextProps>(
+    {} as OnomatopoeiaTextProps
+  );
 
   const handleButtonClick = () => {
     const newOnomatopoeiaProps = {

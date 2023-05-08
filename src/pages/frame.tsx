@@ -4,7 +4,7 @@ import { Box } from "@mui/system";
 import Image from "next/image";
 import NavigationBar from "../components/NavigationBar";  
 
-function getRandom(from, to) {
+function getRandom(from: number, to: number) {
   return from + Math.random() * (to - from);
 }
 

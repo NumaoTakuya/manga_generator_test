@@ -22,13 +22,13 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/pages/index.js",
+    "src/pages/index.tsx",
     "src/components/Bubble.tsx",
-    "src/components/Tail.js",
-    "src/pages/panel.js",
-    "src/utils/hooks/useDetectFace.js",
-    "src/utils/classes/CenteredRect.js",
+    "src/components/Tail.tsx",
+    "src/pages/panel.tsx",
+    "src/utils/hooks/useDetectFace.ts",
+    "src/utils/classes/CenteredRect.ts",
     "src/utils/useMouseCenteredRect.js"
-  ],
+, "src/components/CropImage.tsx", "src/components/Layer.tsx", "src/components/NavigationBar.tsx", "src/components/OnomatopoeiaText.tsx", "src/components/Bubbles/tailReducer.ts", "src/utils/hooks/useMouthPosition.ts"  ],
   "exclude": ["node_modules"]
 }

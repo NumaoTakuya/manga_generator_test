@@ -1,60 +1,63 @@
 import Size from "./Size";
 
 export default class Point {
-  constructor(x, y) {
+  x: number;
+  y: number;
+
+  constructor(x: number, y: number) {
     this.x = x;
     this.y = y;
   }
 
-  toSize() {
+  toSize(): Size {
     return new Size(this.x, this.y);
   }
 
-  add(other) {
+  add(other: Point): Point {
     return new Point(this.x + other.x, this.y + other.y);
   }
 
-  subtract(other) {
+  subtract(other: Point): Point {
     return new Point(this.x - other.x, this.y - other.y);
   }
 
-  multiply(scalar) {
+  multiply(scalar: number): Point {
     return new Point(this.x * scalar, this.y * scalar);
   }
 
-  divide(scalar) {
+  divide(scalar: number): Point {
     return new Point(this.x / scalar, this.y / scalar);
   }
 
-  dot(other) {
+  dot(other: Point): number {
     return this.x * other.x + this.y * other.y;
   }
 
-  cross(other) {
+  cross(other: Point): number {
     return this.x * other.y - this.y * other.x;
   }
 
-  static get ZERO() {
+  static get ZERO(): Point {
     return new Point(0, 0);
   }
 
-  static get ONE() {
+  static get ONE(): Point {
     return new Point(1, 1);
   }
 
-  static get UP() {
+  static get UP(): Point {
     return new Point(0, 1);
   }
 
-  static get DOWN() {
+  static get DOWN(): Point {
     return new Point(0, -1);
   }
 
-  static get LEFT() {
+  static get LEFT(): Point {
     return new Point(-1, 0);
   }
 
-  static get RIGHT() {
+  static get RIGHT(): Point {
     return new Point(1, 0);
   }
 }
