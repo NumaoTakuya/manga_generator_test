@@ -21,7 +21,8 @@ type Image = {
 };
 type Tone = {
   primaryColor: string;
-  secondaryColor: string;
+  secondaryColor?: string;
+  position: Point;
   size: Size;
 };
 type Bubble = {

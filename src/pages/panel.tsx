@@ -24,7 +24,7 @@ const sources = [
 const PanelPage = () => { 
 
   //Image
-  const src = sources[1];
+  const src = sources[0];
   const imageId = `image-${0}`;
   const imageWidth = 300;
   const cropRandomness = new Point(0.1, 0.3); 
@@ -58,8 +58,8 @@ const PanelPage = () => {
     >
       <NavigationBar />
       <Layer zIndex={0}>{selectedTone}</Layer>
-      <Layer zIndex={1}>{RenderCropImage}</Layer>
-      <Layer zIndex={2}>{RenderOnomatopoeia}</Layer>
+      <Layer zIndex={1}>{RenderOnomatopoeia}</Layer>
+      <Layer zIndex={2}>{RenderCropImage}</Layer>
       <Layer zIndex={3}>{RenderBubbles}</Layer>
     </Container>
   );
