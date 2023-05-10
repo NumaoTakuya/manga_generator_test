@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import Onomatopoeia from "../../components/Onomatopoeia/Onomatopoeia";
-import { getRandomFromArray, getRandomColor, getRandomInt } from "../getRandom";
+import Onomatopoeia from "../../components/Onomatopoeia/Onomatopoeia"; 
 import Point from "../classes/Point";
 import { OnomatopoeiaData } from "../DataModels/MangaDataModel";
 
@@ -9,7 +8,7 @@ interface UseOnomatopoeiaHook {
 }
 
 const useOnomatopoeia = (
-  mouthPosition: Point,
+  mouthPosition: Point | null,
   onomatopoeiaDatas: OnomatopoeiaData[]
 ): UseOnomatopoeiaHook => {
   const [RenderOnomatopoeia, setRenderOnomatopoeia] =

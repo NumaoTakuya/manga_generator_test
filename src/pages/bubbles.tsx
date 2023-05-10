@@ -25,22 +25,28 @@ const BubblePage = () => {
         style="rounded"
         aspectRatio={2}
         position={new Point(200, 500)}
+        targetPosition={null}
         text={texts[0]}
         fontSize={20}
+        font="Comic Sans MS"
       />
       <Bubble
         style="square"
         aspectRatio={2}
         position={new Point(400, 600)}
+        targetPosition={null}
         text={texts[1]}
         fontSize={20}
+        font="Comic Sans MS"
       />
       <Bubble
         style="ellipse"
         aspectRatio={2}
         position={new Point(600, 400)}
+        targetPosition={null}
         text={texts[2]}
         fontSize={20}
+        font="Comic Sans MS"
       />
     </div>
   );

@@ -5,7 +5,7 @@ import Point from "../classes/Point";
 
 interface UseMouthPositionHook {
   modelsLoaded: boolean;
-  mouthPosition: Point;
+  mouthPosition: Point | null;
 }
 
 const useMouthPosition = (
@@ -34,7 +34,7 @@ const useMouthPosition = (
     detectFace.handleDetect,
   ];
 
-  const [mouthPosition, setMouthPosition] = useState<Point>(Point.ZERO);
+  const [mouthPosition, setMouthPosition] = useState<Point | null>(null);
 
   useEffect(() => {
     if (modelsLoaded) {
@@ -43,16 +43,16 @@ const useMouthPosition = (
   }, [modelsLoaded]);
 
   useEffect(() => {
-    if (detections && imageElement) {
-      const imageRect = imageElement.getBoundingClientRect();
-      const mouth = detections[0].landmarks.getMouth();
-      const imageWidthScale = imageWidth / imageElement.naturalWidth;
-      const newMouthPosition = new Point(
-        imageRect.left + mouth[14].x * imageWidthScale,
-        imageRect.top + mouth[14].y * imageWidthScale
-      );
+    if (detections && imageElement && detections.length > 0) { 
+        const imageRect = imageElement.getBoundingClientRect();
+        const mouth = detections[0].landmarks.getMouth();
+        const imageWidthScale = imageWidth / imageElement.naturalWidth;
+        const newMouthPosition = new Point(
+          imageRect.left + mouth[14].x * imageWidthScale,
+          imageRect.top + mouth[14].y * imageWidthScale
+        );
 
-      setMouthPosition(newMouthPosition);
+        setMouthPosition(newMouthPosition); 
     }
   }, [detections]);
 

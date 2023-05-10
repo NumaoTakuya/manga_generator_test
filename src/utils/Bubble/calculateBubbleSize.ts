@@ -8,12 +8,16 @@ const calculateBubbleSize = (
   aspectRatio: number,
   fontSize: number
 ): Size => {
-  const textBoxWidth = fontSize * Math.ceil(Math.sqrt(textLength * aspectRatio));
-  const textBoxHeight = fontSize * Math.ceil(Math.sqrt(textLength / aspectRatio));
+  const textBoxWidth =
+    fontSize * Math.ceil(Math.sqrt(textLength * aspectRatio));
+  const textBoxHeight =
+    fontSize * Math.ceil(Math.sqrt(textLength / aspectRatio));
   const textBoxSize = new Size(textBoxWidth, textBoxHeight);
 
   switch (style) {
     case "square":
+      return textBoxSize;
+    case "none":
       return textBoxSize;
     default:
       return textBoxSize.multiply(1.414);
@@ -21,4 +25,3 @@ const calculateBubbleSize = (
 };
 
 export default calculateBubbleSize;
-

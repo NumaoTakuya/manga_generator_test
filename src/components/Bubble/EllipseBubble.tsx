@@ -9,6 +9,8 @@ const EllipseBubble: React.FC<EachBubbleProps> = ({
   viewBoxSize,
   tail,
   text,
+  fontSize,
+  font
 }) => { 
   return (
     <div
@@ -59,7 +61,8 @@ const EllipseBubble: React.FC<EachBubbleProps> = ({
             <Typography
               component="p"
               color="black"
-              fontSize={20}
+              fontSize={fontSize}
+              fontFamily={font}
               sx={{
                 width: bubbleSize.width / 1.414,
                 lineHeight: 1,

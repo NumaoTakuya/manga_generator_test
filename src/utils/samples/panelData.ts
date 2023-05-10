@@ -23,6 +23,7 @@ const panelData: PanelData = {
       style: "ellipse",
       aspectRatio: 2,
       fontSize: 16,
+      font: "Comic Sans MS",
       content: "Hello World",
     },
   ],

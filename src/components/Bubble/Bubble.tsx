@@ -24,10 +24,11 @@ const Bubble: React.FC<BubbleProps> = ({
   position,
   targetPosition,
   fontSize,
+  font
 }) => {
   let cursorPosition = useCursorPosition(); // TODO: 口（対象）の座標に変更する
   console.log(cursorPosition);
-  targetPosition = targetPosition ? targetPosition : cursorPosition;
+  // targetPosition = targetPosition ? targetPosition : cursorPosition;
 
   // Bubble
   const bubbleSize = calculateBubbleSize(
@@ -48,6 +49,7 @@ const Bubble: React.FC<BubbleProps> = ({
     tailPos: new Point(bubbleSize.width / 2, bubbleSize.height / 2).add(offset), // 修正
   };
   const tailPositionFunctions = {
+    none: null,
     rounded: roundedBubbleTailPos,
     square: squareBubbleTailPos,
     ellipse: ellipseBubbleTailPos,
@@ -89,7 +91,9 @@ const Bubble: React.FC<BubbleProps> = ({
     strokeWidth,
     viewBoxSize,
     tail,
-    text,
+    text, 
+    fontSize,
+    font
   };
 
   const bubble = (style: string) => {

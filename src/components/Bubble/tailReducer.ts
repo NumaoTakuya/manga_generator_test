@@ -19,11 +19,11 @@ type TailReducerState = {
 
 type TailReducerPayload = {
   style: BubbleStyle;
-  tailPositionFunctions: { [key: string]: Function };
+  tailPositionFunctions: { [key: string]: Function | null };
   tailRelativeCenter: Point;
   bubbleSize: Size;
   position: Point;
-  targetPosition: Point;
+  targetPosition: Point | null;
 };
 
 const tailReducer = (
@@ -31,8 +31,12 @@ const tailReducer = (
   action: TailReducerAction,
   payload: TailReducerPayload
 ): TailReducerState => {
+  if (!payload.targetPosition) return state;
+
   switch (action.type) {
     case "UPDATE_POSITION":
+      const tailPositionFunction = payload.tailPositionFunctions[payload.style];
+      if (!tailPositionFunction) return state;
       const angle = calculateAngle(
         payload.targetPosition.subtract(payload.position)
       );
@@ -42,9 +46,10 @@ const tailReducer = (
         payload.bubbleSize.width,
         payload.bubbleSize.height
       );
-
-      const tailPositionFunction = payload.tailPositionFunctions[payload.style];
-      const { newTailX, newTailY } = tailPositionFunction(tailCenterRect, angle);
+      const { newTailX, newTailY } = tailPositionFunction(
+        tailCenterRect,
+        angle
+      );
       return {
         rotation: (angle * 180) / Math.PI,
         tailPos: new Point(newTailX, newTailY),

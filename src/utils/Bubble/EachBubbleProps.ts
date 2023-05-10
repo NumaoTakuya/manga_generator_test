@@ -8,6 +8,8 @@ type EachBubbleProps = {
   viewBoxSize: Size;
   tail: JSX.Element;
   text: string;
+  fontSize: number;
+  font: string;
 };
 
 export default EachBubbleProps;

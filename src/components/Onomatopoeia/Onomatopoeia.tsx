@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@mui/system"; 
+import { Box } from "@mui/system";
 import OnomatopoeiaProps from "@/utils/Onomatopoeia/OnomatopoeiaProps";
 
 const Onomatopoeia = ({
@@ -10,7 +10,7 @@ const Onomatopoeia = ({
   fontSize,
   rotation,
 }: OnomatopoeiaProps): JSX.Element | null => {
-  if (!content) return null; 
+  if (!content) return null;
 
   const baseStyle = {
     fontFamily: font,
@@ -26,7 +26,7 @@ const Onomatopoeia = ({
     left: position.x - fontSize / 2,
     top: position.y - fontSize / 2,
     color: color,
-    WebkitTextStroke: "15px black",
+    WebkitTextStroke: `${fontSize / 4}px black`,
   };
 
   const innerOutlineStyle = {
@@ -34,7 +34,7 @@ const Onomatopoeia = ({
     left: position.x - fontSize / 2,
     top: position.y - fontSize / 2,
     color: color,
-    WebkitTextStroke: "10px white",
+    WebkitTextStroke: `${fontSize / 6}px white`,
   };
 
   const mainTextStyle = {

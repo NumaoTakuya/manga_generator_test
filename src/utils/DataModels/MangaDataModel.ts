@@ -41,6 +41,7 @@ type BubbleData = {
   style: BubbleStyle; 
   aspectRatio: number; // width / height
   fontSize?: number;
+  font: string;
   content: string;
 };
 type BubbleStyle =
