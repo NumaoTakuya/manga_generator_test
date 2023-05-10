@@ -13,14 +13,14 @@ const PanelPage: React.FC = () => {
       src: "https://media.discordapp.net/ephemeral-attachments/1092492867185950852/1102974784884711514/3f07ed359ce9d67463dbf0a01c56071d.jpg?width=900&height=1060",
       frameRect: {
         cropRandomness: new Point(0.1, 0.3),
-        centeredRect: new CenteredRect(500, 600, 300, 353),
+        centeredRect: new CenteredRect(500, 300, 300, 353),
       },
     },
     tone: {
       style: "horizontalGradient",
       primaryColor: "yellow",
       secondaryColor: "white",
-      centeredRect: new CenteredRect(500, 600, 500, 300),
+      centeredRect: new CenteredRect(500, 300, 500, 300),
     },
     bubbles: [
       {
@@ -33,7 +33,7 @@ const PanelPage: React.FC = () => {
     onomatopoeias: [
       {
         content: "BOOM",
-        position: new Point(600, 600),
+        position: new Point(600, 300),
         rotation: 0,
         color: "#FF0000",
         fontSize: 32,
@@ -47,7 +47,7 @@ const PanelPage: React.FC = () => {
       sx={{
         backgroundColor: "white",
         width: "100vw",
-        height: "100vh",
+        height: "100%",
       }}
     >
       {/* <NavigationBar /> */}

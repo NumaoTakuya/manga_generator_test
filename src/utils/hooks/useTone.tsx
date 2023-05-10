@@ -24,21 +24,14 @@ const useTone = (toneData: ToneData | undefined): UseToneHook => {
   const secondaryColor = toneData?.secondaryColor ?? "#fff";
   const centeredRect = toneData?.centeredRect ?? CenteredRect.ZERO;
   const size = centeredRect?.size ?? Size.ZERO;
-  console.log("centeredRect", centeredRect);
   const tones: { [key in ToneStyle]: JSX.Element } = useMemo(
     () => ({
       horizontalGradient: HorizontalGradient(
         [primaryColor, secondaryColor],
         size
       ),
-      verticalGradient: VerticalGradient(
-        [primaryColor, secondaryColor],
-        size
-      ),
-      radialGradient: RadialGradient(
-        [primaryColor, secondaryColor],
-        size
-      ),
+      verticalGradient: VerticalGradient([primaryColor, secondaryColor], size),
+      radialGradient: RadialGradient([primaryColor, secondaryColor], size),
       polkaDots: PolkaDots(primaryColor, size),
       checkerboard: Checkerboard(primaryColor, size),
       diagonalLines: DiagonalLines(primaryColor, size),

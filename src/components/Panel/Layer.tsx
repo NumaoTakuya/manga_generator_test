@@ -8,8 +8,7 @@ interface LayerProps {
 const Layer = ({ children, zIndex }: LayerProps): JSX.Element => {
   return (
     <div
-      style={{
-        position: "absolute",
+      style={{ 
         zIndex: zIndex,
         backgroundColor: "transparent",
         display: "flex",

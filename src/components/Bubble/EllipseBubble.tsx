@@ -7,11 +7,11 @@ const EllipseBubble: React.FC<EachBubbleProps> = ({
   bubbleSize,
   strokeWidth,
   viewBoxSize,
-  tail, 
+  tail,
   text,
-}) => {
+}) => { 
   return (
-    <div 
+    <div
       style={{
         position: "relative",
         width: viewBoxSize.width,
@@ -62,8 +62,8 @@ const EllipseBubble: React.FC<EachBubbleProps> = ({
               fontSize={20}
               sx={{
                 width: bubbleSize.width / 1.414,
-                lineHeight: 1, 
-              }} 
+                lineHeight: 1,
+              }}
             >
               {text}
             </Typography>

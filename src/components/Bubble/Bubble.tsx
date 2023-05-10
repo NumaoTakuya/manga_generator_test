@@ -25,8 +25,9 @@ const Bubble: React.FC<BubbleProps> = ({
   targetPosition,
   fontSize,
 }) => {
-  let mousePosition = useCursorPosition(); // TODO: 口（対象）の座標に変更する
-  targetPosition = targetPosition ? targetPosition : mousePosition;
+  let cursorPosition = useCursorPosition(); // TODO: 口（対象）の座標に変更する
+  console.log(cursorPosition);
+  targetPosition = targetPosition ? targetPosition : cursorPosition;
 
   // Bubble
   const bubbleSize = calculateBubbleSize(
@@ -67,7 +68,7 @@ const Bubble: React.FC<BubbleProps> = ({
 
   useEffect(() => {
     dispatch({ type: "UPDATE_POSITION" });
-  }, [mousePosition]);
+  }, [targetPosition]);
 
   // Tailの各点の初期座標を計算
   const points = {
@@ -103,6 +104,11 @@ const Bubble: React.FC<BubbleProps> = ({
         return RoundedBubble(props);
     }
   };
+
+  console.log({ 
+    left: position.x - viewBoxSize.width / 2,
+    top: position.y - viewBoxSize.height / 2,
+  });
 
   return (
     <div

@@ -25,6 +25,7 @@ const Panel: React.FC<PanelProps> = ({ panelData }) => {
     imageId,
     image.frameRect.centeredRect.width
   );
+  console.log("mouthPosition", mouthPosition);
 
   // Bubble
   const { RenderBubbles } = useBubble(
