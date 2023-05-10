@@ -1,10 +1,7 @@
-import { Container } from "@mui/material";
-import NavigationBar from "@/components/NavigationBar";
 import { PanelData } from "@/utils/DataModels/MangaDataModel";
 import CenteredRect from "@/utils/classes/CenteredRect";
 import Point from "@/utils/classes/Point";
-import Panel from "@/components/Panel/Panel";
-import imgSources from "@/utils/samples/imgSources";
+import imgSources from "./imgSources";
 
 const panel0: PanelData = {
   image: {
@@ -79,21 +76,4 @@ const panel1: PanelData = {
 
 const page = [panel0, panel1];
 
-const PagePage = () => {
-  return (
-    <Container
-      sx={{
-        backgroundColor: "white",
-        width: "100vw",
-        height: "100%",
-      }}
-    >
-      <NavigationBar />
-      {page.map((panelData, i) => {
-        return <Panel key={i} panelData={panelData} />;
-      })}
-    </Container>
-  );
-};
-
-export default PagePage;
+export default page;

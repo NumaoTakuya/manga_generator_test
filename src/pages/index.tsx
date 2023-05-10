@@ -3,13 +3,8 @@ import Image from "next/image";
 import { Button, Container, Grid, Typography } from "@mui/material";
 import NavigationBar from "../components/NavigationBar";
 import useDetectFace from "../utils/hooks/useDetectFace"; 
+import imgSources from "../utils/samples/imgSources";
 
-const sources = [
-  "https://media.discordapp.net/ephemeral-attachments/1092492867185950852/1102974784884711514/3f07ed359ce9d67463dbf0a01c56071d.jpg?width=900&height=1060",
-  "https://media.discordapp.net/ephemeral-attachments/1092492867185950852/1102982059930161152/7f9e577686ec2e1e0700ff61232e208d.jpg?width=776&height=1060",
-  "https://media.discordapp.net/attachments/1058796281146908762/1102982726287626270/00004-659911599.png?width=1024&height=1024",
-  "https://media.discordapp.net/attachments/1061113259979178044/1102984309448646667/Screenshot_2023-05-02_at_12-19-44_Down_To_Earth_-_Episode_1.png?width=730&height=780",
-];
 const Detection = () => {
   // useDetectFace
   const [imageElement, setImageElement] = useState<HTMLImageElement | null>(
@@ -39,7 +34,7 @@ const Detection = () => {
   const [sourceIndex, setSourceIndex] = useState(0);
   const handleNext = () => {
     setShowDetections(false);
-    setSourceIndex((sourceIndex + 1) % sources.length);
+    setSourceIndex((sourceIndex + 1) % imgSources.length);
   };
 
   const handleShowDetections = () => {
@@ -124,7 +119,7 @@ const Detection = () => {
             <div style={{ display: "inline-block" }}>
               <Image
                 id="face-image"
-                src={sources[sourceIndex]}
+                src={imgSources[sourceIndex]}
                 alt="face"
                 layout="responsive"
                 width={640}
