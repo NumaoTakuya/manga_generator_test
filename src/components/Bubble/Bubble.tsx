@@ -1,16 +1,16 @@
 import React, { useEffect, useReducer } from "react";
-import RoundedBubble from "./Bubbles/RoundedBubble";
-import roundedBubbleTailPos from "../utils/Bubble/tailPosition/roundedBubbleTailPos";
-import SquareBubble from "./Bubbles/SquareBubble";
-import squareBubbleTailPos from "../utils/Bubble/tailPosition/squareBubbleTailPos";
-import EllipseBubble from "./Bubbles/EllipseBubble";
-import ellipseBubbleTailPos from "../utils/Bubble/tailPosition/ellipseBubbleTailPos";
+import RoundedBubble from "./RoundedBubble";
+import roundedBubbleTailPos from "../../utils/Bubble/tailPosition/roundedBubbleTailPos";
+import SquareBubble from "./SquareBubble";
+import squareBubbleTailPos from "../../utils/Bubble/tailPosition/squareBubbleTailPos";
+import EllipseBubble from "./EllipseBubble";
+import ellipseBubbleTailPos from "../../utils/Bubble/tailPosition/ellipseBubbleTailPos";
 import Tail from "./Tail";
 import BubbleProps from "@/utils/Bubble/BubbleProps";
 import Point from "@/utils/classes/Point";
 import Size from "@/utils/classes/Size";
 import useCursorPosition from "@/utils/hooks/useCursorPosition";
-import tailReducer from "./Bubbles/tailReducer";
+import tailReducer from "./tailReducer";
 import calculateBubbleSize from "@/utils/Bubble/calculateBubbleSize";
 import {
   TailReducerState,
@@ -19,15 +19,22 @@ import {
 
 const Bubble: React.FC<BubbleProps> = ({
   text,
-  type,
+  style,
+  aspectRatio,
   position,
   targetPosition,
+  fontSize,
 }) => {
   let mousePosition = useCursorPosition(); // TODO: 口（対象）の座標に変更する
-  targetPosition = targetPosition ? targetPosition : mousePosition; 
+  targetPosition = targetPosition ? targetPosition : mousePosition;
 
   // Bubble
-  const bubbleSize = calculateBubbleSize(type, text.length, 2, 20);
+  const bubbleSize = calculateBubbleSize(
+    style,
+    text.length,
+    aspectRatio,
+    fontSize
+  );
   const viewBoxSize = bubbleSize.multiply(2);
   const offset = viewBoxSize.subtract(bubbleSize).divide(2).toPoint();
   const tailSize: Size = bubbleSize.divide(4);
@@ -45,7 +52,7 @@ const Bubble: React.FC<BubbleProps> = ({
     ellipse: ellipseBubbleTailPos,
   };
   const tailReducerProps = {
-    type,
+    style,
     tailPositionFunctions,
     tailRelativeCenter,
     bubbleSize,
@@ -84,8 +91,8 @@ const Bubble: React.FC<BubbleProps> = ({
     text,
   };
 
-  const bubble = (type: string) => {
-    switch (type) {
+  const bubble = (style: string) => {
+    switch (style) {
       case "rounded":
         return RoundedBubble(props);
       case "square":
@@ -105,7 +112,7 @@ const Bubble: React.FC<BubbleProps> = ({
         top: position.y - viewBoxSize.height / 2,
       }}
     >
-      {bubble(type)}
+      {bubble(style)}
     </div>
   );
 };

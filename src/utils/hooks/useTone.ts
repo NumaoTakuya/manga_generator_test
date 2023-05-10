@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useMemo, useCallback } from "react";
 import {
   HorizontalGradient,
   VerticalGradient,
@@ -10,47 +10,49 @@ import {
   HorizontalStripes,
   VerticalStripes,
   Stars,
-} from "../../components/Tones";
-import Size from "../classes/Size";
+} from "../../components/Tone/Tones";
+import { ToneData, ToneStyle } from "../DataModels/MangaDataModel";
+import CenteredRect from "../classes/CenteredRect";
 
 interface UseToneHook {
-  selectedTone: JSX.Element | null;
+  RenderTone: JSX.Element | null;
 }
 
-const useTone = (): UseToneHook => {
-  // 色のリスト
-  const colors = ["red", "blue", "green", "orange", "purple", "pink", "black"];
-  const primaryIndex = Math.floor(Math.random() * colors.length);
-  const secondaryIndex =
-    (primaryIndex + Math.floor(1 + Math.random() * colors.length - 2)) %
-    colors.length;
-  const primaryColor = colors[primaryIndex];
-  const secondaryColor = colors[secondaryIndex];
-  const toneSize = new Size(
-    0.8 + Math.random() / 5,
-    0.9 + Math.random() / 10
-  ).multiply(600);
-  const tones = [
-    HorizontalGradient([primaryColor, secondaryColor], toneSize),
-    VerticalGradient([primaryColor, secondaryColor], toneSize),
-    RadialGradient([primaryColor, secondaryColor], toneSize),
-    PolkaDots(primaryColor, toneSize),
-    // Checkerboard(primaryColor, toneSize),
-    DiagonalLines(primaryColor, toneSize),
-    // Crosshatch(primaryColor, toneSize),
-    // HorizontalStripes(primaryColor, toneSize),
-    // VerticalStripes(primaryColor, toneSize),
-    // Stars(primaryColor, toneSize),
-  ];
+const useTone = (toneData: ToneData | undefined): UseToneHook => {
+  const primaryColor = toneData?.primaryColor ?? "#000";
+  const secondaryColor = toneData?.secondaryColor ?? "#fff";
+  const centeredRect = toneData?.centeredRect ?? CenteredRect.ZERO;
+  const tones: { [key in ToneStyle]: JSX.Element } = useMemo(
+    () => ({
+      horizontalGradient: HorizontalGradient(
+        [primaryColor, secondaryColor],
+        centeredRect
+      ),
+      verticalGradient: VerticalGradient(
+        [primaryColor, secondaryColor],
+        centeredRect
+      ),
+      radialGradient: RadialGradient([primaryColor, secondaryColor], centeredRect),
+      polkaDots: PolkaDots(primaryColor, centeredRect),
+      checkerboard: Checkerboard(primaryColor, centeredRect),
+      diagonalLines: DiagonalLines(primaryColor, centeredRect),
+      crosshatch: Crosshatch(primaryColor, centeredRect),
+      horizontalStripes: HorizontalStripes(primaryColor, centeredRect),
+      verticalStripes: VerticalStripes(primaryColor, centeredRect),
+      stars: Stars(primaryColor, centeredRect),
+    }),
+    [primaryColor, secondaryColor, centeredRect]
+  );
 
-  const [selectedTone, setSelectedTone] = useState<JSX.Element | null>(null);
+  const setRenderTone = useCallback(
+    (style: ToneStyle) => {
+      return tones[style];
+    },
+    [tones]
+  );
 
-  useEffect(() => {
-    setSelectedTone(tones[Math.floor(Math.random() * tones.length)]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  return { selectedTone };
+  const RenderTone = toneData ? setRenderTone(toneData.style) : null;
+  return { RenderTone };
 };
 
 export default useTone;

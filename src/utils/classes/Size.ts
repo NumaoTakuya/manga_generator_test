@@ -1,4 +1,4 @@
-import Point from './Point';
+import Point from "./Point";
 
 export default class Size {
   width: number;
@@ -7,6 +7,10 @@ export default class Size {
   constructor(width: number, height: number) {
     this.width = width;
     this.height = height;
+  }
+
+  static get ZERO(): Size {
+    return new Size(0, 0);
   }
 
   toPoint(): Point {

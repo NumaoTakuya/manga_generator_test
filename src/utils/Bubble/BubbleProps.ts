@@ -1,13 +1,13 @@
-import BubbleType from "./BubbleType";
-import Size from "@/utils/classes/Size";
+import { BubbleStyle } from "@/utils/DataModels/MangaDataModel";
 import Point from "@/utils/classes/Point";
 
 type BubbleProps = {
   text: string;
-  type: BubbleType;
-  size: Size;
+  style: BubbleStyle;
+  aspectRatio: number;
   position: Point;
   targetPosition?: Point;
+  fontSize: number;
 };
 
 export default BubbleProps;

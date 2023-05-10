@@ -7,11 +7,10 @@ const OnomatopoeiaText = ({
   font,
   color,
   position,
-  size,
+  fontSize,
   rotation,
 }: OnomatopoeiaTextProps): JSX.Element | null => {
-  if (!content) return null;
-  const fontSize = `${size}px`;
+  if (!content) return null; 
 
   const baseStyle = {
     fontFamily: font,
@@ -24,24 +23,24 @@ const OnomatopoeiaText = ({
 
   const outerOutlineStyle = {
     ...baseStyle,
-    left: position.x - size / 2,
-    top: position.y - size / 2,
+    left: position.x - fontSize / 2,
+    top: position.y - fontSize / 2,
     color: color,
     WebkitTextStroke: "15px black",
   };
 
   const innerOutlineStyle = {
     ...baseStyle,
-    left: position.x - size / 2,
-    top: position.y - size / 2,
+    left: position.x - fontSize / 2,
+    top: position.y - fontSize / 2,
     color: color,
     WebkitTextStroke: "10px white",
   };
 
   const mainTextStyle = {
     ...baseStyle,
-    left: position.x - size / 2,
-    top: position.y - size / 2,
+    left: position.x - fontSize / 2,
+    top: position.y - fontSize / 2,
     color: color,
     zIndex: 1,
   };

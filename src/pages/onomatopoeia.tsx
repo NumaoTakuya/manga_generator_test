@@ -2,31 +2,23 @@ import React, { useState } from "react";
 import { Button } from "@mui/material";
 import { Box } from "@mui/system";
 import NavigationBar from "../components/NavigationBar";
-import OnomatopoeiaText from "../components/OnomatopoeiaText";
-import {
-  getRandomFromArray,
-  getRandomColor,
-  getRandomInt,
-} from "../utils/getRandom";
-import {
-  onomatopoeias,
-  fonts,
-} from "../utils/Onomatopoeia/OnomatopoeiaAttributes";
+import OnomatopoeiaText from "../components/Onomatopoeia/OnomatopoeiaText";
+import Point from "../utils/classes/Point";
 import OnomatopoeiaTextProps from "@/utils/Onomatopoeia/OnomatopoeiaTextProps";
+import { OnomatopoeiaData } from "@/utils/DataModels/MangaDataModel";
 
 const OnomatopoeiaPage = () => {
-  const [onomatopoeiaProps, setOnomatopoeiaProps] = useState<OnomatopoeiaTextProps>(
-    {} as OnomatopoeiaTextProps
-  );
+  const [onomatopoeiaProps, setOnomatopoeiaProps] =
+    useState<OnomatopoeiaTextProps>({} as OnomatopoeiaTextProps);
 
   const handleButtonClick = () => {
-    const newOnomatopoeiaProps = {
-      content: getRandomFromArray(onomatopoeias),
-      font: getRandomFromArray(fonts),
-      color: getRandomColor(),
-      position: { x: getRandomInt(400, 600), y: getRandomInt(300, 400) },
-      size: getRandomInt(72, 200),
-      rotation: getRandomInt(-30, 30),
+    const newOnomatopoeiaProps: OnomatopoeiaData = {
+      content: "Hello",
+      position: new Point(200, 200),
+      rotation: 45,
+      color: "#FF0000",
+      fontSize: 20,
+      font: "Arial",
     };
     setOnomatopoeiaProps(newOnomatopoeiaProps);
   };

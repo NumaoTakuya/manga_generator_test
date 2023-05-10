@@ -1,33 +1,30 @@
 import { useState, useEffect } from "react";
-import OnomatopoeiaText from "../../components/OnomatopoeiaText";
-import { onomatopoeias, fonts } from "../Onomatopoeia/OnomatopoeiaAttributes";
+import OnomatopoeiaText from "../../components/Onomatopoeia/OnomatopoeiaText";
 import { getRandomFromArray, getRandomColor, getRandomInt } from "../getRandom";
 import Point from "../classes/Point";
+import { OnomatopoeiaData } from "../DataModels/MangaDataModel";
 
 interface UseOnomatopoeiaHook {
   RenderOnomatopoeia: JSX.Element | null;
 }
 
-const useOnomatopoeia = (mouthPosition: Point): UseOnomatopoeiaHook => {
-  const position = {
-    x: mouthPosition.x + getRandomInt(100, 200),
-    y: mouthPosition.y + getRandomInt(-200, 200),
-  };
-  const size = getRandomInt(30, 100);
-  const rotation = getRandomInt(-30, 30);
-  const onomatopoeiaProps = {
-    content: getRandomFromArray(onomatopoeias),
-    font: getRandomFromArray(fonts),
-    color: getRandomColor(),
-    position: position,
-    size: size,
-    rotation: rotation,
-  };
-  const [RenderOnomatopoeia, setRenderOnomatopoeia] = useState<JSX.Element | null>(
-    null
-  );
+const useOnomatopoeia = (
+  mouthPosition: Point,
+  onomatopoeiaDatas: OnomatopoeiaData[]
+): UseOnomatopoeiaHook => {
+  const [RenderOnomatopoeia, setRenderOnomatopoeia] =
+    useState<JSX.Element | null>(null);
   useEffect(() => {
-    setRenderOnomatopoeia(<OnomatopoeiaText {...onomatopoeiaProps} />);
+    let OnomatopoeiaTexts: JSX.Element | null = null;
+    onomatopoeiaDatas.forEach((onomatopoeiaData, index) => {
+      OnomatopoeiaTexts = (
+        <>
+          {OnomatopoeiaTexts}
+          <OnomatopoeiaText key={index} {...onomatopoeiaData} />
+        </>
+      );
+    });
+    setRenderOnomatopoeia(OnomatopoeiaTexts);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mouthPosition]);
   return { RenderOnomatopoeia };

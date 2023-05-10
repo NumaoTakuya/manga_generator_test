@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
-import CropImage from "../../components/CropImage";
-import Point from "../classes/Point";
-import CenteredRect from "../classes/CenteredRect"; 
+import CropImage from "../../components/Frame/CropImage";
+import { FrameRect } from "../DataModels/MangaDataModel";
 
 interface CropImageHook {
   RenderCropImage: ReactNode;
@@ -9,16 +8,14 @@ interface CropImageHook {
 
 const useCropImage = (
   src: string,
-  imageId: string,
-  cropRandomness: Point,
-  centeredRect: CenteredRect
+  imageId: string, 
+  frameRect: FrameRect
 ): CropImageHook => {
   const RenderCropImage = (
     <CropImage
-      id={imageId}
-      randomness={cropRandomness}
+      id={imageId} 
       src={src}
-      centeredRect={centeredRect}
+      frameRect={frameRect}
     />
   );
   return { RenderCropImage };

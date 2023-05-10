@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Grid, Button } from "@mui/material";
 import NavigationBar from "../components/NavigationBar";
-import Size from "../utils/classes/Size";
+import CenteredRect from "../utils/classes/CenteredRect";
 import {
   HorizontalGradient,
   VerticalGradient,
@@ -13,11 +13,11 @@ import {
   HorizontalStripes,
   VerticalStripes,
   Stars,
-} from "../components/Tones";
+} from "../components/Tone/Tones";
 
 const colors = ["red", "blue", "green", "orange", "purple", "pink", "black"];
 const TonesPage = () => {
-  const size = new Size(200, 200);
+  const centeredRect = new CenteredRect(500, 300, 200, 200);
   const [primaryColor, setPrimaryColor] = useState("black");
   const [secondaryColor, setSecondaryColor] = useState("white");
 
@@ -45,34 +45,34 @@ const TonesPage = () => {
       <NavigationBar />
       <Grid container spacing={0} sx={{ height: "200", width: "200" }}>
         <Grid item xs={2}>
-          {HorizontalGradient([primaryColor, secondaryColor], size)}
+          {HorizontalGradient([primaryColor, secondaryColor], centeredRect)}
         </Grid>
         <Grid item xs={2}>
-          {VerticalGradient([primaryColor, secondaryColor], size)}
+          {VerticalGradient([primaryColor, secondaryColor], centeredRect)}
         </Grid>
         <Grid item xs={2}>
-          {RadialGradient([secondaryColor, primaryColor], size)}
+          {RadialGradient([secondaryColor, primaryColor], centeredRect)}
         </Grid>
         <Grid item xs={2}>
-          {PolkaDots(primaryColor, size)}
+          {PolkaDots(primaryColor, centeredRect)}
         </Grid>
         <Grid item xs={2}>
-          {Checkerboard(primaryColor, size)}
+          {Checkerboard(primaryColor, centeredRect)}
         </Grid>
         <Grid item xs={2}>
-          {DiagonalLines(primaryColor, size)}
+          {DiagonalLines(primaryColor, centeredRect)}
         </Grid>
         <Grid item xs={2}>
-          {Crosshatch(primaryColor, size)}
+          {Crosshatch(primaryColor, centeredRect)}
         </Grid>
         <Grid item xs={2}>
-          {HorizontalStripes(primaryColor, size)}
+          {HorizontalStripes(primaryColor, centeredRect)}
         </Grid>
         <Grid item xs={2}>
-          {VerticalStripes(primaryColor, size)}
+          {VerticalStripes(primaryColor, centeredRect)}
         </Grid>
         <Grid item xs={2}>
-          {Stars(primaryColor, size)}
+          {Stars(primaryColor, centeredRect)}
         </Grid>
       </Grid>
       <Button sx={{ mt: 5 }} onClick={changeColors}>

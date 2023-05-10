@@ -14,13 +14,17 @@ export default class CenteredRect extends Rect {
     this.centerY = centerY;
   }
 
+  static get ZERO(): CenteredRect {
+    return new CenteredRect(0, 0, 0, 0);
+  }
+
   // 中心座標を取得する
   get center(): Point {
     return new Point(this.centerX, this.centerY);
   }
 
   get point(): Point {
-    return new Point(this.left, this.top);
+    return new Point(this.centerX, this.centerY);
   }
 
   get size(): Size {

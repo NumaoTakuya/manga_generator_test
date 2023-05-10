@@ -3,7 +3,7 @@ interface OnomatopoeiaTextProps {
   font: string;
   color: string;
   position: { x: number; y: number };
-  size: number;
+  fontSize: number;
   rotation: number;
 }
 

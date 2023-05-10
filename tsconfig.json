@@ -23,12 +23,18 @@
     "**/*.ts",
     "**/*.tsx",
     "src/pages/index.tsx",
-    "src/components/Bubble.tsx",
-    "src/components/Tail.tsx",
+    "src/components/Bubble/Bubble.tsx",
+    "src/components/Bubble/Tail.tsx",
     "src/pages/panel.tsx",
     "src/utils/hooks/useDetectFace.ts",
     "src/utils/classes/CenteredRect.ts",
-    "src/utils/useMouseCenteredRect.js"
-, "src/components/CropImage.tsx", "src/components/Layer.tsx", "src/components/NavigationBar.tsx", "src/components/OnomatopoeiaText.tsx", "src/components/Bubbles/tailReducer.ts", "src/utils/hooks/useMouthPosition.ts"  ],
+    "src/utils/useMouseCenteredRect.js",
+    "src/components/Frame/CropImage.tsx",
+    "src/components/Panel/Layer.tsx",
+    "src/components/NavigationBar.tsx",
+    "src/components/Onomatopoeia/OnomatopoeiaText.tsx",
+    "src/components/Bubble/tailReducer.ts",
+    "src/utils/hooks/useMouthPosition.ts"
+  ],
   "exclude": ["node_modules"]
 }

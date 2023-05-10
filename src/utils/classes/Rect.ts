@@ -12,7 +12,7 @@ export default class Rect {
     this.top = top;
     this.width = width;
     this.height = height;
-  }
+  }  
 
   static get ZERO(): Rect {
     return new Rect(0, 0, 0, 0);

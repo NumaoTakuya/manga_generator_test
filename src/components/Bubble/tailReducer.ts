@@ -1,5 +1,7 @@
 import CenteredRect from "@/utils/classes/CenteredRect";
 import Point from "@/utils/classes/Point";
+import Size from "@/utils/classes/Size";
+import { BubbleStyle } from "@/utils/DataModels/MangaDataModel";
 
 // 極座標における、原点からみたposの位相
 function calculateAngle(position: Point): number {
@@ -16,10 +18,10 @@ type TailReducerState = {
 };
 
 type TailReducerPayload = {
-  type: string;
+  style: BubbleStyle;
   tailPositionFunctions: { [key: string]: Function };
   tailRelativeCenter: Point;
-  bubbleSize: { width: number; height: number };
+  bubbleSize: Size;
   position: Point;
   targetPosition: Point;
 };
@@ -41,7 +43,7 @@ const tailReducer = (
         payload.bubbleSize.height
       );
 
-      const tailPositionFunction = payload.tailPositionFunctions[payload.type];
+      const tailPositionFunction = payload.tailPositionFunctions[payload.style];
       const { newTailX, newTailY } = tailPositionFunction(tailCenterRect, angle);
       return {
         rotation: (angle * 180) / Math.PI,

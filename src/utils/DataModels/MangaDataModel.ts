@@ -1,65 +1,78 @@
 import Size from "../classes/Size";
 import Point from "../classes/Point";
+import CenteredRect from "../classes/CenteredRect";
 
-type Manga = Arc[];
-type Arc = Episode[];
-type Episode = Page[];
-type Page = Panel[];
-type Panel = {
-  images: Image[];
-  tone?: Tone;
-  bubbles: Bubble[];
-  onomatopoeias: Onomatopoeia[];
-  square: Square;
+type MangaData = ArcData[];
+type ArcData = EpisodeData[];
+type EpisodeData = PageData[];
+type PageData = PanelData[];
+type PanelData = {
+  image: ImageData;
+  tone?: ToneData;
+  bubbles: BubbleData[];
+  onomatopoeias: OnomatopoeiaData[];
 };
-type Square = Vertices | Size;
-type Vertices = Point[];
-type Image = {
+type ImageData = {
   src?: string;
-  position: Point;
-  width: number;
+  frameRect: FrameRect;
 };
-type Tone = {
+type FrameRect = {
+  cropRandomness: Point;
+  centeredRect: CenteredRect;
+};
+type ToneData = {
+  style: ToneStyle;
   primaryColor: string;
   secondaryColor?: string;
-  position: Point;
-  size: Size;
+  centeredRect: CenteredRect;
 };
-type Bubble = {
-  style: BubbleStyle;
-  position: Point;
-  mouthPosition?: Point;
+type ToneStyle =
+  | "horizontalGradient"
+  | "verticalGradient"
+  | "radialGradient"
+  | "polkaDots"
+  | "checkerboard"
+  | "diagonalLines"
+  | "crosshatch"
+  | "horizontalStripes"
+  | "verticalStripes"
+  | "stars";
+type BubbleData = {
+  style: BubbleStyle; 
   aspectRatio: number; // width / height
   fontSize?: number;
   content: string;
 };
 type BubbleStyle =
   | "none"
-  | "rectangle"
+  | "rounded"
+  | "ellipse"
+  | "square"
   | "thought"
   | "speech"
   | "scream"
   | "whisper"
   | "shout"; //And more
-type Onomatopoeia = {
+type OnomatopoeiaData = {
   content: string;
   position: Point;
   rotation: number; // degree
   color: string;
   fontSize: number;
-  fontFamily?: string;
+  font: string;
 };
 
-export default Manga;
+export default MangaData;
 export type {
-  Arc,
-  Episode,
-  Page,
-  Panel,
-  Image,
-  Bubble,
-  Onomatopoeia,
+  ArcData,
+  EpisodeData,
+  PageData,
+  PanelData,
+  FrameRect,
+  ToneData,
+  ToneStyle,
+  ImageData,
+  BubbleData,
   BubbleStyle,
-  Point,
-  Size,
+  OnomatopoeiaData,
 };

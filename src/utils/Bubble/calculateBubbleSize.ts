@@ -1,9 +1,9 @@
 // 解説スライド ->  https://www.slideshare.net/secret/w5qYvT6QZW78kY
 import Size from "../classes/Size";
-import BubbleType from "./BubbleType";
+import { BubbleStyle } from "../DataModels/MangaDataModel";
 
 const calculateBubbleSize = (
-  type: BubbleType,
+  style: BubbleStyle,
   textLength: number,
   aspectRatio: number,
   fontSize: number
@@ -12,7 +12,7 @@ const calculateBubbleSize = (
   const textBoxHeight = fontSize * Math.ceil(Math.sqrt(textLength / aspectRatio));
   const textBoxSize = new Size(textBoxWidth, textBoxHeight);
 
-  switch (type) {
+  switch (style) {
     case "square":
       return textBoxSize;
     default:
