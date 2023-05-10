@@ -8,7 +8,10 @@ interface UseMouthPositionHook {
   mouthPosition: Point;
 }
 
-const useMouthPosition = (imageId: string, imageWidth: number): UseMouthPositionHook => {
+const useMouthPosition = (
+  imageId: string,
+  imageWidth: number
+): UseMouthPositionHook => {
   const [imageElement, setImageElement] = useState<HTMLImageElement | null>(
     null
   );
@@ -40,7 +43,7 @@ const useMouthPosition = (imageId: string, imageWidth: number): UseMouthPosition
   }, [modelsLoaded]);
 
   useEffect(() => {
-    if (detections && imageElement) {  
+    if (detections && imageElement) {
       const imageRect = imageElement.getBoundingClientRect();
       const mouth = detections[0].landmarks.getMouth();
       const imageWidthScale = imageWidth / imageElement.naturalWidth;

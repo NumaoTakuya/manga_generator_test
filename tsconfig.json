@@ -25,7 +25,7 @@
     "src/pages/index.tsx",
     "src/components/Bubble/Bubble.tsx",
     "src/components/Bubble/Tail.tsx",
-    "src/pages/panel.tsx",
+    "src/pages/panelPage.tsx",
     "src/utils/hooks/useDetectFace.ts",
     "src/utils/classes/CenteredRect.ts",
     "src/utils/useMouseCenteredRect.js",

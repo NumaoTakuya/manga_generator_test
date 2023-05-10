@@ -91,6 +91,6 @@ const panel1 = {
 
 const page = [panel0, panel1];
 
-const PageAsPage = () => {};
+const PagePage = () => {};
 
-export default PageAsPage;
+export default PagePage;

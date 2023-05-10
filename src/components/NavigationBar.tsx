@@ -10,23 +10,23 @@ const NavigationBar = (): JSX.Element => {
   };
 
   const handleBubblesButtonClick = () => {
-    router.push("/bubbles");
+    router.push("/bubblesPage");
   };
 
   const handleFrameButtonClick = () => {
-    router.push("/frame");
+    router.push("/framePage");
   };
 
   const handleOnomatopoeiaButtonClick = () => {
-    router.push("/onomatopoeia");
+    router.push("/onomatopoeiaPage");
   };
 
   const handleTonesButtonClick = () => {
-    router.push("/tones");
+    router.push("/tonesPage");
   };
 
   const handlePanelButtonClick = () => {
-    router.push("/panel");
+    router.push("/panelPage");
   };
 
   return (
