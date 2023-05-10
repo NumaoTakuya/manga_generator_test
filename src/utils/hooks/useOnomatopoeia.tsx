@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import OnomatopoeiaText from "../../components/Onomatopoeia/OnomatopoeiaText";
+import Onomatopoeia from "../../components/Onomatopoeia/Onomatopoeia";
 import { getRandomFromArray, getRandomColor, getRandomInt } from "../getRandom";
 import Point from "../classes/Point";
 import { OnomatopoeiaData } from "../DataModels/MangaDataModel";
@@ -15,16 +15,16 @@ const useOnomatopoeia = (
   const [RenderOnomatopoeia, setRenderOnomatopoeia] =
     useState<JSX.Element | null>(null);
   useEffect(() => {
-    let OnomatopoeiaTexts: JSX.Element | null = null;
+    let Onomatopoeias: JSX.Element | null = null;
     onomatopoeiaDatas.forEach((onomatopoeiaData, index) => {
-      OnomatopoeiaTexts = (
+      Onomatopoeias = (
         <>
-          {OnomatopoeiaTexts}
-          <OnomatopoeiaText key={index} {...onomatopoeiaData} />
+          {Onomatopoeias}
+          <Onomatopoeia key={index} {...onomatopoeiaData} />
         </>
       );
     });
-    setRenderOnomatopoeia(OnomatopoeiaTexts);
+    setRenderOnomatopoeia(Onomatopoeias);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mouthPosition]);
   return { RenderOnomatopoeia };

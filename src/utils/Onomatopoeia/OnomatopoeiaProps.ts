@@ -1,4 +1,4 @@
-interface OnomatopoeiaTextProps {
+interface OnomatopoeiaProps {
   content: string;
   font: string;
   color: string;
@@ -7,4 +7,4 @@ interface OnomatopoeiaTextProps {
   rotation: number;
 }
 
-export default OnomatopoeiaTextProps;
+export default OnomatopoeiaProps;

@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { Button } from "@mui/material";
 import { Box } from "@mui/system";
 import NavigationBar from "../components/NavigationBar";
-import OnomatopoeiaText from "../components/Onomatopoeia/OnomatopoeiaText";
+import Onomatopoeia from "../components/Onomatopoeia/Onomatopoeia";
 import Point from "../utils/classes/Point";
-import OnomatopoeiaTextProps from "@/utils/Onomatopoeia/OnomatopoeiaTextProps";
+import OnomatopoeiaProps from "@/utils/Onomatopoeia/OnomatopoeiaProps";
 import { OnomatopoeiaData } from "@/utils/DataModels/MangaDataModel";
 
 const OnomatopoeiaPage = () => {
   const [onomatopoeiaProps, setOnomatopoeiaProps] =
-    useState<OnomatopoeiaTextProps>({} as OnomatopoeiaTextProps);
+    useState<OnomatopoeiaProps>({} as OnomatopoeiaProps);
 
   const handleButtonClick = () => {
     const newOnomatopoeiaProps: OnomatopoeiaData = {
@@ -38,7 +38,7 @@ const OnomatopoeiaPage = () => {
       <Button onClick={handleButtonClick} sx={{ mt: 10 }}>
         Generate Onomatopoeia
       </Button>
-      <OnomatopoeiaText {...onomatopoeiaProps} />
+      <Onomatopoeia {...onomatopoeiaProps} />
       <Box sx={{ flex: 1 }}></Box>
     </Box>
   );

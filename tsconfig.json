@@ -32,7 +32,7 @@
     "src/components/Frame/CropImage.tsx",
     "src/components/Panel/Layer.tsx",
     "src/components/NavigationBar.tsx",
-    "src/components/Onomatopoeia/OnomatopoeiaText.tsx",
+    "src/components/Onomatopoeia/Onomatopoeia.tsx",
     "src/components/Bubble/tailReducer.ts",
     "src/utils/hooks/useMouthPosition.ts"
   ],

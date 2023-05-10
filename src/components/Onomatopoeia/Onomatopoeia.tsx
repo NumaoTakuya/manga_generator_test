@@ -1,15 +1,15 @@
 import React from "react";
 import { Box } from "@mui/system"; 
-import OnomatopoeiaTextProps from "@/utils/Onomatopoeia/OnomatopoeiaTextProps";
+import OnomatopoeiaProps from "@/utils/Onomatopoeia/OnomatopoeiaProps";
 
-const OnomatopoeiaText = ({
+const Onomatopoeia = ({
   content,
   font,
   color,
   position,
   fontSize,
   rotation,
-}: OnomatopoeiaTextProps): JSX.Element | null => {
+}: OnomatopoeiaProps): JSX.Element | null => {
   if (!content) return null; 
 
   const baseStyle = {
@@ -60,4 +60,4 @@ const OnomatopoeiaText = ({
   );
 };
 
-export default OnomatopoeiaText;
+export default Onomatopoeia;
