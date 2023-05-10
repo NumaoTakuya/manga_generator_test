@@ -1,4 +1,5 @@
 import React, { useEffect, useReducer } from "react";
+import NoneBubble from "./NoneBubble"; 
 import RoundedBubble from "./RoundedBubble";
 import roundedBubbleTailPos from "../../utils/Bubble/tailPosition/roundedBubbleTailPos";
 import SquareBubble from "./SquareBubble";
@@ -9,7 +10,7 @@ import Tail from "./Tail";
 import BubbleProps from "@/utils/Bubble/BubbleProps";
 import Point from "@/utils/classes/Point";
 import Size from "@/utils/classes/Size";
-import useCursorPosition from "@/utils/hooks/useCursorPosition";
+// import useCursorPosition from "@/utils/hooks/useCursorPosition";
 import tailReducer from "./tailReducer";
 import calculateBubbleSize from "@/utils/Bubble/calculateBubbleSize";
 import {
@@ -26,8 +27,9 @@ const Bubble: React.FC<BubbleProps> = ({
   fontSize,
   font
 }) => {
-  let cursorPosition = useCursorPosition(); // TODO: 口（対象）の座標に変更する
-  console.log(cursorPosition);
+  // テスト時コメントアウト解除
+  // let cursorPosition = useCursorPosition(); 
+  // console.log("cursorPosition", cursorPosition);
   // targetPosition = targetPosition ? targetPosition : cursorPosition;
 
   // Bubble
@@ -98,6 +100,8 @@ const Bubble: React.FC<BubbleProps> = ({
 
   const bubble = (style: string) => {
     switch (style) {
+      case "none":
+        return NoneBubble(props);
       case "rounded":
         return RoundedBubble(props);
       case "square":
@@ -107,12 +111,7 @@ const Bubble: React.FC<BubbleProps> = ({
       default:
         return RoundedBubble(props);
     }
-  };
-
-  console.log({ 
-    left: position.x - viewBoxSize.width / 2,
-    top: position.y - viewBoxSize.height / 2,
-  });
+  }; 
 
   return (
     <div

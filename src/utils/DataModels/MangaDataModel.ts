@@ -39,6 +39,7 @@ type ToneStyle =
   | "stars";
 type BubbleData = {
   style: BubbleStyle; 
+  position: Point;
   aspectRatio: number; // width / height
   fontSize?: number;
   font: string;

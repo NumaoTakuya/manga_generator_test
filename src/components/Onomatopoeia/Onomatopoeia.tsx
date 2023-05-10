@@ -41,8 +41,7 @@ const Onomatopoeia = ({
     ...baseStyle,
     left: position.x - fontSize / 2,
     top: position.y - fontSize / 2,
-    color: color,
-    zIndex: 1,
+    color: color, 
   };
 
   return (

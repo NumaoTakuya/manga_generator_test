@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import useDetectFace from "./useDetectFace";
 import Point from "../classes/Point";
+import Rect from "../classes/Rect";
 
 interface UseMouthPositionHook {
   modelsLoaded: boolean;
@@ -10,7 +11,7 @@ interface UseMouthPositionHook {
 
 const useMouthPosition = (
   imageId: string,
-  imageWidth: number
+  imageRect: Rect,
 ): UseMouthPositionHook => {
   const [imageElement, setImageElement] = useState<HTMLImageElement | null>(
     null
@@ -44,15 +45,13 @@ const useMouthPosition = (
 
   useEffect(() => {
     if (detections && imageElement && detections.length > 0) { 
-        const imageRect = imageElement.getBoundingClientRect();
-        const mouth = detections[0].landmarks.getMouth();
-        const imageWidthScale = imageWidth / imageElement.naturalWidth;
-        const newMouthPosition = new Point(
-          imageRect.left + mouth[14].x * imageWidthScale,
-          imageRect.top + mouth[14].y * imageWidthScale
-        );
-
-        setMouthPosition(newMouthPosition); 
+      const mouth = detections[0].landmarks.getMouth();
+      const imageWidthScale = imageRect.width / imageElement.naturalWidth;
+      const newMouthPosition = new Point(
+        imageRect.left + mouth[14].x * imageWidthScale,
+        imageRect.top + mouth[14].y * imageWidthScale
+      );
+      setMouthPosition(newMouthPosition);
     }
   }, [detections]);
 

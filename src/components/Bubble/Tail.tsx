@@ -1,32 +1,38 @@
-import React from "react";
+import React from "react"; 
+import { TailReducerState } from "@/utils/Bubble/tailReducerTypes";
 
-interface Point {
+interface TailPoint {
   x1: number;
   y1: number;
   x2: number;
   y2: number;
   x3: number;
   y3: number;
-}
-
-interface State {
-  rotation: number;
-  tailPos: { x: number; y: number };
-}
+} 
 
 interface TailProps {
-  points: Point;
-  state: State;
+  points: TailPoint;
+  state: TailReducerState;
   strokeWidth: number;
 }
 
-const Tail = ({ points, state, strokeWidth }: TailProps): JSX.Element | null => {
+const Tail = ({
+  points,
+  state,
+  strokeWidth,
+}: TailProps): JSX.Element | null => {
   if (!points.x1) return null;
   return (
-    <g transform={`rotate(${state.rotation}, ${state.tailPos.x}, ${state.tailPos.y})`}>
+    <g
+      transform={`rotate(${state.rotation}, ${state.tailPos.x}, ${state.tailPos.y})`}
+    >
       <polygon
         points={`${points.x1},${points.y1} ${points.x2},${points.y2} ${points.x3},${points.y3}`}
         fill="white"
+        style={{
+          position: "relative",
+          zIndex: 21,
+        }}
       />
       <line
         x1={points.x1}
@@ -36,6 +42,10 @@ const Tail = ({ points, state, strokeWidth }: TailProps): JSX.Element | null => 
         stroke="black"
         strokeWidth={strokeWidth}
         strokeLinecap="round"
+        style={{
+          position: "relative",
+          zIndex: 22,
+        }}
       />
       <line
         x1={points.x2}
@@ -45,6 +55,10 @@ const Tail = ({ points, state, strokeWidth }: TailProps): JSX.Element | null => 
         stroke="black"
         strokeWidth={strokeWidth}
         strokeLinecap="round"
+        style={{
+          position: "relative",
+          zIndex: 22,
+        }}
       />
     </g>
   );

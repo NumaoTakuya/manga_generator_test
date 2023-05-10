@@ -1,4 +1,5 @@
 import React from "react";
+import { Container } from "@mui/material";
 import { PanelData } from "@/utils/DataModels/MangaDataModel";
 import useCropImage from "../../utils/hooks/useCropImage";
 import useMouthPosition from "../../utils/hooks/useMouthPosition";
@@ -6,7 +7,7 @@ import useBubble from "../../utils/hooks/useBubble";
 import useTone from "../../utils/hooks/useTone";
 import useOnomatopoeia from "../../utils/hooks/useOnomatopoeia";
 import Layer from "./Layer";
-import { Container } from "@mui/material";
+import Rect from "@/utils/classes/Rect";
 
 interface PanelProps {
   panelData: PanelData;
@@ -21,11 +22,14 @@ const Panel: React.FC<PanelProps> = ({ panelData }) => {
   const { RenderCropImage } = useCropImage(src, imageId, image.frameRect);
 
   // Detection
-  const { modelsLoaded, mouthPosition } = useMouthPosition(
-    imageId,
-    image.frameRect.centeredRect.width
+  const imageCenteredRect = image.frameRect.centeredRect;
+  const imageRect = new Rect(
+    imageCenteredRect.centerX - imageCenteredRect.width / 2,
+    imageCenteredRect.centerY - imageCenteredRect.height / 2,
+    imageCenteredRect.width,
+    imageCenteredRect.height
   );
-  console.log("mouthPosition", mouthPosition);
+  const { modelsLoaded, mouthPosition } = useMouthPosition(imageId, imageRect);
 
   // Bubble
   const { RenderBubbles } = useBubble(
@@ -54,9 +58,9 @@ const Panel: React.FC<PanelProps> = ({ panelData }) => {
       }}
     >
       <Layer zIndex={0}>{RenderTone}</Layer>
-      <Layer zIndex={1}>{RenderCropImage}</Layer>
-      <Layer zIndex={2}>{RenderBubbles}</Layer>
-      <Layer zIndex={3}>{RenderOnomatopoeia}</Layer>
+      <Layer zIndex={10}>{RenderCropImage}</Layer>
+      <Layer zIndex={20}>{RenderBubbles}</Layer>
+      <Layer zIndex={30}>{RenderOnomatopoeia}</Layer>
     </Container>
   );
 };

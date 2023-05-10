@@ -2,15 +2,13 @@ import React from "react";
 import EachBubbleProps from "@/utils/Bubble/EachBubbleProps";
 import { Typography, Box } from "@mui/material";
 
-const RoundedBubble: React.FC<EachBubbleProps> = ({
-  offset,
+const NoneBubble: React.FC<EachBubbleProps> = ({
   bubbleSize,
-  strokeWidth,
-  viewBoxSize,
-  tail,
+  viewBoxSize, 
   text,
+  fontSize,
+  font,
 }) => {
-  const borderRadius = 60;
   return (
     <div
       style={{
@@ -27,34 +25,6 @@ const RoundedBubble: React.FC<EachBubbleProps> = ({
         }}
         viewBox={`0 0 ${viewBoxSize.width} ${viewBoxSize.height}`}
       >
-        <rect
-          x={offset.x}
-          y={offset.y}
-          width={bubbleSize.width}
-          height={bubbleSize.height}
-          rx={borderRadius}
-          ry={borderRadius}
-          stroke="black"
-          strokeWidth={strokeWidth * 2}
-          style={{
-            position: "relative",
-            zIndex: 20,
-          }}
-        />
-        {tail}
-        <rect
-          x={offset.x}
-          y={offset.y}
-          width={bubbleSize.width}
-          height={bubbleSize.height}
-          rx={borderRadius}
-          ry={borderRadius}
-          fill="white"
-          style={{
-            position: "relative",
-            zIndex: 23,
-          }}
-        />
         <foreignObject width={viewBoxSize.width} height={viewBoxSize.height}>
           <Box
             sx={{
@@ -71,13 +41,14 @@ const RoundedBubble: React.FC<EachBubbleProps> = ({
             <Typography
               component="p"
               color="black"
-              fontSize={20}
+              fontSize={fontSize}
+              fontFamily={font}
               sx={{
                 width: bubbleSize.width / 1.414,
-                lineHeight: 1, 
+                lineHeight: 1,
                 position: "relative",
                 zIndex: 24,
-              }} 
+              }}
             >
               {text}
             </Typography>
@@ -88,4 +59,4 @@ const RoundedBubble: React.FC<EachBubbleProps> = ({
   );
 };
 
-export default RoundedBubble;
+export default NoneBubble;

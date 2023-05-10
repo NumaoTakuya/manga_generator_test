@@ -36,6 +36,10 @@ const EllipseBubble: React.FC<EachBubbleProps> = ({
           fill="white"
           stroke="black"
           strokeWidth={strokeWidth * 2}
+          style={{
+            position: "relative",
+            zIndex: 20,
+          }}
         />
         {tail}
         <ellipse
@@ -44,6 +48,10 @@ const EllipseBubble: React.FC<EachBubbleProps> = ({
           rx={bubbleSize.width / 2}
           ry={bubbleSize.height / 2}
           fill="white"
+          style={{
+            position: "relative",
+            zIndex: 23,
+          }}
         />
         <foreignObject width={viewBoxSize.width} height={viewBoxSize.height}>
           <Box
@@ -66,6 +74,8 @@ const EllipseBubble: React.FC<EachBubbleProps> = ({
               sx={{
                 width: bubbleSize.width / 1.414,
                 lineHeight: 1,
+                position: "relative",
+                zIndex: 24,
               }}
             >
               {text}

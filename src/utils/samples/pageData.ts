@@ -14,6 +14,7 @@ const panelData0: PanelData = {
     {
       style: "none",
       aspectRatio: 10,
+      position: new Point(500, 550),
       fontSize: 20,
       font: "Comic Sans MS",
       content:
@@ -23,18 +24,18 @@ const panelData0: PanelData = {
   onomatopoeias: [
     {
       content: "RUMMAGE",
-      position: new Point(550, 100),
+      position: new Point(550, 180),
       rotation: -20,
       color: "black",
-      fontSize: 20,
+      fontSize: 25,
       font: "Comic Sans MS",
     },
     {
       content: "RUMMAGE",
-      position: new Point(450, 300),
+      position: new Point(350, 400),
       rotation: -20,
       color: "black",
-      fontSize: 20,
+      fontSize: 25,
       font: "Comic Sans MS",
     },
   ],
@@ -52,14 +53,16 @@ const panelData1: PanelData = {
     {
       style: "ellipse",
       aspectRatio: 1.4,
-      fontSize: 16,
+      position: new Point(700, 630),
+      fontSize: 22,
       font: "Comic Sans MS",
       content: "HEY",
     },
     {
       style: "ellipse",
-      aspectRatio: 2.3,
-      fontSize: 16,
+      aspectRatio: 4,
+      position: new Point(570, 680),
+      fontSize: 20,
       font: "Comic Sans MS",
       content: "GIVE ME YOUR PHONE.",
     },
@@ -67,7 +70,7 @@ const panelData1: PanelData = {
   onomatopoeias: [
     {
       content: "POINT",
-      position: new Point(550, 1000),
+      position: new Point(500, 1060),
       rotation: -20,
       color: "black",
       fontSize: 20,

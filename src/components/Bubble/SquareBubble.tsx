@@ -34,6 +34,10 @@ const SquareBubble: React.FC<EachBubbleProps> = ({
           fill="white"
           stroke="black"
           strokeWidth={strokeWidth * 2}
+          style={{
+            position: "relative",
+            zIndex: 20,
+          }}
         />
         {tail}
         <rect
@@ -42,6 +46,10 @@ const SquareBubble: React.FC<EachBubbleProps> = ({
           width={bubbleSize.width}
           height={bubbleSize.height}
           fill="white"
+          style={{
+            position: "relative",
+            zIndex: 23,
+          }}
         />
         <foreignObject width={viewBoxSize.width} height={viewBoxSize.height}>
           <Box
@@ -63,6 +71,8 @@ const SquareBubble: React.FC<EachBubbleProps> = ({
               sx={{
                 width: bubbleSize.width / 1.414,
                 lineHeight: 1, 
+                position: "relative",
+                zIndex: 24,
               }} 
             >
               {text}

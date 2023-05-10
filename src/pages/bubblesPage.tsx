@@ -1,8 +1,7 @@
 import React from "react";
 import NavigationBar from "../components/NavigationBar";
 import Bubble from "../components/Bubble/Bubble";
-import Point from "../utils/classes/Point";
-import Size from "../utils/classes/Size";
+import Point from "../utils/classes/Point"; 
 
 const BubblePage = () => {
   const texts = [
