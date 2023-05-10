@@ -18,8 +18,8 @@ const PanelPage: React.FC = () => {
     },
     tone: {
       style: "horizontalGradient",
-      primaryColor: "#FFFFFF",
-      secondaryColor: "#000000",
+      primaryColor: "yellow",
+      secondaryColor: "white",
       centeredRect: new CenteredRect(500, 600, 500, 300),
     },
     bubbles: [

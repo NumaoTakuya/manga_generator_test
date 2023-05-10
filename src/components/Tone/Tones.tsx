@@ -1,13 +1,8 @@
 import React from "react";
-import CenteredRect from "@/utils/classes/CenteredRect";
+import Size from "@/utils/classes/Size";
 
-const HorizontalGradient = (colors: string[], centeredRect: CenteredRect) => (
-  <svg
-    width={centeredRect.width}
-    height={centeredRect.height}
-    x={centeredRect.centerX - centeredRect.size.width / 2}
-    y={centeredRect.centerY - centeredRect.size.height / 2}
-  >
+const HorizontalGradient = (colors: string[], size: Size) => (
+  <svg width={size.width} height={size.height}>
     <defs>
       <linearGradient id="Gradient1" x1="0" x2="1" y1="0" y2="0">
         <stop offset="0%" stopColor={colors[0]} />
@@ -18,13 +13,8 @@ const HorizontalGradient = (colors: string[], centeredRect: CenteredRect) => (
   </svg>
 );
 
-const VerticalGradient = (colors: string[], centeredRect: CenteredRect) => (
-  <svg
-    width={centeredRect.size.width}
-    height={centeredRect.size.height}
-    x={centeredRect.centerX - centeredRect.size.width / 2}
-    y={centeredRect.centerY - centeredRect.size.height / 2}
-  >
+const VerticalGradient = (colors: string[], size: Size) => (
+  <svg width={size.width} height={size.height}>
     <defs>
       <linearGradient id="Gradient2" x1="0" x2="0" y1="0" y2="1">
         <stop offset="0%" stopColor={colors[0]} />
@@ -35,13 +25,8 @@ const VerticalGradient = (colors: string[], centeredRect: CenteredRect) => (
   </svg>
 );
 
-const RadialGradient = (colors: string[], centeredRect: CenteredRect) => (
-  <svg
-    width={centeredRect.size.width}
-    height={centeredRect.size.height}
-    x={centeredRect.centerX - centeredRect.size.width / 2}
-    y={centeredRect.centerY - centeredRect.size.height / 2}
-  >
+const RadialGradient = (colors: string[], size: Size) => (
+  <svg width={size.width} height={size.height}>
     <defs>
       <radialGradient id="Gradient3" cx="0.5" cy="0.5" r="0.5">
         <stop offset="0%" stopColor={colors[0]} />
@@ -52,15 +37,17 @@ const RadialGradient = (colors: string[], centeredRect: CenteredRect) => (
   </svg>
 );
 
-const PolkaDots = (color: string, centeredRect: CenteredRect) => (
-  <svg
-    width={centeredRect.size.width}
-    height={centeredRect.size.height}
-    x={centeredRect.centerX - centeredRect.size.width / 2}
-    y={centeredRect.centerY - centeredRect.size.height / 2}
-  >
+const PolkaDots = (color: string, size: Size) => (
+  <svg width={size.width} height={size.height}>
     <defs>
-      <pattern id="PolkaDots" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+      <pattern
+        id="PolkaDots"
+        x="0"
+        y="0"
+        width="50"
+        height="50"
+        patternUnits="userSpaceOnUse"
+      >
         <circle cx="25" cy="25" r="10" fill={color} />
       </pattern>
     </defs>
@@ -68,15 +55,17 @@ const PolkaDots = (color: string, centeredRect: CenteredRect) => (
   </svg>
 );
 
-const Checkerboard = (color: string, centeredRect: CenteredRect) => (
-  <svg
-    width={centeredRect.size.width}
-    height={centeredRect.size.height}
-    x={centeredRect.centerX - centeredRect.size.width / 2}
-    y={centeredRect.centerY - centeredRect.size.height / 2}
-  >
+const Checkerboard = (color: string, size: Size) => (
+  <svg width={size.width} height={size.height}>
     <defs>
-      <pattern id="Checkerboard" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <pattern
+        id="Checkerboard"
+        x="0"
+        y="0"
+        width="40"
+        height="40"
+        patternUnits="userSpaceOnUse"
+      >
         <rect x="0" y="0" width="20" height="20" fill={color} />
         <rect x="20" y="20" width="20" height="20" fill={color} />
       </pattern>
@@ -85,15 +74,17 @@ const Checkerboard = (color: string, centeredRect: CenteredRect) => (
   </svg>
 );
 
-const DiagonalLines = (color: string, centeredRect: CenteredRect) => (
-  <svg
-    width={centeredRect.size.width}
-    height={centeredRect.size.height}
-    x={centeredRect.centerX - centeredRect.size.width / 2}
-    y={centeredRect.centerY - centeredRect.size.height / 2}
-  >
+const DiagonalLines = (color: string, size: Size) => (
+  <svg width={size.width} height={size.height}>
     <defs>
-      <pattern id="DiagonalLines" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+      <pattern
+        id="DiagonalLines"
+        x="0"
+        y="0"
+        width="10"
+        height="10"
+        patternUnits="userSpaceOnUse"
+      >
         <line x1="0" y1="0" x2="0" y2="10" stroke={color} strokeWidth="1" />
       </pattern>
     </defs>
@@ -101,15 +92,17 @@ const DiagonalLines = (color: string, centeredRect: CenteredRect) => (
   </svg>
 );
 
-const Crosshatch = (color: string, centeredRect: CenteredRect) => (
-  <svg
-    width={centeredRect.size.width}
-    height={centeredRect.size.height}
-    x={centeredRect.centerX - centeredRect.size.width / 2}
-    y={centeredRect.centerY - centeredRect.size.height / 2}
-  >
+const Crosshatch = (color: string, size: Size) => (
+  <svg width={size.width} height={size.height}>
     <defs>
-      <pattern id="Crosshatch" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <pattern
+        id="Crosshatch"
+        x="0"
+        y="0"
+        width="20"
+        height="20"
+        patternUnits="userSpaceOnUse"
+      >
         <line x1="0" y1="0" x2="20" y2="20" stroke={color} strokeWidth="2" />
         <line x1="20" y1="0" x2="0" y2="20" stroke={color} strokeWidth="2" />
       </pattern>
@@ -118,46 +111,50 @@ const Crosshatch = (color: string, centeredRect: CenteredRect) => (
   </svg>
 );
 
-const HorizontalStripes = (color: string, centeredRect: CenteredRect) => (
-  <svg
-    width={centeredRect.size.width}
-    height={centeredRect.size.height}
-    x={centeredRect.centerX - centeredRect.size.width / 2}
-    y={centeredRect.centerY - centeredRect.size.height / 2}
-  >
+const HorizontalStripes = (color: string, size: Size) => (
+  <svg width={size.width} height={size.height}>
     <defs>
-      <pattern id="HorizontalStripes" x="0" y="0" width="100%" height="20" patternUnits="userSpaceOnUse"> 
+      <pattern
+        id="HorizontalStripes"
+        x="0"
+        y="0"
+        width="100%"
+        height="20"
+        patternUnits="userSpaceOnUse"
+      >
         <rect x="0" y="0" width="100%" height="10" fill={color} />
       </pattern>
     </defs>
-    <rect x="0" y="0" width="100%" height="100%" fill="url(#HorizontalStripes)" />
+    <rect
+      x="0"
+      y="0"
+      width="100%"
+      height="100%"
+      fill="url(#HorizontalStripes)"
+    />
   </svg>
 );
 
-const VerticalStripes = (color: string, centeredRect: CenteredRect) => (
-  <svg
-    width={centeredRect.size.width}
-    height={centeredRect.size.height}
-    x={centeredRect.centerX - centeredRect.size.width / 2}
-    y={centeredRect.centerY - centeredRect.size.height / 2}
-  >
+const VerticalStripes = (color: string, size: Size) => (
+  <svg width={size.width} height={size.height}>
     <defs>
-      <pattern id="VerticalStripes" x="0" y="0" width="20" height="100%" patternUnits="userSpaceOnUse">
+      <pattern
+        id="VerticalStripes"
+        x="0"
+        y="0"
+        width="20"
+        height="100%"
+        patternUnits="userSpaceOnUse"
+      >
         <rect x="0" y="0" width="10" height="100%" fill={color} />
       </pattern>
     </defs>
     <rect x="0" y="0" width="100%" height="100%" fill="url(#VerticalStripes)" />
   </svg>
-); 
+);
 
-const Stars = (color: string, centeredRect: CenteredRect) => (
-  <svg
-    width={centeredRect.width}
-    height={centeredRect.height}
-    x={centeredRect.centerX - centeredRect.width / 2}
-    y={centeredRect.centerY - centeredRect.height / 2}
-  >
-    {/* Stars */}
+const Stars = (color: string, size: Size) => (
+  <svg width={size.width} height={size.height}>
     <defs>
       <pattern
         id="Stars"
@@ -173,6 +170,7 @@ const Stars = (color: string, centeredRect: CenteredRect) => (
         />
       </pattern>
     </defs>
+
     <rect x="0" y="0" width="100%" height="100%" fill="url(#Stars)" />
   </svg>
 );
