@@ -1,4 +1,4 @@
-import Point from "./classes/Point";
+import Point from "../classes/Point";
 
 const getRandomPointOnUnitCircle = (angle?: number): Point => {
   angle = angle ? angle : Math.random() * 2 * Math.PI;
