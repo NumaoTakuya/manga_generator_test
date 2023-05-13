@@ -12,26 +12,35 @@ const config = new Configuration({
 const openai = new OpenAIApi(config);
 
 const getGPTResponse = async (
+  isUser: boolean,
+  system: string,
   prompt: string,
   messages: ChatCompletionRequestMessage[],
   model: string = "gpt-3.5-turbo",
-  temperature?: number
-): Promise<Omit<CompletionResponse, "finishReason">> => { 
-
+  temperature?: number,
+  max_tokens?: number
+): Promise<Omit<CompletionResponse, "finishReason">> => {
+  const systemMessage: ChatCompletionRequestMessage = {
+    role: "system",
+    content: system,
+  };
   const userMessage: ChatCompletionRequestMessage = {
-    role: "user",
+    role: isUser ? "user" : "assistant",
     content: prompt,
-  }; 
-  messages = [...messages, userMessage]
+  };
+  messages = [...messages, userMessage];
 
   const gptResponse = await openai.createChatCompletion({
     model: model,
-    messages: messages,
+    messages: [systemMessage, ...messages],
     temperature: temperature ?? 1,
-  }); 
-  const gptMessage  = gptResponse.data.choices[0].message!; 
+    max_tokens: max_tokens ?? 2048,
+  });
+  const gptMessage = gptResponse.data.choices[0].message!;
+  gptMessage.role = isUser ? "assistant" : "user";
   const content = gptMessage.content;
   messages = [...messages, gptMessage];
+  console.log("messages:", messages);
 
   return {
     content,
