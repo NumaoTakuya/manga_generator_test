@@ -7,7 +7,7 @@ interface CropImageHook {
 }
 
 const useCropImage = (
-  src: string,
+  src: string | undefined,
   imageId: string, 
   frameRect: FrameRect
 ): CropImageHook => {

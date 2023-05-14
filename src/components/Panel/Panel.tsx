@@ -16,8 +16,8 @@ interface PanelProps {
 const Panel: React.FC<PanelProps> = ({ panelData }) => {
   // Image
   const image = panelData.image;
-  const src = image.src ?? "NO IMAGE";
-  const imageId = `image-${src}`;
+  const src = image.src;
+  const imageId = `image-${src ?? "NO IMAGE"}`;
 
   const { RenderCropImage } = useCropImage(src, imageId, image.frameRect);
 

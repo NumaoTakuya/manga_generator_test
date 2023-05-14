@@ -84,43 +84,26 @@ const panelData1: PanelData = {
 const baseY2 = 1260;
 const panelData2: PanelData = {
   image: {
-    src: "https://media.discordapp.net/attachments/1058796281146908762/1105797645995343882/2023-05-10_19.00.40.jpg?width=1696&height=1060",
+    src: undefined,
     frameRect: {
       cropRandomness: Point.ZERO,
-      centeredRect: new CenteredRect(500, baseY2 + 210, 590, 370),
+      centeredRect: new CenteredRect(500, baseY2 + 300, 590, 600),
     },
   },
   bubbles: [
     {
       style: "none",
       aspectRatio: 10,
-      position: new Point(500, baseY2 + 550),
+      position: new Point(500, baseY2 + 300),
       fontSize: 20,
       font: "Comic Sans MS",
       content:
-        "BUT THERE ARE PEOPLE WHO JUST DON'T MINGLE WELL WITH OTHERS. YOU KNOW, I SHOULD JUST FOCUS ON MY STUDIES.",
+        "SIGH. OF COURSE, THINGS NEVER GO AS PLANNED. THIS IS SCHOOL, AFTER ALL.",
     },
   ],
-  onomatopoeias: [
-    {
-      content: "RUMMAGE",
-      position: new Point(550, baseY2 + 180),
-      rotation: -20,
-      color: "black",
-      fontSize: 25,
-      font: "Comic Sans MS",
-    },
-    {
-      content: "RUMMAGE",
-      position: new Point(350, baseY2 + 400),
-      rotation: -20,
-      color: "black",
-      fontSize: 25,
-      font: "Comic Sans MS",
-    },
-  ],
+  onomatopoeias: [],
 };
 
-const pageData = [panelData0, panelData1/*, panelData2*/];
+const pageData = [panelData0, panelData1, panelData2];
 
 export default pageData;

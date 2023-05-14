@@ -5,7 +5,7 @@ import { FrameRect } from "@/utils/DataModels/MangaDataModel";
 
 interface CropImageProps {
   id: string;
-  src: string;
+  src: string | undefined;
   frameRect: FrameRect;
 }
 
@@ -13,11 +13,7 @@ function getRandom(from: number, to: number): number {
   return from + Math.random() * (to - from);
 }
 
-const CropImage = ({
-  id,
-  src,
-  frameRect,
-}: CropImageProps): JSX.Element => {
+const CropImage = ({ id, src, frameRect }: CropImageProps): JSX.Element => {
   const centeredRect = frameRect.centeredRect;
   const randomness = frameRect.cropRandomness;
   const width = centeredRect.width;
@@ -37,6 +33,8 @@ const CropImage = ({
     clipPath: `polygon(${cropValues.x1}px ${cropValues.y1}px, ${cropValues.x2}px ${cropValues.y2}px, ${cropValues.x3}px ${cropValues.y3}px, ${cropValues.x4}px ${cropValues.y4}px)`,
   };
 
+  console.log("src: ", src);
+
   return (
     <Box
       sx={{
@@ -50,15 +48,17 @@ const CropImage = ({
         ...croppedStyle,
       }}
     >
-      <Image
-        id={id}
-        src={src}
-        alt="face"
-        layout="responsive"
-        width={width}
-        height={height}
-      />
-      <svg
+      {src && (
+        <Image
+          id={id}
+          src={src}
+          alt="face"
+          layout="responsive"
+          width={width}
+          height={height}
+        />
+      )}
+      {src && <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox={`0 0 ${width} ${height}`}
         style={{
@@ -66,7 +66,7 @@ const CropImage = ({
           top: 0,
           left: 0,
           width: "100%",
-          height: "100%", 
+          height: "100%",
           zIndex: 11,
         }}
       >
@@ -76,7 +76,7 @@ const CropImage = ({
           stroke="black"
           strokeWidth={6}
         />
-      </svg>
+      </svg>}
     </Box>
   );
 };

@@ -85,7 +85,7 @@ const ChatPage = () => {
 export default ChatPage;
 
 const characterSystemDictionary: { [key: string]: string } = {
-  harry: `This is your character settings. You must behave following this settings.
+  harry: `This is your character settings. You must behave following this settings. 
     {
         'name': 'Harry Potter',
         'appearance': 'Glasses, lightning bolt scar, messy black hair',

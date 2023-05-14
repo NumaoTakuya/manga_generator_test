@@ -13,7 +13,7 @@ type PanelData = {
   onomatopoeias: OnomatopoeiaData[];
 };
 type ImageData = {
-  src?: string;
+  src: string | undefined;
   frameRect: FrameRect;
 };
 type FrameRect = {
