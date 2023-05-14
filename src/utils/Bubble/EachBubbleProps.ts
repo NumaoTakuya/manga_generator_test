@@ -9,7 +9,7 @@ type EachBubbleProps = {
   tail: JSX.Element | null;
   text: string;
   fontSize: number;
-  font: string;
+  font: string; 
 };
 
 export default EachBubbleProps;

@@ -33,7 +33,7 @@ const Bubble: React.FC<BubbleProps> = ({
   // mouthPosition = mouthPosition ? mouthPosition : cursorPosition;
 
   // Target Position
-  const { targetPosition, handleBubbleClick } = useTargetPosition(
+  const { targetPosition } = useTargetPosition(
     mouthPosition,
     position
   );
@@ -101,7 +101,7 @@ const Bubble: React.FC<BubbleProps> = ({
     tail,
     text,
     fontSize,
-    font,
+    font, 
   };
 
   const bubble = (style: string) => {
@@ -124,9 +124,8 @@ const Bubble: React.FC<BubbleProps> = ({
       style={{
         position: "absolute",
         left: position.x - viewBoxSize.width / 2,
-        top: position.y - viewBoxSize.height / 2,
-      }}
-      onClick={handleBubbleClick}
+        top: position.y - viewBoxSize.height / 2, 
+      }}  
     >
       {bubble(style)}
     </div>

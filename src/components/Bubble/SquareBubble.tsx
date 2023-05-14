@@ -7,11 +7,11 @@ const SquareBubble: React.FC<EachBubbleProps> = ({
   bubbleSize,
   strokeWidth,
   viewBoxSize,
-  tail, 
-  text,
+  tail,
+  text, 
 }) => {
   return (
-    <div 
+    <div
       style={{
         position: "relative",
         width: viewBoxSize.width,
@@ -49,7 +49,7 @@ const SquareBubble: React.FC<EachBubbleProps> = ({
           style={{
             position: "relative",
             zIndex: 23,
-          }}
+          }} 
         />
         <foreignObject width={viewBoxSize.width} height={viewBoxSize.height}>
           <Box
@@ -70,10 +70,10 @@ const SquareBubble: React.FC<EachBubbleProps> = ({
               fontSize={20}
               sx={{
                 width: bubbleSize.width / 1.414,
-                lineHeight: 1, 
+                lineHeight: 1,
                 position: "relative",
                 zIndex: 24,
-              }} 
+              }}
             >
               {text}
             </Typography>

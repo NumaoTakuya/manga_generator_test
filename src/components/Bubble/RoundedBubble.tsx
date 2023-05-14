@@ -8,7 +8,7 @@ const RoundedBubble: React.FC<EachBubbleProps> = ({
   strokeWidth,
   viewBoxSize,
   tail,
-  text,
+  text, 
 }) => {
   const borderRadius = 60;
   return (
@@ -53,7 +53,7 @@ const RoundedBubble: React.FC<EachBubbleProps> = ({
           style={{
             position: "relative",
             zIndex: 23,
-          }}
+          }} 
         />
         <foreignObject width={viewBoxSize.width} height={viewBoxSize.height}>
           <Box

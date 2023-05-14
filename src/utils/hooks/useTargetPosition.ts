@@ -3,8 +3,7 @@ import useCursorPosition from "./useCursorPosition";
 import Point from "../classes/Point";
 
 interface UseTargetPositionHook {
-  targetPosition: Point | null;
-  handleBubbleClick: (event: React.MouseEvent) => void;
+  targetPosition: Point | null; 
 }
 
 const useTargetPosition = (
@@ -17,6 +16,8 @@ const useTargetPosition = (
   const [changeTargetPositionMode, setChangeTargetPositionMode] =
     useState(false);
   let cursorPosition = useCursorPosition();
+
+  // console.log("cursorPosition", cursorPosition)
 
   useEffect(() => {
     setTargetPosition(mouthPosition);
@@ -31,34 +32,32 @@ const useTargetPosition = (
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cursorPosition, changeTargetPositionMode]);
-
-  const handleBubbleClick = (event: React.MouseEvent) => {
-    // Bubbleがクリックされたときにモードを切り替える
-    setChangeTargetPositionMode(!changeTargetPositionMode);
-    event.stopPropagation();
-  };
-
-  const handlePageClick = () => {
-    if (changeTargetPositionMode) {
-      // モードがオンのとき、モードをオフにする
-      setChangeTargetPositionMode(false);
-    }
-  };
+  }, [cursorPosition, changeTargetPositionMode]); 
 
   useEffect(() => {
-    if (changeTargetPositionMode) {
-      // ページ全体に対するクリックイベントリスナーを追加
-      window.addEventListener("click", handlePageClick);
-      return () => {
-        // コンポーネントがアンマウントされたときにイベントリスナーを削除
-        window.removeEventListener("click", handlePageClick);
-      };
-    }
+    const handlePageClick = () => {
+      console.log("handlePageClick"); 
+      console.log(cursorPosition);
+      if (changeTargetPositionMode) {
+        // モードがオンのとき、モードをオフにする
+        setChangeTargetPositionMode(false);
+      } else if (cursorPosition.distance(position) < 40) {
+        // モードがオフでカーソルがBubbleの近くにあるとき、モードをオンにする
+        console.log("setChangeTargetPositionMode(true)");
+        setChangeTargetPositionMode(true);
+      }
+    };
+  
+    // ページ全体に対するクリックイベントリスナーを追加
+    window.addEventListener("click", handlePageClick);
+    return () => {
+      // コンポーネントがアンマウントされたときにイベントリスナーを削除
+      window.removeEventListener("click", handlePageClick);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [changeTargetPositionMode]);
+  }, [changeTargetPositionMode, cursorPosition]); 
 
-  return { targetPosition, handleBubbleClick };
+  return { targetPosition };
 };
 
 export default useTargetPosition;

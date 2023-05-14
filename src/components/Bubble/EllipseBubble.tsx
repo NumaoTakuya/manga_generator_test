@@ -10,23 +10,23 @@ const EllipseBubble: React.FC<EachBubbleProps> = ({
   tail,
   text,
   fontSize,
-  font
+  font, 
 }) => { 
   return (
     <div
       style={{
         position: "relative",
         width: viewBoxSize.width,
-        height: viewBoxSize.height,
-      }}
+        height: viewBoxSize.height, 
+      }} 
     >
       <svg
         style={{
           position: "absolute",
           width: "100%",
-          height: "100%",
+          height: "100%", 
         }}
-        viewBox={`0 0 ${viewBoxSize.width} ${viewBoxSize.height}`}
+        viewBox={`0 0 ${viewBoxSize.width} ${viewBoxSize.height}`} 
       >
         <ellipse
           cx={bubbleSize.width / 2 + offset.x}
@@ -38,8 +38,8 @@ const EllipseBubble: React.FC<EachBubbleProps> = ({
           strokeWidth={strokeWidth * 2}
           style={{
             position: "relative",
-            zIndex: 20,
-          }}
+            zIndex: 20, 
+          }} 
         />
         {tail}
         <ellipse
@@ -50,8 +50,8 @@ const EllipseBubble: React.FC<EachBubbleProps> = ({
           fill="white"
           style={{
             position: "relative",
-            zIndex: 23,
-          }}
+            zIndex: 23, 
+          }}  
         />
         <foreignObject width={viewBoxSize.width} height={viewBoxSize.height}>
           <Box
@@ -63,8 +63,8 @@ const EllipseBubble: React.FC<EachBubbleProps> = ({
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              boxSizing: "initial",
-            }}
+              boxSizing: "initial", 
+            }}  
           >
             <Typography
               component="p"
@@ -76,7 +76,7 @@ const EllipseBubble: React.FC<EachBubbleProps> = ({
                 lineHeight: 1,
                 position: "relative",
                 zIndex: 24,
-              }}
+              }} 
             >
               {text}
             </Typography>
