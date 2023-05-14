@@ -7,7 +7,7 @@ const useCursorPosition = (): Point => {
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
-      setPos(new Point(event.clientX, event.clientY));
+      setPos(new Point(event.pageX, event.pageY));
     };
 
     window.addEventListener("mousemove", handleMouseMove);

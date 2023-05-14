@@ -13,6 +13,7 @@ const NavigationBar = (): JSX.Element => {
     { name: "Tones", route: "/tonesPage" },
     { name: "Panel", route: "/panelPage" },
     { name: "Page", route: "/pagePage" },
+    { name: "Episode", route: "/episodePage" },
     { name: "Chat", route: "/chatPage"}
   ];
 

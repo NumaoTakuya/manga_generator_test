@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from "react";
-import NoneBubble from "./NoneBubble"; 
+import NoneBubble from "./NoneBubble";
 import RoundedBubble from "./RoundedBubble";
 import roundedBubbleTailPos from "../../utils/Bubble/tailPosition/roundedBubbleTailPos";
 import SquareBubble from "./SquareBubble";
@@ -10,7 +10,7 @@ import Tail from "./Tail";
 import BubbleProps from "@/utils/Bubble/BubbleProps";
 import Point from "@/utils/classes/Point";
 import Size from "@/utils/classes/Size";
-// import useCursorPosition from "@/utils/hooks/useCursorPosition";
+import useTargetPosition from "@/utils/hooks/useTargetPosition";
 import tailReducer from "./tailReducer";
 import calculateBubbleSize from "@/utils/Bubble/calculateBubbleSize";
 import {
@@ -23,14 +23,20 @@ const Bubble: React.FC<BubbleProps> = ({
   style,
   aspectRatio,
   position,
-  targetPosition,
+  mouthPosition,
   fontSize,
-  font
+  font,
 }) => {
   // テスト時コメントアウト解除
-  // let cursorPosition = useCursorPosition(); 
+  // let cursorPosition = useCursorPosition();
   // console.log("cursorPosition", cursorPosition);
-  // targetPosition = targetPosition ? targetPosition : cursorPosition;
+  // mouthPosition = mouthPosition ? mouthPosition : cursorPosition;
+
+  // Target Position
+  const { targetPosition, handleBubbleClick } = useTargetPosition(
+    mouthPosition,
+    position
+  );
 
   // Bubble
   const bubbleSize = calculateBubbleSize(
@@ -85,7 +91,7 @@ const Bubble: React.FC<BubbleProps> = ({
   };
 
   const strokeWidth = 3; //TODO: typeによって分類
-  const tail = <Tail points={points} state={state} strokeWidth={strokeWidth} />;
+  const tail = targetPosition ? <Tail points={points} state={state} strokeWidth={strokeWidth} /> : null;
 
   const props = {
     offset,
@@ -93,9 +99,9 @@ const Bubble: React.FC<BubbleProps> = ({
     strokeWidth,
     viewBoxSize,
     tail,
-    text, 
+    text,
     fontSize,
-    font
+    font,
   };
 
   const bubble = (style: string) => {
@@ -111,7 +117,7 @@ const Bubble: React.FC<BubbleProps> = ({
       default:
         return RoundedBubble(props);
     }
-  }; 
+  };
 
   return (
     <div
@@ -120,6 +126,7 @@ const Bubble: React.FC<BubbleProps> = ({
         left: position.x - viewBoxSize.width / 2,
         top: position.y - viewBoxSize.height / 2,
       }}
+      onClick={handleBubbleClick}
     >
       {bubble(style)}
     </div>

@@ -11,7 +11,8 @@ const useBubble = (
   bubbleDataArray: BubbleData[],
   modelsLoaded: boolean,
   mouthPosition: Point | null
-): UseBubbleResult => { 
+): UseBubbleResult => {
+  console.log("mouthPosition", mouthPosition)
   const bubbles = bubbleDataArray.map(
     (bubbleData, index) =>
       modelsLoaded && (
@@ -21,7 +22,7 @@ const useBubble = (
           style={bubbleData.style}
           aspectRatio={bubbleData.aspectRatio}
           position={bubbleData.position}
-          targetPosition={mouthPosition}
+          mouthPosition={mouthPosition}
           fontSize={bubbleData.fontSize ?? 20}
           font={bubbleData.font}
         />

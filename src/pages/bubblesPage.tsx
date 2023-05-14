@@ -1,7 +1,7 @@
 import React from "react";
 import NavigationBar from "../components/NavigationBar";
 import Bubble from "../components/Bubble/Bubble";
-import Point from "../utils/classes/Point"; 
+import Point from "../utils/classes/Point";
 
 const BubblePage = () => {
   const texts = [
@@ -24,7 +24,7 @@ const BubblePage = () => {
         style="rounded"
         aspectRatio={2}
         position={new Point(200, 500)}
-        targetPosition={null}
+        mouthPosition={null}
         text={texts[0]}
         fontSize={20}
         font="Comic Sans MS"
@@ -33,7 +33,7 @@ const BubblePage = () => {
         style="square"
         aspectRatio={2}
         position={new Point(400, 600)}
-        targetPosition={null}
+        mouthPosition={null}
         text={texts[1]}
         fontSize={20}
         font="Comic Sans MS"
@@ -42,7 +42,7 @@ const BubblePage = () => {
         style="ellipse"
         aspectRatio={2}
         position={new Point(600, 400)}
-        targetPosition={null}
+        mouthPosition={null}
         text={texts[2]}
         fontSize={20}
         font="Comic Sans MS"

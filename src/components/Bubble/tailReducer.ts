@@ -38,12 +38,12 @@ const tailReducer = (
     case "UPDATE_POSITION":
       const tailPositionFunction = payload.tailPositionFunctions[payload.style];
       if (!tailPositionFunction) return state;
-      console.log("position: ", payload.position);
-      console.log("targetPosition: ", payload.targetPosition);
+      // console.log("position: ", payload.position);
+      // console.log("targetPosition: ", payload.targetPosition);
       const angle = calculateAngle(
         payload.targetPosition.subtract(payload.position)
       );
-      console.log("angle: ", angle * 180 / Math.PI);
+      // console.log("angle: ", (angle * 180) / Math.PI);
       const tailCenterRect = new CenteredRect(
         payload.tailRelativeCenter.x,
         payload.tailRelativeCenter.y,

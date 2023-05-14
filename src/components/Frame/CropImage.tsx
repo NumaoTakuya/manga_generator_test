@@ -32,9 +32,7 @@ const CropImage = ({ id, src, frameRect }: CropImageProps): JSX.Element => {
   const croppedStyle = {
     clipPath: `polygon(${cropValues.x1}px ${cropValues.y1}px, ${cropValues.x2}px ${cropValues.y2}px, ${cropValues.x3}px ${cropValues.y3}px, ${cropValues.x4}px ${cropValues.y4}px)`,
   };
-
-  console.log("src: ", src);
-
+ 
   return (
     <Box
       sx={{

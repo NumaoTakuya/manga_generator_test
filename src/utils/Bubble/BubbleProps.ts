@@ -6,7 +6,7 @@ type BubbleProps = {
   style: BubbleStyle;
   aspectRatio: number;
   position: Point;
-  targetPosition: Point | null;
+  mouthPosition: Point | null;
   fontSize: number;
   font: string;
 };

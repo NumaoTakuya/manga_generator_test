@@ -6,7 +6,7 @@ type EachBubbleProps = {
   bubbleSize: Size;
   strokeWidth: number;
   viewBoxSize: Size;
-  tail?: JSX.Element;
+  tail: JSX.Element | null;
   text: string;
   fontSize: number;
   font: string;
