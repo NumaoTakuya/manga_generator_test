@@ -1,4 +1,3 @@
-import Size from "../classes/Size";
 import Point from "../classes/Point";
 import CenteredRect from "../classes/CenteredRect";
 

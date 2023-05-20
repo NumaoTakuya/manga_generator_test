@@ -1,9 +1,3 @@
-import { Description } from "./StoryDataModel";
-
-type Prompt = {
-    prefix: string;
-    description: Description;
-    postfix: string;
-} 
+type Prompt = string;
 
 export default Prompt;

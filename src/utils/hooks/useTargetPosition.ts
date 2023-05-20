@@ -15,9 +15,7 @@ const useTargetPosition = (
   );
   const [changeTargetPositionMode, setChangeTargetPositionMode] =
     useState(false);
-  let cursorPosition = useCursorPosition();
-
-  // console.log("cursorPosition", cursorPosition)
+  let cursorPosition = useCursorPosition(); 
 
   useEffect(() => {
     setTargetPosition(mouthPosition);
@@ -35,15 +33,12 @@ const useTargetPosition = (
   }, [cursorPosition, changeTargetPositionMode]); 
 
   useEffect(() => {
-    const handlePageClick = () => {
-      console.log("handlePageClick"); 
-      console.log(cursorPosition);
+    const handlePageClick = () => { 
       if (changeTargetPositionMode) {
         // モードがオンのとき、モードをオフにする
         setChangeTargetPositionMode(false);
       } else if (cursorPosition.distance(position) < 40) {
-        // モードがオフでカーソルがBubbleの近くにあるとき、モードをオンにする
-        console.log("setChangeTargetPositionMode(true)");
+        // モードがオフでカーソルがBubbleの近くにあるとき、モードをオンにする 
         setChangeTargetPositionMode(true);
       }
     };

@@ -6,28 +6,11 @@ type Concept = {
     environment: string; // the environment of the story
     characters: Character[]
 }
-
-type Character = CharacterRequirements & Partial<CharacterOptions>;
-
-type CharacterRequirements = {
+ 
+type Character = {
   name: string;
-  appearance: string;
-};
-
-type CharacterOptions = {
-  age: number;
-  role: string;
-  personality: string;
-  background: string;
-  motivation: string;
-  goal: string;
-  conflict: string;
-  epiphany: string;
-  resolution: string;
-  arc: string;
-  relationship: string;
-  growth: string;
-};
+  appearance: string; // including gender, special feature(e.g. silhouette, color)
+}; 
 
 export default Concept;
 export type { Character };

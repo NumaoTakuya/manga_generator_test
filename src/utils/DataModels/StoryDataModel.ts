@@ -2,19 +2,22 @@ type Dialogue = Message[];
 type Message = {
   speaker: string;
   content: string;
-}; 
+};
 type Attributes = {
   importance: number; // how important is this shot to the story
   momentum: number; // how much is this shot dynamic
   intreval: number; // how long it takes time between this shot and the next
 };
 type Description = {
-  characters: string[];
-  background: string;
-  posing: string;
+  characters: {[key: string]: string}; // key: character name, value: character composing
+  background: string; // english please
 };
 
-type Shot = Dialogue & Attributes & Description;
+type Shot = {
+  dialogue: Dialogue;
+  attributes: Attributes;
+  description: Description;
+}
 
 type Story = Shot[];
 
