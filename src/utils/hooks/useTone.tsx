@@ -1,4 +1,4 @@
-import { useMemo, useCallback } from "react";
+import { useMemo, useCallback } from "react"; // ReactのuseMemoとuseCallbackフックをインポート
 import {
   HorizontalGradient,
   VerticalGradient,
@@ -10,21 +10,21 @@ import {
   HorizontalStripes,
   VerticalStripes,
   Stars,
-} from "../../components/Tone/Tones";
-import { ToneData, ToneStyle } from "../DataModels/MangaDataModel";
-import CenteredRect from "../classes/CenteredRect";
-import Size from "../classes/Size";
+} from "../../components/Tone/Tones"; // トーンコンポーネントをインポート
+import { ToneData, ToneStyle } from "../DataModels/MangaDataModel"; // データモデルをインポート
+import CenteredRect from "../classes/CenteredRect"; // CenteredRectクラスをインポート
+import Size from "../classes/Size"; // Sizeクラスをインポート
 
-interface UseToneHook {
+interface UseToneHook { // フックの戻り値の型定義
   RenderTone: JSX.Element | null;
 }
 
-const useTone = (toneData: ToneData | undefined): UseToneHook => {
-  const primaryColor = toneData?.primaryColor ?? "#000";
-  const secondaryColor = toneData?.secondaryColor ?? "#fff";
-  const centeredRect = toneData?.centeredRect ?? CenteredRect.ZERO;
-  const size = centeredRect?.size ?? Size.ZERO;
-  const tones: { [key in ToneStyle]: JSX.Element } = useMemo(
+const useTone = (toneData: ToneData | undefined): UseToneHook => { // useToneフックの定義
+  const primaryColor = toneData?.primaryColor ?? "#000"; // 主要色の定義
+  const secondaryColor = toneData?.secondaryColor ?? "#fff"; // 副色の定義
+  const centeredRect = toneData?.centeredRect ?? CenteredRect.ZERO; // 中心矩形の定義
+  const size = centeredRect?.size ?? Size.ZERO; // サイズの定義
+  const tones: { [key in ToneStyle]: JSX.Element } = useMemo( // トーンの定義
     () => ({
       horizontalGradient: HorizontalGradient(
         [primaryColor, secondaryColor],
@@ -40,10 +40,10 @@ const useTone = (toneData: ToneData | undefined): UseToneHook => {
       verticalStripes: VerticalStripes(primaryColor, size),
       stars: Stars(primaryColor, size),
     }),
-    [primaryColor, secondaryColor, size]
+    [primaryColor, secondaryColor, size] // 依存配列
   );
 
-  const setRenderTone = useCallback(
+  const setRenderTone = useCallback( // トーンのレンダリングを設定する関数
     (style: ToneStyle) => {
       return (
         <div
@@ -58,11 +58,11 @@ const useTone = (toneData: ToneData | undefined): UseToneHook => {
       );
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [tones]
+    [tones] // 依存配列
   );
 
-  const RenderTone = toneData ? setRenderTone(toneData.style) : null;
-  return { RenderTone };
+  const RenderTone = toneData ? setRenderTone(toneData.style) : null; // トーンのレンダリング
+  return { RenderTone }; // 戻り値
 };
 
-export default useTone;
+export default useTone; // useToneのエクスポート

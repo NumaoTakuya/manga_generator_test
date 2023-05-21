@@ -11,8 +11,7 @@ const useBubble = (
   bubbleDataArray: BubbleData[],
   modelsLoaded: boolean,
   mouthPosition: Point | null
-): UseBubbleResult => {
-  console.log("mouthPosition", mouthPosition)
+): UseBubbleResult => { 
   const bubbles = bubbleDataArray.map(
     (bubbleData, index) =>
       modelsLoaded && (

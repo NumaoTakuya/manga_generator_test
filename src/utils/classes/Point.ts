@@ -1,69 +1,48 @@
-import Size from "./Size";
+import Size from "./Size"; // Sizeクラスのインポート
 
-export default class Point {
-  x: number;
-  y: number;
+export default class Point { // Pointクラスの定義
+  x: number; // X座標の定義
+  y: number; // Y座標の定義
 
-  constructor(x: number, y: number) {
-    this.x = x;
-    this.y = y;
+  constructor(x: number, y: number) { // コンストラクタ
+    this.x = x; // X座標の設定
+    this.y = y; // Y座標の設定
   }
 
+  // 座標をSizeオブジェクトに変換
   toSize(): Size {
     return new Size(this.x, this.y);
   }
 
+  // 他の点との距離を計算
   distance(other: Point): number {
-    const dx = this.x - other.x;
-    const dy = this.y - other.y;
-    return Math.sqrt(dx * dx + dy * dy);
+    const dx = this.x - other.x; // X座標の差分
+    const dy = this.y - other.y; // Y座標の差分
+    return Math.sqrt(dx * dx + dy * dy); // ピタゴラスの定理による距離計算
   }
 
+  // 他の点を加算
   add(other: Point): Point {
-    return new Point(this.x + other.x, this.y + other.y);
+    return new Point(this.x + other.x, this.y + other.y); // 新しい点を生成して返す
   }
 
+  // 他の点を減算
   subtract(other: Point): Point {
-    return new Point(this.x - other.x, this.y - other.y);
+    return new Point(this.x - other.x, this.y - other.y); // 新しい点を生成して返す
   }
 
+  // スカラー倍
   multiply(scalar: number): Point {
-    return new Point(this.x * scalar, this.y * scalar);
+    return new Point(this.x * scalar, this.y * scalar); // 新しい点を生成して返す
   }
 
+  // スカラー除算
   divide(scalar: number): Point {
-    return new Point(this.x / scalar, this.y / scalar);
-  }
+    return new Point(this.x / scalar, this.y / scalar); // 新しい点を生成して返す
+  } 
 
-  dot(other: Point): number {
-    return this.x * other.x + this.y * other.y;
-  }
-
-  cross(other: Point): number {
-    return this.x * other.y - this.y * other.x;
-  }
-
+  // 原点を表す静的プロパティ
   static get ZERO(): Point {
     return new Point(0, 0);
-  }
-
-  static get ONE(): Point {
-    return new Point(1, 1);
-  }
-
-  static get UP(): Point {
-    return new Point(0, 1);
-  }
-
-  static get DOWN(): Point {
-    return new Point(0, -1);
-  }
-
-  static get LEFT(): Point {
-    return new Point(-1, 0);
-  }
-
-  static get RIGHT(): Point {
-    return new Point(1, 0);
-  }
+  } 
 }

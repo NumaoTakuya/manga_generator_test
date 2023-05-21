@@ -1,48 +1,26 @@
-import Rect from "./Rect";
-import Point from "./Point";
-import Size from "./Size";
+import Rect from "./Rect"; // Rectクラスをインポート
+import Point from "./Point"; // Pointクラスをインポート
+import Size from "./Size"; // Sizeクラスをインポート
 
-export default class CenteredRect extends Rect {
-  centerX: number;
-  centerY: number;
+// 中心点と幅と高さを指定するクラス
+export default class CenteredRect extends Rect {  
+  centerX: number; // 中心点X座標の定義
+  centerY: number; // 中心点Y座標の定義
 
-  constructor(centerX: number, centerY: number, width: number, height: number) {
-    const left = centerX - width / 2;
-    const top = centerY - height / 2;
-    super(left, top, width, height);
-    this.centerX = centerX;
-    this.centerY = centerY;
+  constructor(centerX: number, centerY: number, width: number, height: number) { // コンストラクター
+    const left = centerX - width / 2; // 矩形の左端座標
+    const top = centerY - height / 2; // 矩形の上端座標
+    super(left, top, width, height); // スーパークラスのコンストラクターを呼び出し
+    this.centerX = centerX; // 中心点X座標の設定
+    this.centerY = centerY; // 中心点Y座標の設定
   }
 
-  static get ZERO(): CenteredRect {
+  static get ZERO(): CenteredRect { // 矩形の初期値（中心と幅と高さが全て0）
     return new CenteredRect(0, 0, 0, 0);
-  }
+  } 
 
-  // 中心座標を取得する
-  get center(): Point {
-    return new Point(this.centerX, this.centerY);
-  }
-
-  get point(): Point {
-    return new Point(this.centerX, this.centerY);
-  }
-
+  // 矩形のサイズを取得するゲッター
   get size(): Size {
     return new Size(this.width, this.height);
-  }
-
-  // 中心座標を設定する
-  set center(value: Point) {
-    this.centerX = value.x;
-    this.centerY = value.y;
-    this.left = this.centerX - this.width / 2;
-    this.top = this.centerY - this.height / 2;
-  }
-
-  // 矩形を移動する
-  move(x: number, y: number): CenteredRect {
-    const centerX = this.centerX + x;
-    const centerY = this.centerY + y;
-    return new CenteredRect(centerX, centerY, this.width, this.height);
-  }
+  } 
 }

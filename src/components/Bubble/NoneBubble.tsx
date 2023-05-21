@@ -2,13 +2,15 @@ import React from "react";
 import EachBubbleProps from "@/utils/Bubble/EachBubbleProps";
 import { Typography, Box } from "@mui/material";
 
+// これがそのやつだよ、ReactのFC。色々なPropsを受け取るよ
 const NoneBubble: React.FC<EachBubbleProps> = ({
-  bubbleSize,
-  viewBoxSize, 
-  text,
-  fontSize,
-  font,
+  bubbleSize,    // バブルの大きさ
+  viewBoxSize,   // viewBoxの大きさ
+  text,          // 表示するテキスト
+  fontSize,      // フォントの大きさ
+  font,          // フォント
 }) => {
+  // divで囲む。位置は相対的になってて、widthとheightはviewBoxSizeから取ってくる
   return (
     <div
       style={{
@@ -17,6 +19,7 @@ const NoneBubble: React.FC<EachBubbleProps> = ({
         height: viewBoxSize.height,
       }}
     >
+      {/* svgを使うよ。位置は絶対的に、サイズは全体に広げる */}
       <svg
         style={{
           position: "absolute",
@@ -25,7 +28,9 @@ const NoneBubble: React.FC<EachBubbleProps> = ({
         }}
         viewBox={`0 0 ${viewBoxSize.width} ${viewBoxSize.height}`}
       >
+        {/* SVG内にHTMLを入れるためのforeignObject。viewBoxのサイズと一緒 */}
         <foreignObject width={viewBoxSize.width} height={viewBoxSize.height}>
+          {/* テキストをセンタリングするためのBox */}
           <Box
             sx={{
               height: viewBoxSize.height,
@@ -38,6 +43,7 @@ const NoneBubble: React.FC<EachBubbleProps> = ({
               boxSizing: "initial",
             }}
           >
+            {/* ここでようやくテキストが表示される */}
             <Typography
               component="p"
               color="black"
@@ -50,6 +56,7 @@ const NoneBubble: React.FC<EachBubbleProps> = ({
                 zIndex: 24,
               }}
             >
+              {/* ここがそのテキストだよ */}
               {text}
             </Typography>
           </Box>
@@ -59,4 +66,5 @@ const NoneBubble: React.FC<EachBubbleProps> = ({
   );
 };
 
-export default NoneBubble;
+export default NoneBubble; // これで外部からも使えるようになったね
+

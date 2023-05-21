@@ -31,7 +31,7 @@ const getGPTResponse = async (
   messages = [...messages, userMessage];
 
   const gptResponse = await openai.createChatCompletion({
-    model: model,
+    model: model,                                                                                        
     messages: [systemMessage, ...messages],
     temperature: temperature ?? 1,
     max_tokens: max_tokens ?? 2048,
